@@ -1,0 +1,146 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_body_bar"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_yellow">
+
+
+
+    <RelativeLayout
+        android:id="@+id/main_body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/fl_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_bar"
+            tools:visibility="visible"></FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_bar"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_navigator"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="10dp"
+            >
+
+            <RelativeLayout
+                android:id="@+id/bottom_bar_1_btn"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/bottom_bar_text_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:text="@string/detect"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/bottom_bar_image_1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_above="@+id/bottom_bar_text_1"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/test" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bottom_bar_2_btn"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/bottom_bar_text_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:text="@string/health"
+                    android:textColor="#000000"
+                    android:textSize="14sp"/>
+
+                <ImageView
+                    android:id="@+id/bottom_bar_image_2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_above="@+id/bottom_bar_text_2"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/detect" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/bottom_bar_3_btn"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/bottom_bar_text_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:text="@string/consult"
+                    android:textColor="#000000"
+                    android:textSize="14sp"/>
+
+                <ImageView
+                    android:id="@+id/bottom_bar_image_3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_above="@+id/bottom_bar_text_3"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/knowledge" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/bottom_bar_4_btn"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/bottom_bar_text_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:text="@string/personal"
+                    android:textColor="#000000"
+                    android:textSize="14sp"/>
+
+                <ImageView
+                    android:id="@+id/bottom_bar_image_4"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_above="@+id/bottom_bar_text_4"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/my" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

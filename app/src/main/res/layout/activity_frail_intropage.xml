@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_yellow"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        android:background="@null"
+        android:id="@+id/back_button"
+        android:onClick="startActivityForResult"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/miku" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="356dp"
+        android:background="@color/navigator_yellow"
+        android:padding="10dp"
+        android:text="@string/FRAIL_intro"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="bottom"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom"
+            android:text="@string/start_test"
+            android:textColor="@color/black"
+            android:background="@drawable/white_with_stroke"
+            android:onClick="startFrailTest"/>
+    </LinearLayout>
+</LinearLayout>

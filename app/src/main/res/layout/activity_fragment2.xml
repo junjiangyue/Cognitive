@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_body"
+    >
+
+    <android.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/health_maintenance"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </android.widget.Toolbar>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:background="@color/background"
+        >
+
+        <LinearLayout xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/LinearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="350dp"
+                android:background="@color/background"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/background"
+                    android:orientation="horizontal">
+                    <!-- 这里是搜索框-->
+                    <android.widget.SearchView
+                        android:id="@+id/sv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="12"
+                        android:background="@drawable/sv_style"
+                        android:iconifiedByDefault="false"
+                        android:queryHint="@string/search_hint"
+                        />
+                </LinearLayout>
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_title"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:text="展示搜索内容"-->
+<!--                    android:textColor="@android:color/darker_gray"-->
+<!--                    android:textSize="18sp"-->
+<!--                    />-->
+                <TextView
+                    android:id="@+id/goDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/daily_health_info"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/info_from_maigan" />
+
+                <com.youth.banner.Banner
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="120dp"
+                android:background="@color/background"
+                android:orientation="vertical">
+                <TableLayout
+                    android:id="@+id/TableLayout1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+                    <TableRow android:layout_height="70dp">
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:id="@+id/habits"
+                            android:src="@drawable/rec" />
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:id="@+id/diet"
+                            android:src="@drawable/rec" />
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:id="@+id/exercise"
+                            android:src="@drawable/rec" />
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:id="@+id/solarTerms"
+                            android:src="@drawable/rec" />
+
+                    </TableRow>
+
+                    <TableRow android:layout_height="30dp">
+                        <TextView
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/habit" />
+                        <TextView
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/diet" />
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/sport" />
+                        <TextView
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/season_nurse" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background">
+
+                <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="25dp">
+
+                    <TextView
+                        android:id="@+id/info_text2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="20dp"
+                        android:background="@drawable/rec"
+                        android:text="@string/recommendation"
+                        android:textSize="20sp" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

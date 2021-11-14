@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Cognitive</string>
+    <string name="detect">detect</string>
+    <string name="health">health</string>
+    <string name="consult">consult</string>
+    <string name="personal">personal</string>
+    <string name="continue_test">是否继续</string>
+    <string name="test_name">量表一</string>
+    <string name="begin_test">GO!</string>
+    <string name="test">认知自测</string>
+    <string name="test_list_string">测试量表</string>
+    <string name="history_list_string">历史记录</string>
+    <string name="health_maintenance">养生</string>
+    <string name="daily_health_info">每日养生资讯</string>
+    <string name="info_from_maigan">来自麦秆整理的有效信息</string>
+    <string name="diet">养生食谱</string>
+    <string name="sport">运动知识</string>
+    <string name="season_nurse">睡眠指导</string>
+    <string name="habit">健康资讯</string>
+    <string name="recommendation">为你推荐</string>
+    <string name="search">搜索</string>
+    <string name="search_hint">尝试搜索“秋季养生”</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--FRAIL page-->
+    <string name="FRAIL_intro">\t\t\t\tFRAIL量表由国际营养与老年医学会下属的老年医学专家小组最先提出，他们认为，衰弱应当视为一种机能障碍前状态，衰弱的评估应当排除机能障碍等相关因素，即应当排除影响正常日常生活行为能力的生理功能障碍。FRAIL量表由疲劳感（fatigue）、抵抗力（resistance）、步行能力（ambulation）、疾病状况（illness）和体重减轻（lossofweight）五项内容组成，这五项内容的英文单词首字母构成了FRAIL量表的名称。</string>
+    <string name="start_test">开始测试</string>
+    <string name="back"><![CDATA[<<返回]]></string>
+    <string name="frail_title">量表一\t\tFRAIL量表</string>
+    <!--FRAIL questions-->
+    <string name="FRAIL_1">1、在过去的四周内您经常感到疲劳吗？</string>
+    <string name="FRAIL_2">2、您上10级楼梯有困难吗？</string>
+    <string name="FRAIL_3">3、您在没有协助的情况下走200米至300米有困难吗？</string>
+    <string name="FRAIL_4">4、医生是否告诉你患有以下疾病？</string>
+    <string name="FRAIL_5">5、您最近1年内体重下降明显吗？</string>
+    <string name="FRAIL_healthy">您现在处于健康状态，没有认知衰弱的迹象。</string>
+    <string name="FRAIL_pre_frailty">您现在处于认知衰弱前期，建议有针对性地进行早期干预。</string>
+    <string name="FRAIL_frailty">您现在处于认知衰弱，建议去医院进一步检查并进行治疗。</string>
+
+    <!--Fragment2-->
+    <string name="use_days">健康打卡第123天</string>
+    <string name="today_steps">今天走了12345步</string>
+    <string name="today_distance">相当于走了8公里</string>
+    <string name="consume_calorie">消耗了235大卡</string>
+    <string name="click_history_steps">查看我的历史步数>></string>
+    <string name="unfold">展开图片</string>
+
+</resources>
