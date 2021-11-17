@@ -7,7 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background_yellow">#F1F0E6</color>
     <color name="navigator_yellow">#FFFFF3</color>
     <color name="indigo">#99CCCC</color>
     <color name="orange">#FFCC99</color>
@@ -24,7 +23,7 @@
     <color name="light_purple">#D9B3FF</color>
     <color name="pink_alt">#FFB3FF</color>
     <color name="dark_pink">#FFB3D9</color>
-    <color name="background">#F1F0E6</color>
+    <color name="background">#F4F4F4</color>
     <color name="lighter_green">#E6FFCC</color>
     <color name="green_alt">#CCFFCC</color>
     <color name="blue_alt">#CCE6FF</color>

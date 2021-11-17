@@ -143,10 +143,6 @@ public class MainActivity extends AppCompatActivity {
         setSelectStatus(0);
     }
 
-
-
-
-
     public void setSelectStatus(int index)
     {
         switch (index)
