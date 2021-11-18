@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.LoginActivity"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:background="@drawable/login"
     xmlns:fancy="http://schemas.android.com/apk/res-auto">
 
@@ -14,16 +14,24 @@
         android:id="@+id/loginLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/rec"
-        android:layout_margin="20dp"
-        >
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#8fF4F4F4"
+        android:orientation="vertical">
+
         <EditText
             android:id="@+id/et_data_uname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:hint="请输入用户名：" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:hint="请输入用户名："
+            android:textColor="@color/button_blue"
+            android:textSize="18dp"/>
 
         <EditText
             android:id="@+id/et_data_upass"
@@ -31,44 +39,64 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:hint="请输入密码："
-            android:inputType="number" />
-
-        <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/btn_login"
-            android:layout_gravity="center"
+            android:inputType="number"
+            android:textColor="@color/button_blue"
+            android:textSize="18dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <CheckBox
+            android:id="@+id/remember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="记住密码"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:textSize="15dp"/>
+        <CheckBox
+            android:id="@+id/autologin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自动登录"
+            android:layout_weight="1"
+            android:textSize="15dp"
+            />
+        </LinearLayout>
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
+            android:paddingLeft="60dp"
             android:paddingTop="10dp"
-            fancy:fb_borderColor="#FFFFFF"
-            fancy:fb_borderWidth="1dp"
-            fancy:fb_defaultColor="#7ab800"
-            fancy:fb_focusColor="#9bd823"
+            android:paddingRight="60dp"
+            android:paddingBottom="10dp"
+            fancy:fb_defaultColor="@color/button_blue"
+            fancy:fb_focusColor="@color/button_focus"
             fancy:fb_radius="30dp"
             fancy:fb_text="登录"
-            fancy:fb_textColor="#FFFFFF"/>
+            fancy:fb_textColor="#FFFFFF"
+            fancy:fb_textSize = "18dp"/>
 
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btn_signup"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
+            android:paddingLeft="60dp"
             android:paddingTop="10dp"
-            fancy:fb_borderColor="#FFFFFF"
-            fancy:fb_borderWidth="1dp"
-            fancy:fb_defaultColor="#7ab800"
-            fancy:fb_focusColor="#9bd823"
+            android:paddingRight="60dp"
+            android:paddingBottom="10dp"
+            fancy:fb_defaultColor="@color/button_blue"
+            fancy:fb_focusColor="@color/button_focus"
             fancy:fb_radius="30dp"
             fancy:fb_text="注册"
-            fancy:fb_textColor="#FFFFFF"/>
+            fancy:fb_textColor="#FFFFFF"
+            fancy:fb_textSize = "18dp"/>
 
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

@@ -27,4 +27,7 @@
     <color name="lighter_green">#E6FFCC</color>
     <color name="green_alt">#CCFFCC</color>
     <color name="blue_alt">#CCE6FF</color>
+    <!-- 登录界面-->
+    <color name="button_blue">#193855</color>
+    <color name="button_focus">#325F80</color>
 </resources>
