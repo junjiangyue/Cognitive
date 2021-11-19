@@ -14,6 +14,12 @@
         android:theme="@style/Theme.Cognitive"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.Music_Activity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.SignUpActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activity.LogoActivity"
             android:exported="true" />
         <activity
@@ -73,7 +79,7 @@
             android:exported="true" />
         <activity
             android:name=".Activity.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -94,7 +94,6 @@ public class LoginActivity extends AppCompatActivity {
                     sp.edit().putBoolean("ISCHECK", true).commit();
 
                 }else {
-
                     System.out.println("记住密码没有选中");
                     sp.edit().putBoolean("ISCHECK", false).commit();
 
