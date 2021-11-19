@@ -1,13 +1,25 @@
 package com.example.cognitive.Fragment;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +32,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+
+
 public class FragmentActivity3 extends Fragment {
     private LinearLayout title_test;
     private TextView get_date;
@@ -31,7 +45,14 @@ public class FragmentActivity3 extends Fragment {
     private TextView history_step;
     private boolean isVisible = true;
 
-
+    /*private SensorManager sensorManager;
+    private Sensor sensor;
+    private SensorEventListener stepCounterListener;*/
+    private TextView step_num;
+    private String TAG = "get step";
+    private SensorManager mSensorManager;
+    private static final String[] permissions = {Manifest.permission.ACTIVITY_RECOGNITION};
+    //步数的一堆东西
 
     //@Nullable
     @Override
@@ -55,6 +76,53 @@ public class FragmentActivity3 extends Fragment {
         get_weekday=view.findViewById(R.id.get_weekday);
         String weekDay=getWeekDay();
         get_weekday.setText("星期"+weekDay);
+
+        //获取步数
+        step_num=view.findViewById(R.id.step_num);
+        /*sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        if(sensor==null){
+            Log.e("sensor","没有sensor");
+        }
+        stepCounterListener=new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                float count = event.values[0];
+                step_num.setText("总步伐计数:"+count);
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) { }
+        };
+        sensorManager.registerListener(stepCounterListener, sensor, SensorManager.SENSOR_DELAY_FASTEST);*/
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            Log.d(TAG, "[权限]" + "ACTIVITY_RECOGNITION 未获得");
+            if (ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACTIVITY_RECOGNITION) != PackageManager.PERMISSION_GRANTED) {
+                // 检查权限状态
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this.getActivity(), Manifest.permission.ACTIVITY_RECOGNITION)) {
+                    //  用户彻底拒绝授予权限，一般会提示用户进入设置权限界面
+                    Log.d(TAG, "[权限]" + "ACTIVITY_RECOGNITION 以拒绝，需要进入设置权限界面打开");
+                } else {
+                    //  用户未彻底拒绝授予权限
+                    ActivityCompat.requestPermissions(this.getActivity(), new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 1);
+                    Log.d(TAG, "[权限]" + "ACTIVITY_RECOGNITION 未彻底拒绝拒绝，请求用户同意");
+                }
+//                return;
+            }else{
+
+                Log.d(TAG, "[权限]" + "ACTIVITY_RECOGNITION ready");
+            }
+        }else{
+
+        }
+
+
+
+        startSensor();
+
+
+        //step_num.setText("今天走了"+sensor.toString()+"步");
 
 
 
@@ -131,4 +199,77 @@ public class FragmentActivity3 extends Fragment {
             return null;
         }
     }
+
+    private void startSensor() {
+        mSensorManager = (SensorManager) this.getActivity().getSystemService(Context.SENSOR_SERVICE);
+
+        Sensor mStepCounterSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        Sensor mStepDetectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+
+        if (mSensorManager == null || mStepCounterSensor == null || mStepDetectorSensor == null) {
+            throw new UnsupportedOperationException("设备不支持");
+        }
+
+        mSensorManager.registerListener(mSensorEventListener, mStepCounterSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(mSensorEventListener, mStepDetectorSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    private SensorEventListener mSensorEventListener = new SensorEventListener() {
+        private float step, stepDetector;
+        private int intStep;
+
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+            /**
+             * 计步计数传感器传回的历史累积总步数
+             */
+            if (sensorEvent.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+                step = sensorEvent.values[0];
+                Log.d(TAG, "STEP_COUNTER:" + step);
+                intStep=(int)step;
+                step_num.setText("今天走了"+intStep+"步");
+            }
+
+            /**
+             * 计步检测传感器检测到的步行动作是否有效？
+             */
+            if (sensorEvent.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
+                stepDetector = sensorEvent.values[0];
+                Log.d(TAG, "STEP_DETECTOR:" + stepDetector);
+                if (stepDetector == 1.0) {
+                    Log.d(TAG, "一次有效的步行");
+                }
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int i) {
+
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mSensorManager.unregisterListener(mSensorEventListener);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            for (int i = 0; i < permissions.length; i++) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    // 申请成功
+                    Log.d(TAG, "[权限]" + "ACTIVITY_RECOGNITION 申请成功");
+                } else {
+                    // 申请失败
+                    Log.d(TAG, "[权限]" + "ACTIVITY_RECOGNITION 申请失败");
+                }
+            }
+        }
+
+    }
+
+
 }
