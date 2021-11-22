@@ -1,38 +1,21 @@
 package com.example.cognitive.Activity;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.cognitive.Adapter.ArticleAdapter;
 import com.example.cognitive.Adapter.TabAdapter;
-import com.example.cognitive.Bean.Articles;
-import com.example.cognitive.Fragment.HealthRecipeFragment;
-import com.example.cognitive.Fragment.MusicPlayerFragment;
+import com.example.cognitive.Fragment.MusicListFragment;
 import com.example.cognitive.Fragment.SleepHelpFragment;
-import com.example.cognitive.Fragment.SolarTermFragment;
 import com.example.cognitive.R;
 import com.google.android.material.tabs.TabLayout;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
-
+// 这个页面展示歌单和睡眠技巧
 public class Sleep extends AppCompatActivity {
     private List<Fragment> list_fragment; //定义要装frament的列表
     private List<String> list_title; //tab名称列表
@@ -63,11 +46,11 @@ public class Sleep extends AppCompatActivity {
     }
     private void initView(){
         //定义fragment
-        MusicPlayerFragment musicPlayerFragment = new MusicPlayerFragment();
+        MusicListFragment musicListFragment = new MusicListFragment();
         SleepHelpFragment sleepHelpFragment = new SleepHelpFragment();
         //将fragment装进列表
         list_fragment = new ArrayList<>();
-        list_fragment.add(musicPlayerFragment);
+        list_fragment.add(musicListFragment);
         list_fragment.add(sleepHelpFragment);
         //将名称加载tab列表
         list_title = new ArrayList<>();

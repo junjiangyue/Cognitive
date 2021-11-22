@@ -2,180 +2,217 @@ package com.example.cognitive.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import com.example.cognitive.R;
-import com.example.cognitive.Utils.MusicServer;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.animation.ObjectAnimator;
-import android.content.ComponentName;
+import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Build;
+import android.content.IntentFilter;
+import android.media.AudioManager;
 import android.os.Bundle;
-import android.os.Handler;
+
+import com.example.cognitive.R;
+
+import android.content.ComponentName;
+import android.content.ServiceConnection;
 import android.os.IBinder;
-import android.os.Message;
+import android.util.Log;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
-import android.widget.ImageView;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import static java.lang.Integer.parseInt;
+// 这个页面是音乐播放界面
+public class Music_Activity extends AppCompatActivity
+{
+    private AudioManager aManager;
+    // 获取界面中显示歌曲标题、作者文本框
+    TextView title, author;
+    // 播放/暂停、停止按钮
+    ImageButton play, next, last;
+    // 声明音量管理器
+    //public AudioManager mAudioManager = null;
+    // 定义进度条
+    public static SeekBar audioSeekBar = null;
+    // 定义音量大小
+    public SeekBar audioVolume = null;
 
-public class Music_Activity extends AppCompatActivity implements View.OnClickListener{
-    private static SeekBar sb;
-    private static TextView tv_progress,tv_total,name_song;
-    private ObjectAnimator animator;
-    private MusicServer.MusicControl musicControl;
-    String name;
-    Intent intent1,intent2;
-    MyServiceConn conn;
-    private boolean isUnbind =false;//记录服务是否被解绑
+    ActivityReceiver activityReceiver;
+
+    public static final String CTL_ACTION = "org.crazyit.action.CTL_ACTION";
+
+    public static final String UPDATE_ACTION = "org.crazyit.action.UPDATE_ACTION";
+    // 定义音乐的播放状态，0x11代表没有播放；0x12代表正在播放；0x13代表暂停
+    int status = 0x11;
+    String[] titleStrs = new String[] { "music0", "music1", "music2" };
+    String[] authorStrs = new String[] { "JayChou", "JayChou", "JayChou" };
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_music);
-        intent1=getIntent();
-        init();
-    }
-    private void init(){
-        tv_progress=(TextView)findViewById(R.id.tv_progress);
-        tv_total=(TextView)findViewById(R.id.tv_total);
-        sb=(SeekBar)findViewById(R.id.sb);
-        name_song=(TextView)findViewById(R.id.song_name);
 
-        findViewById(R.id.btn_play).setOnClickListener(this);
-        findViewById(R.id.btn_pause).setOnClickListener(this);
-        findViewById(R.id.btn_continue_play).setOnClickListener(this);
-        findViewById(R.id.btn_exit).setOnClickListener(this);
+        aManager = (AudioManager) getSystemService(Service.AUDIO_SERVICE);
 
-        name=intent1.getStringExtra("name");
-        name_song.setText(name);
-        intent2=new Intent(this,MusicServer.class);//创建意图对象
-        conn=new MyServiceConn();//创建服务连接对象
-        bindService(intent2,conn,BIND_AUTO_CREATE);//绑定服务
-        //为滑动条添加事件监听
-        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //进度条改变时，会调用此方法
-                if (progress==seekBar.getMax()){//当滑动条到末端时，结束动画
-                    animator.pause();//停止播放动画
-                }
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {//滑动条开始滑动时调用
-            }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {//滑动条停止滑动时调用
-                //根据拖动的进度改变音乐播放进度
-                int progress=seekBar.getProgress();//获取seekBar的进度
-                musicControl.seekTo(progress);//改变播放进度
-            }
-        });
-        ImageView iv_music=(ImageView)findViewById(R.id.iv_music);
-        String position= intent1.getStringExtra("position");
-        int i=parseInt(position);
-        //iv_music.setImageResource(frag1.icons[i]);
+        // 获取程序界面界面中的两个按钮
+        play = (ImageButton) this.findViewById(R.id.play);
+        last = (ImageButton) this.findViewById(R.id.last);
+        next = (ImageButton) this.findViewById(R.id.next);
+        audioSeekBar = (SeekBar) findViewById(R.id.seekbar);
+        title = (TextView) findViewById(R.id.title);
+        author = (TextView) findViewById(R.id.author);
 
 
-        animator=ObjectAnimator.ofFloat(iv_music,"rotation",0f,360.0f);
-        animator.setDuration(10000);//动画旋转一周的时间为10秒
-        animator.setInterpolator(new LinearInterpolator());//匀速
-        animator.setRepeatCount(-1);//-1表示设置动画无限循环
+        // 为两个按钮的单击事件添加监听器
+        play.setOnClickListener(OnClickListener);
+        last.setOnClickListener(OnClickListener);
+        next.setOnClickListener(OnClickListener);
+
+        // 播放进度监听
+        audioSeekBar.setOnSeekBarChangeListener(new SeekBarChangeEvent());
+        // 退出后再次进去程序时，进度条保持持续更新
+        if (MusicService.mPlayer != null) {
+            // 设置进度条的最大值
+            Music_Activity.audioSeekBar.setMax(MusicService.mPlayer.getDuration());
+            audioSeekBar.setProgress(MusicService.mPlayer.getCurrentPosition());
+        }
+//        // 得到当前音量对象
+//        mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+//        // 把当前音量值赋给进度条
+//        audioVolume.setProgress(mAudioManager
+//                .getStreamVolume(AudioManager.STREAM_MUSIC));
+//        // 监听音量
+//        audioVolume.setOnSeekBarChangeListener(new AudioVolumeChangeEvent());
+
+
+        activityReceiver = new ActivityReceiver();
+        // 创建IntentFilter
+        IntentFilter filter = new IntentFilter();
+        // 指定BroadcastReceiver监听的Action
+        filter.addAction(UPDATE_ACTION);
+        // 注册BroadcastReceiver
+        registerReceiver(activityReceiver, filter);
+
+        Intent intent = new Intent(this, MusicService.class);
+        // 启动后台Service
+        startService(intent);
     }
 
+//    // 音量监听
+//    class AudioVolumeChangeEvent implements SeekBar.OnSeekBarChangeListener {
+//
+//        @Override
+//        public void onProgressChanged(SeekBar seekBar, int progress,
+//                                      boolean fromUser) {
+//            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress,
+//                    0);
+//        }
+//
+//        @Override
+//        public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//        }
+//
+//        @Override
+//        public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//        }
+//
+//    }
 
-    public static Handler handler=new Handler(){//创建消息处理器对象
-        //在主线程中处理从子线程发送过来的消息
+    // 播放进度监听，别忘了Service里面还有个进度条刷新
+    class SeekBarChangeEvent implements SeekBar.OnSeekBarChangeListener {
+
         @Override
-        public void handleMessage(Message msg){
-            Bundle bundle=msg.getData();//获取从子线程发送过来的音乐播放进度
-            int duration=bundle.getInt("duration");
-            int currentPosition=bundle.getInt("currentPosition");
-            sb.setMax(duration);
-            sb.setProgress(currentPosition);
-            //歌曲总时长
-            int minute=duration/1000/60;
-            int second=duration/1000%60;
-            String strMinute=null;
-            String strSecond=null;
-            if(minute<10){//如果歌曲的时间中的分钟小于10
-                strMinute="0"+minute;//在分钟的前面加一个0
-            }else{
-                strMinute=minute+"";
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            // 假设改变源于用户拖动
+            if (fromUser) {
+                MusicService.mPlayer.seekTo(progress);
+                // 当进度条的值改变时，音乐播放器从新的位置开始播放
             }
-            if (second<10){//如果歌曲中的秒钟小于10
-                strSecond="0"+second;//在秒钟前面加一个0
-            }else{
-                strSecond=second+"";
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+            MusicService.mPlayer.pause();
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+            MusicService.mPlayer.start();
+        }
+
+    }
+
+
+    // 自定义的BroadcastReceiver，负责监听从Service传回来的广播
+    public class ActivityReceiver extends BroadcastReceiver
+    {
+        @Override
+        public void onReceive(Context context, Intent intent)
+        {
+            // 获取Intent中的update消息，update代表播放状态
+            int update = intent.getIntExtra("update", -1);
+            // 获取Intent中的current消息，current代表当前正在播放的歌曲
+            int current = intent.getIntExtra("current", -1);
+            if (current >= 0)
+            {
+                title.setText(titleStrs[current]);
+                author.setText(authorStrs[current]);
             }
-            tv_total.setText(strMinute+":"+strSecond);
-            //歌曲当前播放时长
-            minute=currentPosition/1000/60;
-            second=currentPosition/1000%60;
-            if(minute<10){//如果歌曲的时间中的分钟小于10
-                strMinute="0"+minute;//在分钟的前面加一个0
-            }else{
-                strMinute=minute+" ";
+            switch (update)
+            {
+                case 0x11:
+                    play.setImageResource(R.drawable.play);
+                    status = 0x11;
+                    break;
+                // 控制系统进入播放状态
+                case 0x12:
+                    // 播放状态下设置使用暂停图标
+                    play.setImageResource(R.drawable.pause);
+                    // 设置当前状态
+                    status = 0x12;
+                    break;
+                // 控制系统进入暂停状态
+                case 0x13:
+                    // 暂停状态下设置使用播放图标
+                    play.setImageResource(R.drawable.play);
+                    // 设置当前状态
+                    status = 0x13;
+                    break;
             }
-            if (second<10){//如果歌曲中的秒钟小于10
-                strSecond="0"+second;//在秒钟前面加一个0
-            }else{
-                strSecond=second+" ";
+        }
+    }
+    public View.OnClickListener OnClickListener = new View.OnClickListener() {
+        @Override
+
+        public void onClick(View source)
+        {
+            // 创建Intent
+            Intent intent = new Intent("org.crazyit.action.CTL_ACTION");
+            switch (source.getId())
+            {
+                // 按下播放/暂停按钮
+                case R.id.play:
+                    intent.putExtra("control", 1);
+                    break;
+                case R.id.last:
+                    intent.putExtra("control", 2);
+                    break;
+                //按下上一首按钮
+                case R.id.next:
+                    intent.putExtra("control", 3);
+                    break;
             }
-            tv_progress.setText(strMinute+":"+strSecond);
+            // 发送广播，将被Service组件中的BroadcastReceiver接收到
+            sendBroadcast(intent);
         }
     };
-    class MyServiceConn implements ServiceConnection{//用于实现连接服务
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service){
-            musicControl=(MusicServer.MusicControl) service;
-        }
-        @Override
-        public void onServiceDisconnected(ComponentName name){
 
-        }
-    }
-    private void unbind(boolean isUnbind){
-        if(!isUnbind){//判断服务是否被解绑
-            musicControl.pausePlay();//暂停播放音乐
-            unbindService(conn);//解绑服务
-        }
-    }
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn_play://播放按钮点击事件
-                String position=intent1.getStringExtra("position");
-                int i=parseInt(position);
-                musicControl.play(i);
-                animator.start();
-                break;
-            case R.id.btn_pause://暂停按钮点击事件
-                musicControl.pausePlay();
-                animator.pause();
-                break;
-            case R.id.btn_continue_play://继续播放按钮点击事件
-                musicControl.continuePlay();
-                animator.start();
-                break;
-            case R.id.btn_exit://退出按钮点击事件
-                unbind(isUnbind);
-                isUnbind=true;
-                finish();
-                break;
-        }
-    }
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-        unbind(isUnbind);//解绑服务
-    }
+
 }
+

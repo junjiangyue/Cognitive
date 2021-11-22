@@ -1,96 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context=".Fragment.MusicPlayerFragment"
-    android:gravity="center"
     android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/iv_music"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="15dp"
-        android:src="@drawable/music0"/>
-    <TextView
-        android:id="@+id/song_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="歌曲名"
-        android:textSize="20sp"/>
-    <SeekBar
-        android:id="@+id/sb"
+    <ListView
+        android:id="@+id/lv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp">
-        <TextView
-            android:id="@+id/tv_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00:00"/>
-        <TextView
-            android:id="@+id/tv_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="00:00"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btn_continue_play"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/play"/>
-        <Button
-            android:id="@+id/btn_pause"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/pause"/>
-        <Button
-            android:id="@+id/btn_play"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/play" />
-        <Button
-            android:id="@+id/btn_pre"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/previous"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@id/btn_play"/>
-
-        <Button
-            android:id="@+id/btn_next"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/next"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/btn_play"/>
-        <Button
-            android:id="@+id/btn_exit"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/exit"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:layout_toRightOf="@id/btn_next"/>
-
-    </RelativeLayout>
-
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
