@@ -45,9 +45,9 @@ public class Music_Activity extends AppCompatActivity
 
     public static final String UPDATE_ACTION = "org.crazyit.action.UPDATE_ACTION";
     // 定义音乐的播放状态，0x11代表没有播放；0x12代表正在播放；0x13代表暂停
-    int status = 0x11;
-    String[] titleStrs = new String[] { "music0", "music1", "music2" };
-    String[] authorStrs = new String[] { "JayChou", "JayChou", "JayChou" };
+    int status = 0x12;
+    String[] titleStrs = new String[] { "music0", "music1", "music2", "music3", "music4" };
+    String[] authorStrs = new String[] { "JayChou", "JayChou", "JayChou", "JayChou", "JayChou" };
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -57,6 +57,10 @@ public class Music_Activity extends AppCompatActivity
         setContentView(R.layout.activity_music);
 
         aManager = (AudioManager) getSystemService(Service.AUDIO_SERVICE);
+
+        Intent intent =getIntent();
+        String position = intent.getStringExtra("position");
+        String name = intent.getStringExtra("name");
 
         // 获取程序界面界面中的两个按钮
         play = (ImageButton) this.findViewById(R.id.play);
@@ -97,9 +101,10 @@ public class Music_Activity extends AppCompatActivity
         // 注册BroadcastReceiver
         registerReceiver(activityReceiver, filter);
 
-        Intent intent = new Intent(this, MusicService.class);
+        Intent intent2 = new Intent(this, MusicService.class);
+        intent2.putExtra("current",position);
         // 启动后台Service
-        startService(intent);
+        startService(intent2);
     }
 
 //    // 音量监听

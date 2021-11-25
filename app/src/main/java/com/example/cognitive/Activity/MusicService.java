@@ -10,6 +10,7 @@ import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
 
 import androidx.annotation.Nullable;
@@ -23,12 +24,25 @@ public class MusicService extends Service implements Runnable
     MyReceiver serviceReceiver;
     //asset文件管理对象
     AssetManager am;
-    String[] musics = new String[] { "music0.mp3", "music1.mp3", "music2.mp3" };
+    String[] musics = new String[] { "music0.mp3", "music1.mp3", "music2.mp3" , "music3.mp3", "music4.mp3"};
     public static MediaPlayer mPlayer;
     // 当前的状态，0x11代表没有播放；0x12代表正在播放；0x13代表暂停
     int status = 0x11;
+
     // 记录当前正在播放的音乐
     int current = 0;
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        String position = intent.getStringExtra("current");
+        current = Integer.parseInt(position);
+        // 广播通知Activity更改图标、文本框
+        Intent sendIntent = new Intent(Music_Activity.UPDATE_ACTION);
+        sendIntent.putExtra("update", status);
+        sendIntent.putExtra("current", current);
+        // 发送广播，将被Activity组件中的BroadcastReceiver接收到
+        sendBroadcast(sendIntent);
+        return super.onStartCommand(intent, flags, startId);
+    }
     @Override
     //非绑定式服务
     public IBinder onBind(Intent intent)
@@ -50,6 +64,7 @@ public class MusicService extends Service implements Runnable
         filter.addAction(Music_Activity.CTL_ACTION);
         //注册带有此筛选器且名字叫做serviceReceiver的接收器
         registerReceiver(serviceReceiver, filter);
+
         // 创建MediaPlayer
         mPlayer = new MediaPlayer();
         // 为MediaPlayer播放完成事件绑定监听器
@@ -59,7 +74,7 @@ public class MusicService extends Service implements Runnable
             public void onCompletion(MediaPlayer mp)
             {
                 current++;
-                if (current >= 3)
+                if (current >= 5)
                 {
                     current = 0;
                 }
@@ -78,6 +93,7 @@ public class MusicService extends Service implements Runnable
         @Override
         public void onReceive(final Context context, Intent intent)
         {
+
             int control = intent.getIntExtra("control", -1);
             switch (control)
             {
@@ -128,7 +144,7 @@ public class MusicService extends Service implements Runnable
                     break;
                 //下一首切换
                 case 3:
-                    if (current >= 2) {
+                    if (current >= 4) {
                         mPlayer.stop();
                         current = 0;
                         prepareAndPlay(musics[current]);

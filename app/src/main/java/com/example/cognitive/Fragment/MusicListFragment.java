@@ -34,9 +34,9 @@ public class MusicListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(MusicListFragment.this.getContext(),Music_Activity.class);//创建Intent对象，启动check
-//                //将数据存入Intent对象
-//                intent.putExtra("name",name[position]);
-//                intent.putExtra("position",String.valueOf(position));
+                //将数据存入Intent对象
+                intent.putExtra("name",name[position]);
+                intent.putExtra("position",String.valueOf(position));
                 startActivity(intent);
             }
         });
