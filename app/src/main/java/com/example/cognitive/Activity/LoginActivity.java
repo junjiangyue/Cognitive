@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.cognitive.R;
+import com.example.cognitive.Utils.DestroyActivityUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        DestroyActivityUtil.addActivity(LoginActivity.this);
         //获取输入框数据
         et_data_uname = (EditText) findViewById(R.id.et_data_uname);
         et_data_upass = (EditText) findViewById(R.id.et_data_upass);
@@ -122,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
     private View.OnClickListener MyListener=new View.OnClickListener() {
 
         @Override
@@ -135,7 +137,8 @@ public class LoginActivity extends AppCompatActivity {
                 case R.id.btn_signup:
                     stringHashMap.put("username", et_data_uname.getText().toString());
                     stringHashMap.put("password", et_data_upass.getText().toString());
-                    //new Thread(getRun).start();
+                    Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                    startActivity(intent);
                     break;
                 default:break;
             }
@@ -216,7 +219,7 @@ public class LoginActivity extends AppCompatActivity {
                             //登录成功和记住密码框为选中状态才保存用户信息
                             if(remember.isChecked())
                             {
-                                //记住用户名、密码、
+                                //记住用户名、密码
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.putString("USER_NAME", userNameValue);
                                 editor.putString("PASSWORD",passwordValue);

@@ -2,6 +2,8 @@ package com.example.cognitive.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int TAG=1;
 
+    //SharedPreferences sp = this.getSharedPreferences("userInfo", Activity.MODE_PRIVATE);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
