@@ -21,12 +21,18 @@
         android:theme="@style/Theme.Cognitive"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.PersonalSetting"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.ContactsActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activity.RegisterActivity"
             android:exported="true" />
 
         <service
             android:name=".Activity.MusicService"
-            android:exported="false"></service>
+            android:exported="false" />
 
         <activity
             android:name=".Activity.Music_Activity"
