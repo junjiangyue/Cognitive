@@ -226,7 +226,7 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.commit();
                             }
                             Intent intent = new Intent();
-                            intent.setClassName(this,"com.example.cognitive.Activity.MainActivity");
+                            intent.setClassName(this,"com.example.cognitive.Activity.LogoActivity");
                             this.startActivity(intent);
                             break;
                         default:
