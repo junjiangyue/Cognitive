@@ -6,18 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.cognitive.R;
 import com.example.cognitive.Utils.DestroyActivityUtil;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,24 +28,21 @@ import java.util.HashMap;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
-public class LoginActivity extends AppCompatActivity {
-    // 复选框
-    private CheckBox remember;//记住密码
-    private CheckBox autologin;//自动登录
+public class RegisterActivity extends AppCompatActivity {
     private SharedPreferences sp; // sharedPerferences实现记住密码和自动登录
-    private String userNameValue,passwordValue;
+    private String userNameValue, passwordValue;
 
     String TAG = LoginActivity.class.getCanonicalName();
     private EditText et_data_uname;
     private EditText et_data_upass;
     private HashMap<String, String> stringHashMap;
-    private FancyButton button_login;
     private FancyButton button_signup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        DestroyActivityUtil.addActivity(LoginActivity.this);
+        setContentView(R.layout.activity_register);
+        //DestroyActivityUtil.addActivity(RegisterActivity.this);
         //获取输入框数据
         et_data_uname = (EditText) findViewById(R.id.et_data_uname);
         et_data_upass = (EditText) findViewById(R.id.et_data_upass);
@@ -56,95 +50,17 @@ public class LoginActivity extends AppCompatActivity {
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 
         // button
-        button_login = findViewById(R.id.btn_login);
         button_signup = findViewById(R.id.btn_signup);
-        button_login.setOnClickListener(MyListener);
         button_signup.setOnClickListener(MyListener);
-
-        // checkbox
-        remember = (CheckBox) findViewById(R.id.remember);
-        autologin = (CheckBox) findViewById(R.id.autologin);
-
-
-        //判断记住密码多选框的状态
-        if(sp.getBoolean("ISCHECK", false))
-        {
-            //设置默认是记录密码状态
-            remember.setChecked(true);
-            et_data_uname.setText(sp.getString("USER_NAME", ""));
-            et_data_upass.setText(sp.getString("PASSWORD", ""));
-            //判断自动登陆多选框状态
-            if(sp.getBoolean("AUTO_ISCHECK", false))
-            {
-                //设置默认是自动登录状态
-                autologin.setChecked(true);
-                //跳转界面
-                Intent intent = new Intent(LoginActivity.this,LogoActivity.class);
-                LoginActivity.this.startActivity(intent);
-
-            }
-        }
-
-
-        //监听记住密码多选框按钮事件
-        remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                if (remember.isChecked()) {
-
-                    System.out.println("记住密码已选中");
-                    sp.edit().putBoolean("ISCHECK", true).commit();
-
-                }else {
-                    System.out.println("记住密码没有选中");
-                    sp.edit().putBoolean("ISCHECK", false).commit();
-
-                }
-
-            }
-        });
-
-        //监听自动登录多选框事件
-        autologin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                if (autologin.isChecked()) {
-                    System.out.println("自动登录已选中");
-                    sp.edit().putBoolean("AUTO_ISCHECK", true).commit();
-
-                } else {
-                    System.out.println("自动登录没有选中");
-                    sp.edit().putBoolean("AUTO_ISCHECK", false).commit();
-                }
-            }
-        });
-
-
     }
-
-
-
-
-
     private View.OnClickListener MyListener=new View.OnClickListener() {
-
         @Override
         public void onClick(View view) {
-            switch (view.getId()){
-                case R.id.btn_login:
-                    stringHashMap.put("username", et_data_uname.getText().toString());
-                    stringHashMap.put("password", et_data_upass.getText().toString());
-                    new Thread(postRun).start();
-                    break;
-                case R.id.btn_signup:
-                    stringHashMap.put("username", et_data_uname.getText().toString());
-                    stringHashMap.put("password", et_data_upass.getText().toString());
-                    Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
-                    startActivity(intent);
-                    break;
-                default:break;
-            }
+            stringHashMap.put("username", et_data_uname.getText().toString());
+            stringHashMap.put("password", et_data_upass.getText().toString());
+            new Thread(postRun).start();
         }
     };
-
     Runnable postRun = new Runnable() {
 
         @Override
@@ -215,22 +131,25 @@ public class LoginActivity extends AppCompatActivity {
                         code = jsonObject.optInt("code");
                     }
                     switch (code){
-                        case -1 :
-                            //登录成功和记住密码框为选中状态才保存用户信息
-                            if(remember.isChecked())
-                            {
-                                //记住用户名、密码
-                                SharedPreferences.Editor editor = sp.edit();
-                                editor.putString("USER_NAME", userNameValue);
-                                editor.putString("PASSWORD",passwordValue);
-                                editor.commit();
-                            }
+                        case -1 : // 已有账号，直接打开
+                            Looper.prepare();
+                            Toast.makeText(RegisterActivity.this,"用户已存在", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent();
                             intent.setClassName(this,"com.example.cognitive.Activity.MainActivity");
                             this.startActivity(intent);
+                            Looper.loop();
+                            break;
+                        case 0: // 注册成功
+                            Looper.prepare();
+                            Toast.makeText(RegisterActivity.this,"注册成功", Toast.LENGTH_LONG).show();
+
+                            Intent intent2 = new Intent();
+                            intent2.setClassName(this,"com.example.cognitive.Activity.LoginActivity");
+                            this.startActivity(intent2);
+                            Looper.loop();
                             break;
                         default:
-                            Toast.makeText(LoginActivity.this,"用户名或密码错误，请重新登录", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(RegisterActivity.this,"用户名或密码错误，请重新登录", Toast.LENGTH_LONG).show();
                             break;
                     }
                 }catch (JSONException e)
@@ -269,5 +188,4 @@ public class LoginActivity extends AppCompatActivity {
             return null;
         }
     }
-
 }

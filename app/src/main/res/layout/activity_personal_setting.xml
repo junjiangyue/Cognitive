@@ -70,21 +70,5 @@
         app:liv_icon="@drawable/rec"
         app:liv_multiline="false"
         app:liv_displayMode="icon"/>
-<!--    <Button-->
-<!--        android:id="@+id/logout"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:paddingLeft="60dp"-->
-<!--        android:paddingTop="10dp"-->
-<!--        android:paddingRight="60dp"-->
-<!--        android:paddingBottom="10dp"-->
-<!--        android:background="@color/button_blue"-->
-<!--        android:text="切换账号"-->
-<!--        android:textSize = "18dp"-->
-<!--        android:textColor="#FFFFFF"-->
-<!--        />-->
 
 </LinearLayout>
-
