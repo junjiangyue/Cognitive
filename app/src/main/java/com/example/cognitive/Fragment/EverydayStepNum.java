@@ -21,7 +21,7 @@ public class EverydayStepNum extends Fragment {
     private ListView listView;
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.everyday_step_num,container,false);
+        View view=inflater.inflate(R.layout.fragment_everyday_step_num,container,false);
         return view;
     }
 
