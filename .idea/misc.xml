@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/activity_finish_healthy_task.xml" value="0.24909420289855072" />
         <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/activity_fragment3.xml" value="0.16893115942028986" />
+        <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/activity_login.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/activity_set_healthy_task.xml" value="0.4" />
+        <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/fragment_everyday_step_num.xml" value="0.25364583333333335" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable-v24/button_history10.xml" value="0.2074074074074074" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable-v24/button_history3.xml" value="0.2074074074074074" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable-v24/button_history6.xml" value="0.2074074074074074" />

@@ -57,6 +57,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/health_task"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/use_days"
@@ -154,6 +155,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/finish_health_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -181,7 +183,8 @@
                     android:layout_width="200px"
                     android:layout_height="200px"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/food"/>
+                    android:src="@drawable/food"
+                    android:layout_gravity="center"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -202,7 +205,8 @@
                     android:layout_width="200px"
                     android:layout_height="200px"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/exercise"/>
+                    android:src="@drawable/exercise"
+                    android:layout_gravity="center"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -223,7 +227,8 @@
                     android:layout_width="200px"
                     android:layout_height="200px"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/sleep"/>
+                    android:src="@drawable/sleep"
+                    android:layout_gravity="center"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -321,7 +326,8 @@
                     android:layout_width="200px"
                     android:layout_height="200px"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/bodyweight"/>
+                    android:src="@drawable/bodyweight"
+                    android:layout_gravity="center"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -342,7 +348,8 @@
                     android:layout_width="200px"
                     android:layout_height="200px"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/medical_report"/>
+                    android:src="@drawable/medical_report"
+                    android:layout_gravity="center"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -364,7 +371,8 @@
                     android:layout_width="200px"
                     android:layout_height="200px"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/illness"/>
+                    android:src="@drawable/illness"
+                    android:layout_gravity="center"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
