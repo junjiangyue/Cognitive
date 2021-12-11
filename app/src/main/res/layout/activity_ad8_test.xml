@@ -8,14 +8,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/frail_viewpager"/>
+        android:id="@+id/ad8_viewpager"/>
     <Button
-        android:id="@+id/frail_submit"
+        android:id="@+id/AD8_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/white_with_stroke"
         android:layout_gravity="bottom"
-        android:onClick="getFrailResult"
+        android:onClick="getAD8Result"
         android:text="完成"
         />
 </LinearLayout>
