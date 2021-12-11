@@ -14,7 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.cognitive.Activity.FRAIL_intropage;
+import com.example.cognitive.Activity.ADIntro;
+import com.example.cognitive.Activity.FrailIntro;
 import com.example.cognitive.R;
 
 public class FragmentActivity1 extends Fragment {
@@ -39,6 +40,7 @@ public class FragmentActivity1 extends Fragment {
     private Button button_history11;
     private Button button_history12;
 
+    private Button go_test;
 
 
 
@@ -76,6 +78,7 @@ public class FragmentActivity1 extends Fragment {
         button_history11=view.findViewById(R.id.history11);
         button_history12=view.findViewById(R.id.history12);
 
+        go_test=view.findViewById(R.id.go_test_button);
         Button [] buttons={button_test1,button_test2,button_test3,button_test4,button_test5,button_test6,button_history1,button_history2,button_history3,button_history4,
                 button_history5,button_history6,button_history7,button_history8,button_history9,button_history10,button_history11,button_history12
         };
@@ -96,11 +99,26 @@ public class FragmentActivity1 extends Fragment {
         button_test1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), FRAIL_intropage.class);
+                Intent intent=new Intent(getActivity(), FrailIntro.class);
+                startActivity(intent);
+            }
+        });
+
+        button_test2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), ADIntro.class);
+                startActivity(intent);
+            }
+        });
+
+        go_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), FrailIntro.class);
                 startActivity(intent);
             }
         });
     }
-
 }
 

@@ -101,10 +101,10 @@
             android:name=".Activity.FrailResultPage"
             android:exported="false" />
         <activity
-            android:name=".Activity.FRAIL_test"
+            android:name=".Activity.FrailTest"
             android:exported="false" />
         <activity
-            android:name=".Activity.FRAIL_intropage"
+            android:name=".Activity.FrailIntro"
             android:exported="true" />
         <activity
             android:name=".Activity.MainActivity"
@@ -115,7 +115,15 @@
         <activity
             android:name=".Activity.FinishHealthyTask"
             android:exported="true" />
-
+        <activity
+            android:name=".Activity.AD8ResultPage"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AD8Test"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.ADIntro"
+            android:exported="false" />
 
     </application>
 

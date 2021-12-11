@@ -38,6 +38,7 @@
         android:textSize="36sp" />
 
     <Button
+        android:id="@+id/go_test_button"
         android:layout_width="122dp"
         android:layout_height="68dp"
         android:layout_marginStart="20dp"
@@ -76,7 +77,7 @@
                     android:layout_height="80dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
-                    android:onClick="goTestFrail"/>
+                    />
 
                 <Button
                     android:layout_width="80dp"
