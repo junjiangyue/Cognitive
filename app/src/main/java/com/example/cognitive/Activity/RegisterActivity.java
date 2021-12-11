@@ -142,7 +142,6 @@ public class RegisterActivity extends AppCompatActivity {
                         case 0: // 注册成功
                             Looper.prepare();
                             Toast.makeText(RegisterActivity.this,"注册成功", Toast.LENGTH_LONG).show();
-
                             Intent intent2 = new Intent();
                             intent2.setClassName(this,"com.example.cognitive.Activity.LoginActivity");
                             this.startActivity(intent2);
