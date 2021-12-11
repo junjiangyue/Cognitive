@@ -21,14 +21,14 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/et_data_uname"
+            android:id="@+id/et_data_uphone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:hint="请输入用户名："
+            android:hint="请输入手机号："
             android:textColor="@color/button_blue"
             android:textSize="18dp"/>
 
