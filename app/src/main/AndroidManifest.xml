@@ -23,6 +23,12 @@
         android:theme="@style/Theme.Cognitive"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.GuideActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.WelcomeActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activity.PersonalSetting"
             android:exported="true" />
         <activity
@@ -101,10 +107,10 @@
             android:name=".Activity.FrailResultPage"
             android:exported="false" />
         <activity
-            android:name=".Activity.FRAIL_test"
+            android:name=".Activity.FrailTest"
             android:exported="false" />
         <activity
-            android:name=".Activity.FRAIL_intropage"
+            android:name=".Activity.FrailIntro"
             android:exported="true" />
         <activity
             android:name=".Activity.MainActivity"
@@ -122,6 +128,15 @@
             android:name=".Activity.DialogSleep"
             android:theme="@style/dialog_style" />
 
+        <activity
+            android:name=".Activity.AD8ResultPage"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AD8Test"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.ADIntro"
+            android:exported="false" />
 
     </application>
 

@@ -30,10 +30,10 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class RegisterActivity extends AppCompatActivity {
     private SharedPreferences sp; // sharedPerferences实现记住密码和自动登录
-    private String userNameValue, passwordValue;
+    private String userPhoneValue, passwordValue;
 
     String TAG = LoginActivity.class.getCanonicalName();
-    private EditText et_data_uname;
+    private EditText et_data_uphone;
     private EditText et_data_upass;
     private HashMap<String, String> stringHashMap;
     private FancyButton button_signup;
@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         //DestroyActivityUtil.addActivity(RegisterActivity.this);
         //获取输入框数据
-        et_data_uname = (EditText) findViewById(R.id.et_data_uname);
+        et_data_uphone = (EditText) findViewById(R.id.et_data_uphone);
         et_data_upass = (EditText) findViewById(R.id.et_data_upass);
         stringHashMap = new HashMap<>();
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -56,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
     private View.OnClickListener MyListener=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            stringHashMap.put("username", et_data_uname.getText().toString());
+            stringHashMap.put("userphone", et_data_uphone.getText().toString());
             stringHashMap.put("password", et_data_upass.getText().toString());
             new Thread(postRun).start();
         }
@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void requestPost(HashMap<String, String> paramsMap) {
         int code = 20;
         try {
-            String baseUrl = "http://101.132.97.43:8080/ServiceTest/servlet/LoginServlet";
+            String baseUrl = "http://101.132.97.43:8080/ServiceTest/servlet/RegisterServlet";
             //合成参数
             StringBuilder tempParams = new StringBuilder();
             int pos = 0;
@@ -131,18 +131,14 @@ public class RegisterActivity extends AppCompatActivity {
                         code = jsonObject.optInt("code");
                     }
                     switch (code){
-                        case -1 : // 已有账号，直接打开
+                        case -1 : // 已有账号，注册失败
                             Looper.prepare();
-                            Toast.makeText(RegisterActivity.this,"用户已存在", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent();
-                            intent.setClassName(this,"com.example.cognitive.Activity.MainActivity");
-                            this.startActivity(intent);
+                            Toast.makeText(RegisterActivity.this,"该手机号已注册过账号", Toast.LENGTH_LONG).show();
                             Looper.loop();
                             break;
                         case 0: // 注册成功
                             Looper.prepare();
                             Toast.makeText(RegisterActivity.this,"注册成功", Toast.LENGTH_LONG).show();
-
                             Intent intent2 = new Intent();
                             intent2.setClassName(this,"com.example.cognitive.Activity.LoginActivity");
                             this.startActivity(intent2);

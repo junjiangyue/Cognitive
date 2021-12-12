@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -36,10 +37,10 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox remember;//记住密码
     private CheckBox autologin;//自动登录
     private SharedPreferences sp; // sharedPerferences实现记住密码和自动登录
-    private String userNameValue,passwordValue;
+    private String userPhoneValue,passwordValue;
 
     String TAG = LoginActivity.class.getCanonicalName();
-    private EditText et_data_uname;
+    private EditText et_data_uphone;
     private EditText et_data_upass;
     private HashMap<String, String> stringHashMap;
     private FancyButton button_login;
@@ -50,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         DestroyActivityUtil.addActivity(LoginActivity.this);
         //获取输入框数据
-        et_data_uname = (EditText) findViewById(R.id.et_data_uname);
+        et_data_uphone = (EditText) findViewById(R.id.et_data_uphone);
         et_data_upass = (EditText) findViewById(R.id.et_data_upass);
         stringHashMap = new HashMap<>();
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -71,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         {
             //设置默认是记录密码状态
             remember.setChecked(true);
-            et_data_uname.setText(sp.getString("USER_NAME", ""));
+            et_data_uphone.setText(sp.getString("USER_PHONE", ""));
             et_data_upass.setText(sp.getString("PASSWORD", ""));
             //判断自动登陆多选框状态
             if(sp.getBoolean("AUTO_ISCHECK", false))
@@ -130,12 +131,12 @@ public class LoginActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.btn_login:
-                    stringHashMap.put("username", et_data_uname.getText().toString());
+                    stringHashMap.put("userphone", et_data_uphone.getText().toString());
                     stringHashMap.put("password", et_data_upass.getText().toString());
                     new Thread(postRun).start();
                     break;
                 case R.id.btn_signup:
-                    stringHashMap.put("username", et_data_uname.getText().toString());
+                    stringHashMap.put("userphone", et_data_uphone.getText().toString());
                     stringHashMap.put("password", et_data_upass.getText().toString());
                     Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
                     startActivity(intent);
@@ -221,16 +222,18 @@ public class LoginActivity extends AppCompatActivity {
                             {
                                 //记住用户名、密码
                                 SharedPreferences.Editor editor = sp.edit();
-                                editor.putString("USER_NAME", userNameValue);
+                                editor.putString("USER_PHONE", userPhoneValue);
                                 editor.putString("PASSWORD",passwordValue);
                                 editor.commit();
                             }
                             Intent intent = new Intent();
-                            intent.setClassName(this,"com.example.cognitive.Activity.MainActivity");
+                            intent.setClassName(this,"com.example.cognitive.Activity.LogoActivity");
                             this.startActivity(intent);
                             break;
                         default:
-                            Toast.makeText(LoginActivity.this,"用户名或密码错误，请重新登录", Toast.LENGTH_LONG).show();
+                            Looper.prepare();
+                            Toast.makeText(LoginActivity.this,"手机号或密码错误，请重新登录", Toast.LENGTH_LONG).show();
+                            Looper.loop();
                             break;
                     }
                 }catch (JSONException e)
@@ -238,7 +241,10 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             } else {
+                Looper.prepare();
                 Log.e(TAG, "Post方式请求失败");
+                Toast.makeText(LoginActivity.this,"手机号或密码错误，请重新登录", Toast.LENGTH_LONG).show();
+                Looper.loop();
             }
             // 关闭连接
             urlConn.disconnect();

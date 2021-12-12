@@ -4,40 +4,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.viewpager.widget.ViewPager
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <TextView
-        android:id="@+id/title_FRAIL"
-        android:padding="50dp"
+        android:layout_weight="1"
+        android:id="@+id/frail_viewpager"/>
+    <Button
+        android:id="@+id/frail_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/frail_title"
-        android:textColor="@color/black"
-        android:textSize="23sp"
         android:background="@drawable/white_with_stroke"
+        android:layout_gravity="bottom"
+        android:onClick="getFrailResult"
+        android:text="完成"
         />
-    <ExpandableListView
-        android:id="@+id/expand_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="50dp"
-        android:gravity="center"
-        android:background="@color/background">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/white_button"
-            android:text="提交"
-            android:onClick="calculateScore"/>
-    </LinearLayout>
 </LinearLayout>
