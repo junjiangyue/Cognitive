@@ -30,10 +30,10 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class RegisterActivity extends AppCompatActivity {
     private SharedPreferences sp; // sharedPerferences实现记住密码和自动登录
-    private String userNameValue, passwordValue;
+    private String userPhoneValue, passwordValue;
 
     String TAG = LoginActivity.class.getCanonicalName();
-    private EditText et_data_uname;
+    private EditText et_data_uphone;
     private EditText et_data_upass;
     private HashMap<String, String> stringHashMap;
     private FancyButton button_signup;
@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         //DestroyActivityUtil.addActivity(RegisterActivity.this);
         //获取输入框数据
-        et_data_uname = (EditText) findViewById(R.id.et_data_uname);
+        et_data_uphone = (EditText) findViewById(R.id.et_data_uphone);
         et_data_upass = (EditText) findViewById(R.id.et_data_upass);
         stringHashMap = new HashMap<>();
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -56,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
     private View.OnClickListener MyListener=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            stringHashMap.put("username", et_data_uname.getText().toString());
+            stringHashMap.put("userphone", et_data_uphone.getText().toString());
             stringHashMap.put("password", et_data_upass.getText().toString());
             new Thread(postRun).start();
         }

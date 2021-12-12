@@ -1,6 +1,7 @@
 package com.example.cognitive.Fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.cognitive.Activity.DietSuggest;
+import com.example.cognitive.Activity.GuideActivity;
 import com.example.cognitive.Activity.MainActivity;
+import com.example.cognitive.Activity.WelcomeActivity;
 import com.example.cognitive.R;
 public class FillKnowledgeFragment extends Fragment {
 
@@ -30,7 +33,7 @@ public class FillKnowledgeFragment extends Fragment {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
+                Intent intent = new Intent(getActivity(), WelcomeActivity.class);
                 startActivity(intent);
             }
         });

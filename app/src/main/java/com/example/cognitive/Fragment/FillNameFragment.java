@@ -46,7 +46,11 @@ public class FillNameFragment  extends Fragment {
         vp_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    mActivity.onNextFragment();
+                sp = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString("USER_NAME", user_name.getText().toString());
+                editor.commit();
+                mActivity.onNextFragment();
             }
         });
     }

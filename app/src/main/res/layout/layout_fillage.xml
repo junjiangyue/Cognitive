@@ -4,13 +4,30 @@
     android:layout_height="match_parent"
     android:background="@drawable/shape_gradient"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="第一个Page"
+        android:text="您的出生日期是："
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:theme="@android:style/Theme.Holo.Light"
+        android:calendarViewShown="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        />
+    <ImageButton
+        android:id="@+id/next"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#00000000"
+        android:scaleType="centerInside"
+        android:src="@drawable/nextpage" />
 </LinearLayout>

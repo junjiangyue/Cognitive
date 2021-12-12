@@ -63,7 +63,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     //引导页面的开始体验按钮被点击后设置配置文件的用户引导显示状态
                     SharedPreferences sp = getSharedPreferences("config",MODE_PRIVATE);
                     sp.edit().putBoolean("is_user_guide_show_state",true).commit();
-                    startActivity(new Intent(WelcomeActivity.this, GuideActivity.class));
+                    startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
                     finish();
                 }
             });

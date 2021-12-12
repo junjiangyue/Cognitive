@@ -28,7 +28,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:background="@color/background"
         >
 
@@ -38,41 +38,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
-
-
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="350dp"
+                android:layout_height="330dp"
                 android:background="@color/background"
                 android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dp"
-                    android:background="@color/background"
-                    android:orientation="horizontal">
-                    <!-- 这里是搜索框-->
-                    <android.widget.SearchView
-                        android:id="@+id/sv"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="12"
-                        android:background="@drawable/sv_style"
-                        android:iconifiedByDefault="false"
-                        android:queryHint="@string/search_hint"
-                        />
-                </LinearLayout>
-<!--                <TextView-->
-<!--                    android:id="@+id/tv_title"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:text="展示搜索内容"-->
-<!--                    android:textColor="@android:color/darker_gray"-->
-<!--                    android:textSize="18sp"-->
-<!--                    />-->
                 <TextView
                     android:id="@+id/goDetail"
                     android:layout_width="match_parent"
@@ -94,7 +64,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="15dp"
                     android:id="@+id/banner"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="220dp" />
             </LinearLayout>
 

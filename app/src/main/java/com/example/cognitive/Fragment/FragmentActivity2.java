@@ -49,9 +49,9 @@ public class FragmentActivity2 extends Fragment {
         banner = view.findViewById(R.id.banner);
         initData();
         initView();
-        SearchView mSearchView = (SearchView) view.findViewById(R.id.sv);
-        setUnderLineTransparent(mSearchView);
-        mTvSearch = view.findViewById(R.id.tv_title);
+//        SearchView mSearchView = (SearchView) view.findViewById(R.id.sv);
+//        setUnderLineTransparent(mSearchView);
+//        mTvSearch = view.findViewById(R.id.tv_title);
 //        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 //            @Override
 //            public boolean onQueryTextSubmit(String query) {
@@ -68,20 +68,20 @@ public class FragmentActivity2 extends Fragment {
 //        });
         return view;
     }
-    private void setUnderLineTransparent(SearchView searchView){
-        try {
-            Class<?> argClass = searchView.getClass();
-            // mSearchPlate是SearchView父布局的名字
-            Field ownField = argClass.getDeclaredField("mSearchPlate");
-            ownField.setAccessible(true);
-            View mView = (View) ownField.get(searchView);
-            mView.setBackgroundColor(Color.TRANSPARENT);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void setUnderLineTransparent(SearchView searchView){
+//        try {
+//            Class<?> argClass = searchView.getClass();
+//            // mSearchPlate是SearchView父布局的名字
+//            Field ownField = argClass.getDeclaredField("mSearchPlate");
+//            ownField.setAccessible(true);
+//            View mView = (View) ownField.get(searchView);
+//            mView.setBackgroundColor(Color.TRANSPARENT);
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState)

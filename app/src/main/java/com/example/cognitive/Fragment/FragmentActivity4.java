@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.cognitive.Activity.ContactsActivity;
 import com.example.cognitive.Activity.Exercise;
@@ -28,7 +31,10 @@ public class FragmentActivity4 extends Fragment {
     public ListItemView personal;
     public ListItemView history_test;
     public ListItemView longtime_report;
-
+    private SharedPreferences sp;
+    private TextView name;
+    private TextView age;
+    private TextView sex;
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.activity_fragment4,container,false);
@@ -37,6 +43,13 @@ public class FragmentActivity4 extends Fragment {
         personal = view.findViewById(R.id.personal);
         history_test = view.findViewById(R.id.history_test);
         longtime_report = view.findViewById(R.id.longtime_report);
+        name = view.findViewById(R.id.user_name);
+        sex = view.findViewById(R.id.user_sex);
+        age = view.findViewById(R.id.user_age);
+        sp = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        name.setText(sp.getString("USER_NAME", ""));
+        age.setText(sp.getString("USER_BIRTH", ""));
+        sex.setText(sp.getString("USER_SEX", ""));
         family.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

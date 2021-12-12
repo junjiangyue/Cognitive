@@ -23,9 +23,9 @@ public class LogoActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences("config",MODE_PRIVATE);
         boolean userGuideShowState = sp.getBoolean("is_user_guide_show_state",false);
         if(userGuideShowState){
-            startActivity(new Intent(LogoActivity.this,WelcomeActivity.class));
+            startActivity(new Intent(LogoActivity.this,GuideActivity.class));
         }else {
-            startActivity(new Intent(LogoActivity.this,MainActivity.class));
+            startActivity(new Intent(LogoActivity.this,GuideActivity.class));
         }
 
         backButton.setOnClickListener(new View.OnClickListener() {
