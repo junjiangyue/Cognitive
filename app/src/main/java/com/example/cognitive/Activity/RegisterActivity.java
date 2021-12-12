@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void requestPost(HashMap<String, String> paramsMap) {
         int code = 20;
         try {
-            String baseUrl = "http://101.132.97.43:8080/ServiceTest/servlet/LoginServlet";
+            String baseUrl = "http://101.132.97.43:8080/ServiceTest/servlet/RegisterServlet";
             //合成参数
             StringBuilder tempParams = new StringBuilder();
             int pos = 0;
@@ -131,12 +131,9 @@ public class RegisterActivity extends AppCompatActivity {
                         code = jsonObject.optInt("code");
                     }
                     switch (code){
-                        case -1 : // 已有账号，直接打开
+                        case -1 : // 已有账号，注册失败
                             Looper.prepare();
-                            Toast.makeText(RegisterActivity.this,"用户已存在", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent();
-                            intent.setClassName(this,"com.example.cognitive.Activity.MainActivity");
-                            this.startActivity(intent);
+                            Toast.makeText(RegisterActivity.this,"该手机号已注册过账号", Toast.LENGTH_LONG).show();
                             Looper.loop();
                             break;
                         case 0: // 注册成功

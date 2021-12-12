@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -230,7 +231,9 @@ public class LoginActivity extends AppCompatActivity {
                             this.startActivity(intent);
                             break;
                         default:
+                            Looper.prepare();
                             Toast.makeText(LoginActivity.this,"手机号或密码错误，请重新登录", Toast.LENGTH_LONG).show();
+                            Looper.loop();
                             break;
                     }
                 }catch (JSONException e)
@@ -238,7 +241,10 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             } else {
+                Looper.prepare();
                 Log.e(TAG, "Post方式请求失败");
+                Toast.makeText(LoginActivity.this,"手机号或密码错误，请重新登录", Toast.LENGTH_LONG).show();
+                Looper.loop();
             }
             // 关闭连接
             urlConn.disconnect();
