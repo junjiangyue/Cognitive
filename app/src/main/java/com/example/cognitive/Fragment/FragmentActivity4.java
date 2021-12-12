@@ -15,8 +15,7 @@ import android.widget.TextView;
 
 import com.example.cognitive.Activity.ContactsActivity;
 import com.example.cognitive.Activity.Exercise;
-import com.example.cognitive.Activity.FRAIL_intropage;
-import com.example.cognitive.Activity.FRAIL_test;
+import com.example.cognitive.Activity.FrailIntro;
 import com.example.cognitive.Activity.LoginActivity;
 import com.example.cognitive.Activity.PersonalSetting;
 import com.example.cognitive.Activity.Sleep;
@@ -67,7 +66,7 @@ public class FragmentActivity4 extends Fragment {
         history_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), FRAIL_intropage.class);
+                Intent intent = new Intent(getActivity(), FrailIntro.class);
 //                intent.putExtra("data", "mainActivity");
                 startActivity(intent);
             }

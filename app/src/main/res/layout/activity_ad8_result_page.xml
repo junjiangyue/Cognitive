@@ -20,7 +20,7 @@
             android:textSize="20sp"
             android:text="您的衰弱指数是:"/>
         <TextView
-            android:id="@+id/frail_score"
+            android:id="@+id/ad8_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -39,17 +39,16 @@
         android:background="@drawable/shape_navigator"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/frail_advice"
+            android:id="@+id/ad8_advice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             />
         <com.github.mikephil.charting.charts.RadarChart
-            android:id="@+id/frail_radar"
+            android:id="@+id/ad8_radar"
             android:layout_width="match_parent"
             android:layout_height="300dp">
         </com.github.mikephil.charting.charts.RadarChart>
-
     </LinearLayout>
 
     <LinearLayout

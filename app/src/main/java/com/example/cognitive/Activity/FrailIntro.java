@@ -9,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cognitive.R;
 
-public class FRAIL_intropage extends AppCompatActivity {
+public class FrailIntro extends AppCompatActivity {
 
-    public static FRAIL_intropage introPage;
+    public static FrailIntro introPage;
     private Button back_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class FRAIL_intropage extends AppCompatActivity {
 
     public void startFrailTest(View view)
     {
-        Intent intent=new Intent( FRAIL_intropage.this,FRAIL_test.class);
+        Intent intent=new Intent( FrailIntro.this, FrailTest.class);
         //finish();
         startActivity(intent);
         //overridePendingTransition(R.anim.slide_from_top,R.anim.slide_to_bottom);
