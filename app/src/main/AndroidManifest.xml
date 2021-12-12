@@ -122,6 +122,13 @@
             android:name=".Activity.FinishHealthyTask"
             android:exported="true" />
         <activity
+            android:name=".Activity.DialogGetup"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogSleep"
+            android:theme="@style/dialog_style" />
+
+        <activity
             android:name=".Activity.AD8ResultPage"
             android:exported="false" />
         <activity

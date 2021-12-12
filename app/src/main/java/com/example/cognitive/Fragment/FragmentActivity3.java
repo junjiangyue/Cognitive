@@ -148,6 +148,14 @@ public class FragmentActivity3 extends Fragment {
             values.clear();
             Log.d(TAG,"插入");
             //cursor.close();
+        } else if(cursor.getCount()==1) {
+            ContentValues values=new ContentValues();
+            values.put("id",2);
+            values.put("step_num",0);
+            values.put("step_time",todayDate);
+            db.insert("Step",null,values);
+            values.clear();
+            Log.d(TAG,"插入");
         }
         /*ContentValues values=new ContentValues();
         values.put("step_num",1000);

@@ -10,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -32,10 +34,13 @@ public class SetHealthyTask extends AppCompatActivity implements View.OnClickLis
     private Button btnSleepTime;
     private EditText etEverydayStep;
     private Button btnEverydayStep;
+    private CheckBox cbDrinkWater;
     private int getUpHour=8;
     private int getUpMinute=0;
     private int sleepHour=23;
     private int sleepMinute=0;
+    private static int chooseHour;
+    private static int chooseMinute;
     DateFormat format= DateFormat.getDateTimeInstance();
     Calendar calendar= Calendar.getInstance(Locale.CHINA);
 
@@ -54,6 +59,20 @@ public class SetHealthyTask extends AppCompatActivity implements View.OnClickLis
         etEverydayStep= (EditText) findViewById(R.id.et_everydayStep);
         btnEverydayStep= (Button) findViewById(R.id.btn_everydayStep);
         btnEverydayStep.setOnClickListener(this);
+        cbDrinkWater=(CheckBox) findViewById(R.id.cb_drinkWater);
+
+        cbDrinkWater.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    cbDrinkWater.setText("已选择");
+                    Log.d(TAG,"选择喝水");
+                }else{
+                    cbDrinkWater.setText("选择");
+                    Log.d(TAG,"不选择喝水");
+                }
+            }
+        });
 
     }
 
@@ -65,9 +84,7 @@ public class SetHealthyTask extends AppCompatActivity implements View.OnClickLis
      * @param tv
      * @param calendar
      */
-    public static void showTimePickerDialog(Activity activity, int themeResId, final TextView tv, Calendar calendar,int hour, int minute) {
-        final int[] getHour = new int[1];
-        final int[] getMinute= new int[1];
+    public static void showTimePickerDialog(Activity activity, int themeResId, final TextView tv, Calendar calendar) {
         // Calendar c = Calendar.getInstance();
         // 创建一个TimePickerDialog实例，并把它显示出来
         // 解释一哈，Activity是context的子类
@@ -77,8 +94,8 @@ public class SetHealthyTask extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         tv.setText(hourOfDay + "时" + minute  + "分");
-                        getHour[0] =hourOfDay;
-                        getMinute[0]=minute;
+                        setChooseHour(hourOfDay);
+                        setChooseMinute(minute);
 
                     }
                 }
@@ -87,10 +104,6 @@ public class SetHealthyTask extends AppCompatActivity implements View.OnClickLis
                 , calendar.get(Calendar.MINUTE)
                 // true表示采用24小时制
                 ,true).show();
-        hour=getHour[0];
-        minute=getMinute[0];
-        Log.d("SetHealthyTask","选择的hour"+hour);
-        Log.d("SetHealthyTask","选择的minute"+minute);
     }
 
 
@@ -99,11 +112,13 @@ public class SetHealthyTask extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_getUpTime:
-                showTimePickerDialog(this,  3, txtGetUpTime, calendar,getUpHour,getUpMinute);
+                showTimePickerDialog(this,  3, txtGetUpTime, calendar);
+                getUpHour=getChooseHour();
+                getUpMinute=getChooseMinute();
                 Log.d(TAG,"getUpHour:"+getUpHour+"  getUpMinute:"+getUpMinute);
                 break;
             case R.id.btn_sleepTime:
-                showTimePickerDialog(this,  3, txtSleepTime, calendar,sleepHour,sleepMinute);
+                showTimePickerDialog(this,  3, txtSleepTime, calendar);
                 Log.d(TAG,"sleepHour:"+sleepHour+"  sleepMinute:"+sleepMinute);
                 break;
             case R.id.btn_everydayStep:
@@ -150,5 +165,17 @@ public class SetHealthyTask extends AppCompatActivity implements View.OnClickLis
         if (manager != null)
             manager.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         v.clearFocus();
+    }
+    public static void setChooseHour(int hour){
+        chooseHour=hour;
+    }
+    public int getChooseHour(){
+        return this.chooseHour;
+    }
+    public static void setChooseMinute(int minute){
+        chooseMinute=minute;
+    }
+    public int getChooseMinute() {
+        return this.chooseMinute;
     }
 }
