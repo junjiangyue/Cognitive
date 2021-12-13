@@ -31,6 +31,7 @@ public class FillAgeFragment extends Fragment {
     private GuideActivity mActivity;
     private DatePicker datePicker;
     private SharedPreferences sp;//用来记住年龄
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class FillAgeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.layout_fillage, container, false);
+
         ImageButton vp_Btn = (ImageButton) view.findViewById(R.id.next);
 
         // 日期选择器初始化
