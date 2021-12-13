@@ -3,14 +3,19 @@ package com.example.cognitive.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.cognitive.Fragment.FillAgeFragment;
 import com.example.cognitive.R;
 import com.example.cognitive.Fragment.FragmentActivity1;
 import com.example.cognitive.Fragment.FragmentActivity2;
@@ -41,12 +46,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     private int TAG=1;
+    private long exitTime=0;
 
     //SharedPreferences sp = this.getSharedPreferences("userInfo", Activity.MODE_PRIVATE);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(GuideActivity.guideActivity!=null)
+            GuideActivity.guideActivity.finish();
 
         getSupportFragmentManager().beginTransaction().add(R.id.fl_container,new FragmentActivity1()).commit();
         initView();
@@ -208,4 +216,29 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+    //1.重写onBackPressed方法组织super即可实现禁止返回上一层页面
+    public void onBackPressed(){
+        //super.onBackPressed();
+    }
+
+    @Override
+    //3.两次返回，返回到home界面（System.exit决定是否退出当前界面，重新加载程序）
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                Intent home = new Intent(Intent.ACTION_MAIN);
+                home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                home.addCategory(Intent.CATEGORY_HOME);
+                startActivity(home);
+                //退出系统，不保存之前页面
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 }
