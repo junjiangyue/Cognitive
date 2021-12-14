@@ -82,16 +82,17 @@ public class LoginActivity extends AppCompatActivity {
                 //跳转界面
                 Intent intent = new Intent(LoginActivity.this,LogoActivity.class);
                 LoginActivity.this.startActivity(intent);
-
             }
         }
-
+        remember.setChecked(true);
+        sp.edit().putBoolean("ISCHECK", true).commit();
+        autologin.setChecked(true);
+        sp.edit().putBoolean("AUTO_ISCHECK", true).commit();
 
         //监听记住密码多选框按钮事件
         remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if (remember.isChecked()) {
-
                     System.out.println("记住密码已选中");
                     sp.edit().putBoolean("ISCHECK", true).commit();
 
@@ -103,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
 
         //监听自动登录多选框事件
         autologin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -222,8 +224,8 @@ public class LoginActivity extends AppCompatActivity {
                             {
                                 //记住用户名、密码
                                 SharedPreferences.Editor editor = sp.edit();
-                                editor.putString("USER_PHONE", userPhoneValue);
-                                editor.putString("PASSWORD",passwordValue);
+                                editor.putString("USER_PHONE",  et_data_uphone.getText().toString());
+                                editor.putString("PASSWORD", et_data_upass.getText().toString());
                                 editor.commit();
                             }
                             Intent intent = new Intent();

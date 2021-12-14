@@ -2,73 +2,67 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/title_test"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <ImageView
-        android:id="@+id/h_back"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/klee_ava"/>
-    <TextView
-        android:id="@+id/user_name"
-        android:layout_width="match_parent"
+    <android.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="klee"
-        android:textSize="24dp"
-        android:gravity="center"/>
+        android:background="@color/background">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:text="个人设置"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </android.widget.Toolbar>
     <com.lucasurbas.listitemview.ListItemView
         android:layout_marginLeft="20dp"
         android:id="@+id/family"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liv_displayMode="icon"
-        app:liv_icon="@drawable/rec"
         app:liv_multiline="false"
-        app:liv_subtitle="联系"
-        app:liv_title="子女亲人" />
-    <com.lucasurbas.listitemview.ListItemView
-        android:layout_marginLeft="20dp"
-        android:id="@+id/personal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:liv_title="个人资料设置"
-        app:liv_subtitle="联系"
-        app:liv_icon="@drawable/rec"
-        app:liv_multiline="false"
-        app:liv_displayMode="icon"/>
-    <com.lucasurbas.listitemview.ListItemView
-        android:layout_marginLeft="20dp"
-        android:id="@+id/history_test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:liv_title="历史测评报告"
-        app:liv_subtitle="联系"
-        app:liv_icon="@drawable/rec"
-        app:liv_multiline="false"
-        app:liv_displayMode="icon"/>
-    <com.lucasurbas.listitemview.ListItemView
-        android:layout_marginLeft="20dp"
-        android:id="@+id/longtime_report"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:liv_title="周月年报"
-        app:liv_subtitle="联系"
-        app:liv_icon="@drawable/rec"
-        app:liv_multiline="false"
-        app:liv_displayMode="icon"/>
-    <com.lucasurbas.listitemview.ListItemView
-        android:layout_marginLeft="20dp"
-        android:id="@+id/logout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:liv_title="切换账号"
-        app:liv_subtitle="联系"
-        app:liv_icon="@drawable/rec"
-        app:liv_multiline="false"
-        app:liv_displayMode="icon"/>
+        app:liv_menu="@menu/single_action_menu"
+        app:liv_title="头像" />
 
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        app:liv_menu="@menu/muti_action_menu"
+        app:liv_multiline="false"
+        app:liv_subtitle="gaoshan"
+        app:liv_title="昵称" />
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/user_sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        app:liv_menu="@menu/muti_action_menu"
+        app:liv_subtitle="女"
+        app:liv_multiline="false"
+        app:liv_title="性别" />
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/user_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        app:liv_menu="@menu/muti_action_menu"
+        app:liv_subtitle="111111"
+        app:liv_multiline="false"
+        app:liv_title="手机号" />
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/user_birth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        app:liv_menu="@menu/muti_action_menu"
+        app:liv_multiline="false"
+        app:liv_subtitle="2000年1月1日"
+        app:liv_title="生日" />
 </LinearLayout>

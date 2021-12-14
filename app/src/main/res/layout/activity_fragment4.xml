@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/title_test"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
     <ImageView
         android:id="@+id/h_back"
         android:layout_width="match_parent"
@@ -91,6 +98,8 @@
         app:liv_icon="@drawable/rec"
         app:liv_multiline="false"
         app:liv_displayMode="icon"/>
+        </LinearLayout>
+</ScrollView>
 <!--    <Button-->
 <!--        android:id="@+id/logout"-->
 <!--        android:layout_width="wrap_content"-->
@@ -107,5 +116,5 @@
 <!--        android:textColor="#FFFFFF"-->
 <!--        />-->
 
-</LinearLayout>
+</RelativeLayout>
 
