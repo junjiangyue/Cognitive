@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="185dp"
+        tools:layout_editor_absoluteY="-108dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10px"
             android:orientation="vertical">
 
             <TextView
@@ -18,78 +22,99 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="设置健康打卡内容"
-                android:textSize="70px"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="90px" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="必选项目"
+                android:textColor="#000000"
+                android:textSize="75px"
+                android:layout_marginTop="30px"
+                android:layout_marginLeft="60px"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="950px"
                 android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="@color/white"
                 android:layout_gravity="center"
                 android:layout_marginTop="50px"
+                card_view:cardBackgroundColor="@color/white"
                 card_view:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginTop="20px">
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="20px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginBottom="20px"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <ImageView
-                            android:layout_width="70px"
-                            android:layout_height="80px"
-                            android:src="@drawable/sleep"
-                            android:layout_marginLeft="30px"/>
+                            android:layout_width="80px"
+                            android:layout_height="90px"
+                            android:src="@drawable/sleep" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="35px"
                             android:text="睡眠"
-                            android:layout_marginLeft="20px"
-                            android:textSize="60px"
-                            android:textColor="#000000"/>
+                            android:textColor="#000000"
+                            android:textSize="70px" />
 
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
                         android:text="早睡早起"
-                        android:layout_marginLeft="30px"
-                        android:textSize="50px"
-                        android:textColor="#000000"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="早睡早起，保持充足的睡眠，规律生活每一天！"
-                        android:layout_marginLeft="30px"/>
+                        android:textColor="#000000"
+                        android:textSize="60px" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:text="早睡早起，保持充足的睡眠，规律生活每一天！" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
                         android:text="目标设置"
-                        android:layout_marginLeft="30px"
-                        android:textSize="50px"
-                        android:textColor="#000000"/>
-
+                        android:textColor="#000000"
+                        android:textSize="60px" />
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginLeft="30px">
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="起床时间："/>
+                            android:layout_marginTop="15px"
+                            android:text="起床时间："
+                            android:textColor="#000000"
+                            android:textSize="56px" />
+
                         <TextView
                             android:id="@+id/txt_getUpTime"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15px"
+                            android:textSize="56px" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -99,24 +124,33 @@
                             <Button
                                 android:id="@+id/btn_getUpTime"
                                 android:layout_width="wrap_content"
-                                android:layout_height="100px"
+                                android:layout_height="120px"
                                 android:gravity="right"
-                                android:text="选择起床时间" />
+                                android:text="选择起床时间"
+                                android:textSize="45px" />
                         </LinearLayout>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginLeft="30px">
+                        android:layout_marginLeft="30px"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="睡觉时间："/>
+                            android:layout_marginTop="15px"
+                            android:text="睡觉时间："
+                            android:textColor="#000000"
+                            android:textSize="56px" />
+
                         <TextView
                             android:id="@+id/txt_sleepTime"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15px"
+                            android:textSize="56px" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -126,9 +160,10 @@
                             <Button
                                 android:id="@+id/btn_sleepTime"
                                 android:layout_width="wrap_content"
-                                android:layout_height="100px"
+                                android:layout_height="120px"
                                 android:gravity="right"
-                                android:text="选择睡觉时间" />
+                                android:text="选择睡觉时间"
+                                android:textSize="45px" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -137,94 +172,467 @@
             </androidx.cardview.widget.CardView>
 
 
-
             <androidx.cardview.widget.CardView
                 android:layout_width="950px"
                 android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="@color/white"
                 android:layout_gravity="center"
-                android:layout_marginTop="50px">
+                android:layout_marginTop="50px"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="20px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginBottom="20px"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="每日步数"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="每日行走至少"/>
-
-
-                        <EditText
-                            android:id="@+id/et_everydayStep"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:hint="请输入目标步数"
-                            android:selectAllOnFocus="true"
-                            android:textColorHint="#95A1AA"
-                            android:text="7000"/>
+                        <ImageView
+                            android:layout_width="80px"
+                            android:layout_height="90px"
+                            android:src="@drawable/exercise" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="步"/>
+                            android:layout_marginLeft="35px"
+                            android:text="运动"
+                            android:textColor="#000000"
+                            android:textSize="70px" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:text="每日步行"
+                        android:textColor="#000000"
+                        android:textSize="60px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:text="经常步行的人，心肺功能更棒哦！" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:text="目标设置"
+                        android:textColor="#000000"
+                        android:textSize="60px" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="每日行走"
+                                    android:textColor="#000000"
+                                    android:textSize="56px" />
+
+
+                                <EditText
+                                    android:id="@+id/et_everydayStep"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:hint="目标步数"
+                                    android:selectAllOnFocus="true"
+                                    android:text="7000"
+                                    android:textColorHint="#95A1AA"
+                                    android:textSize="56px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="步"
+                                    android:textColor="#000000"
+                                    android:textSize="56px" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="right">
+
+                                    <Button
+                                        android:id="@+id/btn_everydayStep"
+                                        android:layout_width="180px"
+                                        android:layout_height="120px"
+                                        android:layout_marginLeft="140px"
+                                        android:text="确认"
+                                        android:textSize="45px" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="点击数字可修改目标步数,修改后请点击确认按钮"
+                                android:textSize="40px" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="80px"
+                        android:text="每周运动"
+                        android:textColor="#000000"
+                        android:textSize="60px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:text="运动可以提高健康水平，使人充满活力，提高幸福指数。" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:text="目标设置"
+                        android:textColor="#000000"
+                        android:textSize="60px" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="right">
+                            android:orientation="vertical">
 
-                            <Button
-                                android:id="@+id/btn_everydayStep"
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="每周运动"
+                                            android:textColor="#000000"
+                                            android:textSize="56px" />
+
+
+                                        <EditText
+                                            android:id="@+id/et_sportTime"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:selectAllOnFocus="true"
+                                            android:text="4"
+                                            android:textColorHint="#95A1AA"
+                                            android:textSize="56px" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="次"
+                                            android:textColor="#000000"
+                                            android:textSize="56px" />
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="其中力量训练"
+                                            android:textColor="#000000"
+                                            android:textSize="56px" />
+                                        <EditText
+                                            android:id="@+id/et_powerSport"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:selectAllOnFocus="true"
+                                            android:text="2"
+                                            android:textColorHint="#95A1AA"
+                                            android:textSize="56px" />
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="次"
+                                            android:textColor="#000000"
+                                            android:textSize="56px" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="right">
+
+                                    <Button
+                                        android:id="@+id/btn_sportTime"
+                                        android:layout_width="180px"
+                                        android:layout_height="120px"
+                                        android:layout_marginLeft="200px"
+                                        android:layout_marginTop="70px"
+                                        android:text="确认"
+                                        android:textSize="45px" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:text="确认该目标步数" />
+                                android:text="点击数字可修改目标,修改后请点击确认按钮"
+                                android:textSize="40px" />
                         </LinearLayout>
 
                     </LinearLayout>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="可选项目"
+                    android:textColor="#000000"
+                    android:textSize="75px"
+                    android:layout_marginTop="30px"
+                    android:layout_marginLeft="60px"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="可根据需要增加打卡任务，选择属于你的健康生活"
+                    android:textSize="40px"
+                    android:layout_marginTop="10px"
+                    android:layout_marginLeft="60px"/>
+            </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="950px"
                 android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="@color/white"
                 android:layout_gravity="center"
-                android:layout_marginTop="50px">
+                android:layout_marginTop="50px"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="20px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginBottom="20px"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="喝水"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
+                        <ImageView
+                            android:layout_width="80px"
+                            android:layout_height="75px"
+                            android:src="@drawable/water" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="每天喝水1.5L"/>
+                            android:layout_marginLeft="35px"
+                            android:text="饮水"
+                            android:textColor="#000000"
+                            android:textSize="70px" />
+                        <CheckBox
+                            android:id="@+id/cb_drinkWater"
+                            android:checked="true"
+                            android:layout_width="80px"
+                            android:layout_height="80px"
+                            android:layout_marginLeft="450px"
+                            android:layout_gravity="right"/>
 
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:text="每日喝水"
+                        android:textColor="#000000"
+                        android:textSize="60px"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:text="再忙也要保持身心平衡哦！" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:text="目标设置"
+                        android:textColor="#000000"
+                        android:textSize="60px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:layout_marginBottom="10px"
+                        android:text="每天喝水1.5L"
+                        android:textColor="#000000"
+                        android:textSize="56px" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="950px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50px"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="20px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginBottom="20px"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="80px"
+                            android:layout_height="85px"
+                            android:src="@drawable/read" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35px"
+                            android:text="阅读"
+                            android:textColor="#000000"
+                            android:textSize="70px" />
+                        <CheckBox
+                            android:id="@+id/cb_read"
+                            android:checked="true"
+                            android:layout_width="80px"
+                            android:layout_height="80px"
+                            android:layout_marginLeft="450px"
+                            android:layout_gravity="right"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="每日读书"
+                        android:layout_marginTop="50px"
+                        android:textColor="#000000"
+                        android:textSize="60px"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:text="阅读与思考可以刺激大脑保持活力，使头脑更灵敏哦。" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:text="目标设置"
+                        android:textColor="#000000"
+                        android:textSize="60px" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="每日阅读"
+                            android:textColor="#000000"
+                            android:textSize="56px" />
+                        <EditText
+                            android:id="@+id/et_read"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="目标时长"
+                            android:selectAllOnFocus="true"
+                            android:text="30"
+                            android:textColorHint="#95A1AA"
+                            android:textSize="56px" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="分钟"
+                            android:textColor="#000000"
+                            android:textSize="56px" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+                            <Button
+                                android:id="@+id/btn_read"
+                                android:layout_width="180px"
+                                android:layout_height="120px"
+                                android:layout_marginLeft="140px"
+                                android:text="确认"
+                                android:textSize="45px" />
+                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -233,26 +641,113 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="950px"
                 android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="@color/white"
                 android:layout_gravity="center"
-                android:layout_marginTop="50px">
+                android:layout_marginTop="50px"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="20px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginBottom="20px"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="运动"/>
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
+                        <ImageView
+                            android:layout_width="80px"
+                            android:layout_height="75px"
+                            android:src="@drawable/hobby" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35px"
+                            android:text="兴趣与社交"
+                            android:textColor="#000000"
+                            android:textSize="70px" />
+                        <CheckBox
+                            android:id="@+id/cb_hobby"
+                            android:checked="true"
+                            android:layout_width="80px"
+                            android:layout_height="80px"
+                            android:layout_marginLeft="250px"
+                            android:layout_gravity="right"/>
+
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="兴趣爱好与社会活动"
+                        android:layout_marginTop="50px"
+                        android:textColor="#000000"
+                        android:textSize="60px"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:text="拥有丰富多彩的兴趣爱好和社会活动，更能提高对生活的热爱哦。" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:text="目标设置"
+                        android:textColor="#000000"
+                        android:textSize="60px" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="每日活动"
+                            android:textColor="#000000"
+                            android:textSize="56px" />
+                        <EditText
+                            android:id="@+id/et_hobby"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="目标时长"
+                            android:selectAllOnFocus="true"
+                            android:text="60"
+                            android:textColorHint="#95A1AA"
+                            android:textSize="56px" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="分钟"
+                            android:textColor="#000000"
+                            android:textSize="56px" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+                            <Button
+                                android:id="@+id/btn_hobby"
+                                android:layout_width="180px"
+                                android:layout_height="120px"
+                                android:layout_marginLeft="140px"
+                                android:text="确认"
+                                android:textSize="45px" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="聊天，打牌，跳舞，唱歌等，任何你喜欢的事都可以哦。"
+                        android:textSize="40px" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -260,31 +755,78 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="950px"
                 android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="@color/white"
                 android:layout_gravity="center"
-                android:layout_marginTop="50px">
+                android:layout_marginTop="50px"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="20px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginBottom="20px"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="阅读"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
+                        <ImageView
+                            android:layout_width="80px"
+                            android:layout_height="75px"
+                            android:src="@drawable/smile" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="每天读书至少半小时"/>
+                            android:layout_marginLeft="35px"
+                            android:text="情绪"
+                            android:textColor="#000000"
+                            android:textSize="70px" />
+                        <CheckBox
+                            android:id="@+id/cb_smile"
+                            android:checked="true"
+                            android:layout_width="80px"
+                            android:layout_height="80px"
+                            android:layout_marginLeft="450px"
+                            android:layout_gravity="right"/>
 
                     </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:text="每日微笑"
+                        android:textColor="#000000"
+                        android:textSize="60px"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:text="笑一笑，十年少！" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:text="目标设置"
+                        android:textColor="#000000"
+                        android:textSize="60px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:layout_marginBottom="10px"
+                        android:text="每天微笑一次"
+                        android:textColor="#000000"
+                        android:textSize="56px" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -292,164 +834,79 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="950px"
                 android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="@color/white"
                 android:layout_gravity="center"
-                android:layout_marginTop="50px">
+                android:layout_marginTop="50px"
+                android:layout_marginBottom="50px"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="20px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginBottom="20px"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="社交"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="每天和朋友聊天、下棋、打牌等"/>
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="每周150-300分钟中等强度有氧运动，或每周75-150分钟剧烈强度有氧运动" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="950px"
-                android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="@color/white"
-                android:layout_gravity="center"
-                android:layout_marginTop="50px">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="兴趣爱好"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="80px"
+                            android:layout_height="75px"
+                            android:src="@drawable/diary" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="培养自己的兴趣爱好"/>
+                            android:layout_marginLeft="35px"
+                            android:text="日记"
+                            android:textColor="#000000"
+                            android:textSize="70px" />
+                        <CheckBox
+                            android:id="@+id/cb_diary"
+                            android:checked="true"
+                            android:layout_width="80px"
+                            android:layout_height="80px"
+                            android:layout_marginLeft="450px"
+                            android:layout_gravity="right"/>
 
                     </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:text="记日记"
+                        android:textColor="#000000"
+                        android:textSize="60px"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:text="记录生活中的美好。" />
 
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="950px"
-                android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="@color/white"
-                android:layout_gravity="center"
-                android:layout_marginTop="50px">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="饮食"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="在膳食上，强调做到“三定、三高、三低和两戒”，“三定”即定时、定量、定质；“三高”即高蛋白、高不饱和脂肪酸、高维生素；“三低”即低脂肪、低热量、低盐；“两戒”即戒烟、戒酒。"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="950px"
-                android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="@color/white"
-                android:layout_gravity="center"
-                android:layout_marginTop="50px">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                        android:layout_marginTop="50px"
+                        android:text="目标设置"
+                        android:textColor="#000000"
+                        android:textSize="60px" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="每日微笑"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="笑一笑"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="950px"
-                android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="@color/white"
-                android:layout_gravity="center"
-                android:layout_marginTop="50px">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="排便"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="定时排便"/>
-
-                    </LinearLayout>
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="10px"
+                        android:layout_marginBottom="10px"
+                        android:text="每天一篇日记"
+                        android:textColor="#000000"
+                        android:textSize="56px" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

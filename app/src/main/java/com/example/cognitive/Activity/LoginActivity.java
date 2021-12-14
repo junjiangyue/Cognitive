@@ -45,10 +45,13 @@ public class LoginActivity extends AppCompatActivity {
     private HashMap<String, String> stringHashMap;
     private FancyButton button_login;
     private FancyButton button_signup;
+
+    public static LoginActivity loginActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        loginActivity=this;
         DestroyActivityUtil.addActivity(LoginActivity.this);
         //获取输入框数据
         et_data_uphone = (EditText) findViewById(R.id.et_data_uphone);
