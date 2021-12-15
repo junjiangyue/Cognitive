@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(GuideActivity.guideActivity!=null)
-            GuideActivity.guideActivity.finish();
+//        if(GuideActivity.guideActivity!=null)
+//            GuideActivity.guideActivity.finish();
 
         getSupportFragmentManager().beginTransaction().add(R.id.fl_container,new FragmentActivity1()).commit();
         initView();
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    //3.两次返回，返回到home界面（System.exit决定是否退出当前界面，重新加载程序）
+    //两次返回，返回到home界面（System.exit决定是否退出当前界面，重新加载程序）
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
             if((System.currentTimeMillis()-exitTime) > 2000){
