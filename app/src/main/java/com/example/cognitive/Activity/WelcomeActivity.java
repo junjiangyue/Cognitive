@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.cognitive.R;
+import com.example.cognitive.Utils.DestroyActivityUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,7 +52,7 @@ public class WelcomeActivity extends AppCompatActivity {
         private Button btn_start;
         @Override
         public void onCreate(Bundle savedInstanceState){
-
+            DestroyActivityUtil.addActivity(WelcomeActivity.this);
             super.onCreate(savedInstanceState);
             //设置标题栏隐藏
             requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -94,13 +95,11 @@ public class WelcomeActivity extends AppCompatActivity {
             btn_start.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //引导页面的开始体验按钮被点击后设置配置文件的用户引导显示状态
-                    SharedPreferences sp = getSharedPreferences("config",MODE_PRIVATE);
-                    sp.edit().putBoolean("is_user_guide_show_state",true).commit();
-                    startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
-                    finish();
                     // 将用户数据上传到后端
                     new Thread(postRun).start();
+                    startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
+                    finish();
+
                 }
             });
 
