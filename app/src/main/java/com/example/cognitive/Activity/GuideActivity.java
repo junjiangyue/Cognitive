@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.cognitive.Adapter.MyPagerAdapter;
 import com.example.cognitive.Adapter.TabAdapter;
@@ -31,10 +34,14 @@ public class GuideActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private int fragmentIndex = 0;
     private SharedPreferences sp;//用来记住昵称
+
+    public static GuideActivity guideActivity;//用于按下退出键的时候结束该fragment
+    public long exitTime=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guide);
+        guideActivity=this;
         initView();
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         //为tablayout添加tab名称
@@ -49,6 +56,10 @@ public class GuideActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         View layout_fillname = LayoutInflater.from(this).inflate(R.layout.layout_fillname, null);
+//        if(LogoActivity.logoActivity!=null)
+//            LogoActivity.logoActivity.finish();
+//        if(LoginActivity.loginActivity!=null)
+//            LoginActivity.loginActivity.finish();
     }
     private void initView(){
         //定义fragment
@@ -76,5 +87,28 @@ public class GuideActivity extends AppCompatActivity {
         fragmentIndex = (fragmentIndex + 1) % list_fragment.size();
         viewPager.setCurrentItem(fragmentIndex);
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    public void onBackPressed(){
+        //super.onBackPressed();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                Intent home = new Intent(Intent.ACTION_MAIN);
+                home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                home.addCategory(Intent.CATEGORY_HOME);
+                startActivity(home);
+                //退出系统，不保存之前页面
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

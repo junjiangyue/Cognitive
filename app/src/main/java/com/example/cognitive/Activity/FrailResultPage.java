@@ -94,7 +94,7 @@ public class FrailResultPage extends AppCompatActivity {
                 public String getFormattedValue(float value, AxisBase axis) {
                     if(value==0)
                     {
-                        return "健康状况";
+                        return "体力 ";
                     }
                     else if(value==1)
                     {

@@ -45,10 +45,13 @@ public class LoginActivity extends AppCompatActivity {
     private HashMap<String, String> stringHashMap;
     private FancyButton button_login;
     private FancyButton button_signup;
+
+    public static LoginActivity loginActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        loginActivity=this;
         DestroyActivityUtil.addActivity(LoginActivity.this);
         //获取输入框数据
         et_data_uphone = (EditText) findViewById(R.id.et_data_uphone);
@@ -75,23 +78,19 @@ public class LoginActivity extends AppCompatActivity {
             et_data_uphone.setText(sp.getString("USER_PHONE", ""));
             et_data_upass.setText(sp.getString("PASSWORD", ""));
             //判断自动登陆多选框状态
-            if(sp.getBoolean("AUTO_ISCHECK", false))
+            if(sp.getBoolean("AUTO_ISCHECK", false)&&sp.getString("USER_PHONE", "")!=null)
             {
                 //设置默认是自动登录状态
                 autologin.setChecked(true);
                 //跳转界面
                 Intent intent = new Intent(LoginActivity.this,LogoActivity.class);
                 LoginActivity.this.startActivity(intent);
-
             }
         }
-
-
         //监听记住密码多选框按钮事件
         remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if (remember.isChecked()) {
-
                     System.out.println("记住密码已选中");
                     sp.edit().putBoolean("ISCHECK", true).commit();
 
@@ -103,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
 
         //监听自动登录多选框事件
         autologin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -210,20 +210,21 @@ public class LoginActivity extends AppCompatActivity {
                 // 获取返回的数据
                 String result = streamToString(urlConn.getInputStream());
                 Log.e(TAG, "Post方式请求成功，result--->" + result);
+                SharedPreferences.Editor editor = sp.edit();
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject != null) {
                         code = jsonObject.optInt("code");
+                        editor.putString("USER_PHONE",  et_data_uphone.getText().toString());
+                        editor.commit();
                     }
                     switch (code){
                         case -1 :
                             //登录成功和记住密码框为选中状态才保存用户信息
                             if(remember.isChecked())
                             {
-                                //记住用户名、密码
-                                SharedPreferences.Editor editor = sp.edit();
-                                editor.putString("USER_PHONE", userPhoneValue);
-                                editor.putString("PASSWORD",passwordValue);
+                                //记住密码
+                                editor.putString("PASSWORD", et_data_upass.getText().toString());
                                 editor.commit();
                             }
                             Intent intent = new Intent();

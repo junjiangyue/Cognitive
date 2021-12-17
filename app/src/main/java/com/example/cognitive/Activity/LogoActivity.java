@@ -13,21 +13,16 @@ import android.widget.ProgressBar;
 public class LogoActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private Button backButton;
+    public static LogoActivity logoActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logo);
+        logoActivity=this;
         progressBar = (ProgressBar) findViewById(R.id.pgBar);
         backButton = (Button) findViewById(R.id.btn_back);
-        SharedPreferences sp = getSharedPreferences("config",MODE_PRIVATE);
-        boolean userGuideShowState = sp.getBoolean("is_user_guide_show_state",false);
-        if(userGuideShowState){
-            //startActivity(new Intent(LogoActivity.this,GuideActivity.class));
-            startActivity(new Intent(LogoActivity.this,MainActivity.class));
-        }else {
-            startActivity(new Intent(LogoActivity.this,GuideActivity.class));
-        }
+        startActivity(new Intent(LogoActivity.this,MainActivity.class));
 
         backButton.setOnClickListener(new View.OnClickListener() {
 

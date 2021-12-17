@@ -1,6 +1,7 @@
 package com.example.cognitive.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,19 +22,32 @@ import android.widget.Toast;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.example.cognitive.Activity.GuideActivity;
+import com.example.cognitive.Activity.LoginActivity;
 import com.example.cognitive.R;
 import com.loper7.date_time_picker.DateTimeConfig;
 import com.loper7.date_time_picker.DateTimePicker;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 public class FillAgeFragment extends Fragment {
     private GuideActivity mActivity;
     private DatePicker datePicker;
     private SharedPreferences sp;//用来记住年龄
+    private static final String TAG = "GuideActivity";
     @Override
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
@@ -65,7 +81,7 @@ public class FillAgeFragment extends Fragment {
             public void onClick(View view) {
 
                 int y=datePicker.getYear();
-                int m=datePicker.getMonth();
+                int m=datePicker.getMonth()+1;
                 int d=datePicker.getDayOfMonth();
                 String birth = String.valueOf(y) +"年"+ String.valueOf(m) +"月"+String.valueOf(d)+"日";
                 calendar.set(y,m,d);
@@ -80,6 +96,7 @@ public class FillAgeFragment extends Fragment {
         });
         return view;
     }
+
     public static String getAge(String str) {
 
         // 使用默认时区和语言环境获得一个日历
