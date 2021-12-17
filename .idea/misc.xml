@@ -10,6 +10,7 @@
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable-v24/button_history6.xml" value="0.2074074074074074" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable-v24/button_history8.xml" value="0.2074074074074074" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable-v24/button_test2.xml" value="0.2074074074074074" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.25416666666666665" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable/button2_pressed.xml" value="0.24" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable/button_go.xml" value="0.23489583333333333" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable/button_pressed.xml" value="0.24375" />
@@ -23,10 +24,14 @@
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable/white_button.xml" value="0.19322916666666667" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable/white_button_chosen.xml" value="0.19322916666666667" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable/white_with_stroke.xml" value="0.19322916666666667" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_account_security.xml" value="0.21422101449275363" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_ad8_result_page.xml" value="0.22509057971014493" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_ad8_test.xml" value="0.22509057971014493" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_adintro.xml" value="0.22509057971014493" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_article_info.xml" value="0.2105978260869565" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_change_birth_dialog.xml" value="0.21422101449275363" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_change_name_dialog.xml" value="0.209375" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_change_sex_dialog.xml" value="0.21422101449275363" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_contacts.xml" value="0.128125" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_diet_suggest.xml" value="0.24864130434782608" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_exercise.xml" value="0.24456521739130435" />
@@ -34,7 +39,7 @@
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_fragment1.xml" value="0.20199275362318841" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_fragment2.xml" value="0.1" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_fragment3.xml" value="0.1911231884057971" />
-        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_fragment4.xml" value="0.1911231884057971" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_fragment4.xml" value="0.25364583333333335" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_frail_intropage.xml" value="0.21875" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_frail_result_page.xml" value="0.21875" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_frail_test.xml" value="0.2463768115942029" />
@@ -51,6 +56,7 @@
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_solar_terms.xml" value="0.24456521739130435" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_welcome.xml" value="0.25364583333333335" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/bar_title.xml" value="0.22509057971014493" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/dialog_getup.xml" value="0.20208333333333334" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/everyday_step_num.xml" value="0.25364583333333335" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/expandlist_group.xml" value="0.24230072463768115" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/expandlist_item.xml" value="0.24230072463768115" />
@@ -77,10 +83,12 @@
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/new_item_layout.xml" value="0.23596014492753623" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/single_action_menu.xml" value="0.22509057971014493" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/table_item_layout.xml" value="0.18840579710144928" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/menu/muti_action_menu.xml" value="0.23435897435897435" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/menu/single_action_menu.xml" value="0.536" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

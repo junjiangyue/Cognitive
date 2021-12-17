@@ -23,6 +23,18 @@
         android:theme="@style/Theme.Cognitive"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.AccountSecurity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.ChangeNameDialog"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.ChangeBirthDialog"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.ChangeSexDialog"
+            android:exported="true" />
+        <activity
             android:name=".Activity.GuideActivity"
             android:exported="true" />
         <activity
@@ -42,15 +54,13 @@
             android:name=".Activity.MusicService"
             android:exported="false" />
 
-        <receiver android:name=".Activity.ZeroReceiver"
+        <receiver
+            android:name=".Activity.ZeroReceiver"
             android:exported="true">
             <intent-filter>
-
-                <action android:name="zero_store_step"/>
-
+                <action android:name="zero_store_step" />
             </intent-filter>
         </receiver>
-
 
         <activity
             android:name=".Activity.Music_Activity"
@@ -127,7 +137,6 @@
         <activity
             android:name=".Activity.DialogSleep"
             android:theme="@style/dialog_style" />
-
         <activity
             android:name=".Activity.AD8ResultPage"
             android:exported="false" />
@@ -137,7 +146,6 @@
         <activity
             android:name=".Activity.ADIntro"
             android:exported="false" />
-
     </application>
 
 </manifest>

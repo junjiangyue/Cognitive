@@ -16,53 +16,72 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
-            android:text="个人设置"
+            android:layout_marginBottom="20dp"
+            android:text="我的信息"
             android:textSize="30sp"
             android:textStyle="bold" />
     </android.widget.Toolbar>
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <com.lucasurbas.listitemview.ListItemView
-        android:layout_marginLeft="20dp"
-        android:id="@+id/family"
+        android:id="@+id/avatar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liv_multiline="false"
-        app:liv_menu="@menu/single_action_menu"
+        android:paddingLeft="20dp"
+        app:liv_multiline="true"
         app:liv_title="头像" />
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:background="#e4e4e4" />
     <com.lucasurbas.listitemview.ListItemView
         android:id="@+id/user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        app:liv_menu="@menu/muti_action_menu"
+        android:paddingLeft="20dp"
         app:liv_multiline="false"
         app:liv_subtitle="gaoshan"
         app:liv_title="昵称" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:background="#e4e4e4" />
     <com.lucasurbas.listitemview.ListItemView
         android:id="@+id/user_sex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        app:liv_menu="@menu/muti_action_menu"
+        android:paddingLeft="20dp"
         app:liv_subtitle="女"
         app:liv_multiline="false"
         app:liv_title="性别" />
-    <com.lucasurbas.listitemview.ListItemView
-        android:id="@+id/user_phone"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        app:liv_menu="@menu/muti_action_menu"
-        app:liv_subtitle="111111"
-        app:liv_multiline="false"
-        app:liv_title="手机号" />
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:background="#e4e4e4" />
     <com.lucasurbas.listitemview.ListItemView
         android:id="@+id/user_birth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        app:liv_menu="@menu/muti_action_menu"
+        android:paddingLeft="20dp"
         app:liv_multiline="false"
         app:liv_subtitle="2000年1月1日"
         app:liv_title="生日" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:background="#e4e4e4" />
+
+    <Button
+        android:id="@+id/save_change"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存编辑"/>
+</LinearLayout>
 </LinearLayout>

@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cognitive.Activity.AccountSecurity;
 import com.example.cognitive.Activity.ContactsActivity;
 import com.example.cognitive.Activity.Exercise;
 import com.example.cognitive.Activity.FrailIntro;
@@ -47,6 +48,7 @@ public class FragmentActivity4 extends Fragment {
     public ListItemView personal;
     public ListItemView history_test;
     public ListItemView longtime_report;
+    public ListItemView safe;
     private SharedPreferences sp;
     public TextView name;
     public TextView age;
@@ -67,19 +69,26 @@ public class FragmentActivity4 extends Fragment {
         personal = view.findViewById(R.id.personal);
         history_test = view.findViewById(R.id.history_test);
         longtime_report = view.findViewById(R.id.longtime_report);
+        safe = view.findViewById(R.id.safe);
         name = (TextView)view.findViewById(R.id.user_name);
         sex = (TextView)view.findViewById(R.id.user_sex);
         age = (TextView)view.findViewById(R.id.user_age);
 
         sp = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         user_phone = sp.getString("USER_PHONE", "");
-
+        user_name = sp.getString("USER_NAME", "");
+        user_sex = sp.getString("USER_SEX", "");
+        user_birth = sp.getString("USER_BIRTH", "");
         stringHashMap = new HashMap<>();
         stringHashMap.put("userphone", user_phone);
 
         mhandler = new mHandler();
 
-        new Thread(postRun).start();
+        if(user_name!=""){
+            name.setText(user_name);
+            sex.setText(user_sex);
+            age.setText(user_birth);
+        } else new Thread(postRun).start();
         family.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,6 +130,13 @@ public class FragmentActivity4 extends Fragment {
 
             }
         });
+        safe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AccountSecurity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -141,6 +157,11 @@ public class FragmentActivity4 extends Fragment {
             name.setText(username);
             sex.setText(usersex);
             age.setText(userbirth);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("USER_NAME", username);
+            editor.putString("USER_SEX", usersex);
+            editor.putString("USER_BIRTH", userbirth);
+            editor.commit();
             //Log.i("lgq","..ab ==7....11......"+username);
             // 执行UI操作
 
