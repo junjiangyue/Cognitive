@@ -146,6 +146,40 @@
         <activity
             android:name=".Activity.ADIntro"
             android:exported="false" />
+        <activity
+            android:name=".Activity.DialogWalk"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogWater"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogRead"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogHobby"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogSmile"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogDiary"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogPowerSport"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogOtherSport"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.WeeklyExercise"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.SportInfo"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.WeeklyReport"
+            android:exported="true" />
+
     </application>
 
 </manifest>

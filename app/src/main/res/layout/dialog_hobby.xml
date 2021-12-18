@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFF0"
+        android:paddingTop="30px"
+        android:paddingBottom="30px"
+        android:paddingLeft="40px"
+        android:paddingRight="40px">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="70px"
+                android:layout_height="70px"
+                android:layout_marginLeft="600px"
+                android:src="@drawable/info"/>
+        </LinearLayout>
+
+
+        <ImageView
+            android:src="@drawable/hobby_dialog"
+            android:layout_width="700px"
+            android:layout_height="700px"
+            android:scaleType="centerInside"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="兴趣活动"
+            android:textColor="#1A1B1C"
+            android:textSize="80px"/>
+        <TextView
+            android:layout_width="700px"
+            android:layout_height="wrap_content"
+            android:text="丰富的兴趣爱好和社会活动，更能提高对生活的热爱哦！"
+            android:textColor="#262627"
+            android:textSize="50px"
+            android:singleLine="false"
+            android:layout_marginTop="30px"/>
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btn_sleep_finish"
+            android:layout_width="600px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="60dp"
+            android:paddingTop="10dp"
+            android:paddingRight="60dp"
+            android:paddingBottom="10dp"
+            fancy:fb_defaultColor="#FAA324"
+            fancy:fb_focusColor="#F19A1B"
+            fancy:fb_radius="30dp"
+            fancy:fb_text="打卡"
+            fancy:fb_textColor="#fff"
+            fancy:fb_textSize = "55px"/>
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btn_hobby_cancel"
+            android:layout_width="600px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20px"
+            android:paddingLeft="60dp"
+            android:paddingTop="10dp"
+            android:paddingRight="60dp"
+            android:paddingBottom="10dp"
+            fancy:fb_defaultColor="#FFFFF0"
+            fancy:fb_focusColor="#FFFFF0"
+            fancy:fb_radius="30dp"
+            fancy:fb_text="知道了"
+            fancy:fb_textColor="#1A1B1C"
+            fancy:fb_textSize = "55px"/>
+    </LinearLayout>
+
+
+</LinearLayout>
