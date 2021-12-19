@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,9 +20,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.cognitive.R;
 
 public class ArticleInfo extends AppCompatActivity {
-    private ImageView ivImg;
-    private TextView tvTitle;
-    private TextView tvDate;
+    //private ImageView ivImg;
+    //private TextView tvTitle;
+    //private TextView tvDate;
     private WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +34,9 @@ public class ArticleInfo extends AppCompatActivity {
      * 初始化数据
      */
     public void initViews(){
-        ivImg = (ImageView) this.findViewById(R.id.iv_img);
-        tvTitle = (TextView) this.findViewById(R.id.tv_title);
-        tvDate = (TextView) this.findViewById(R.id.tv_date);
+        //ivImg = (ImageView) this.findViewById(R.id.iv_img);
+        //tvTitle = (TextView) this.findViewById(R.id.tv_title);
+        //tvDate = (TextView) this.findViewById(R.id.tv_date);
         webView = (WebView) this.findViewById(R.id.wv_content);
 
         /**
@@ -47,15 +49,26 @@ public class ArticleInfo extends AppCompatActivity {
         String newsUrl = intent.getStringExtra("newsUrl");
 
 
-        getImage(this, newsImgUrl, ivImg);
+        //getImage(this, newsImgUrl, ivImg);
 
         /**
          * 显示新闻信息
          */
-        tvTitle.setText(newsTitle);
-        tvDate.setText(newsDate);
-        webView.loadUrl(newsUrl);
+        //tvTitle.setText(newsTitle);
+        //tvDate.setText(newsDate);
 
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);// 设置缓存
+        webSettings.setJavaScriptEnabled(true);//设置能够解析Javascript
+        webSettings.setDomStorageEnabled(true);//设置适应Html5 //重点是这个设置
+
+        //webView  加载视频，下面五行必须
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+        webSettings.setLoadsImagesAutomatically(true);  //支持自动加载图片
+
+        webView.loadUrl(newsUrl);
     }
 
     /**

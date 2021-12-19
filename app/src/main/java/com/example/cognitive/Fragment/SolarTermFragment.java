@@ -38,14 +38,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SolarTermFragment extends Fragment {
-    private Banner banner;
+    //private Banner banner;
     private List<Integer> image=new ArrayList<>();
     private List<String> title=new ArrayList<>();
 
     /**
      * 新闻列表请求接口
      */
-    public static final String URL = "http://v.juhe.cn/toutiao/index?type=top&key=a1a755458cc22f129942b34904feb820";
+    public static final String URL = "https://route.showapi.com/1797-1?page=0&showapi_appid=866862.0&showapi_timestamp=20211219153828&url=MzI1NzUyMzg3NQ==&showapi_sign=dbcd7da95d8a46108890b0da428fddb9";
 
     /**
      * ListView对象
@@ -67,9 +67,9 @@ public class SolarTermFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_solar_term, container, false);
-        banner = view.findViewById(R.id.banner);
-        initData();
-        initView();
+       // banner = view.findViewById(R.id.banner);
+//        initData();
+//        initView();
 
         listView = (ListView) view.findViewById(R.id.listview);
 
@@ -121,15 +121,15 @@ public class SolarTermFragment extends Fragment {
                 /**
                  * 对返回的json数据进行解析,然后装入data集合中
                  */
-                JSONObject jsonObject2 = jsonObject.getJSONObject("result");
-                JSONArray jsonArray = jsonObject2.getJSONArray("data");
+                JSONObject jsonObject2 = jsonObject.getJSONObject("showapi_res_body");
+                JSONArray jsonArray = jsonObject2.getJSONArray("article_info");
 
                 for (int i = 0; i <jsonArray.length() ; i++) {
                     JSONObject item = jsonArray.getJSONObject(i);
                     Articles datas = new Articles();
                     datas.setNewsTitle(item.getString("title"));
-                    datas.setNewsDate(item.getString("date"));
-                    datas.setNewsImgUrl(item.getString("thumbnail_pic_s"));
+                    datas.setNewsDate(item.getString("publish_time"));
+                    datas.setNewsImgUrl(item.getString("cover_img"));
                     datas.setNewsUrl(item.getString("url"));
                     data.add(datas);
                 }
@@ -154,58 +154,58 @@ public class SolarTermFragment extends Fragment {
     }
     private void initView() {
 
-        banner.setIndicatorGravity(BannerConfig.CENTER);
-
-        banner.setImageLoader(new MyImageLoader());
-
-        banner.setImages(image);
-
-        banner.setBannerAnimation(Transformer.Default);
-
-        banner.isAutoPlay(true);
-
-        banner.setBannerTitles(title);
-
-        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);//可以根据自己想要的更换stylr
-
-        banner.setDelayTime(3000);
-
-        banner.setOnBannerListener(this::OnBannerClick);
-
-        banner.start();
+//        banner.setIndicatorGravity(BannerConfig.CENTER);
+//
+//        banner.setImageLoader(new MyImageLoader());
+//
+//        banner.setImages(image);
+//
+//        banner.setBannerAnimation(Transformer.Default);
+//
+//        banner.isAutoPlay(true);
+//
+//        banner.setBannerTitles(title);
+//
+//        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);//可以根据自己想要的更换stylr
+//
+//        banner.setDelayTime(3000);
+//
+//        banner.setOnBannerListener(this::OnBannerClick);
+//
+//        banner.start();
     }
-    public void OnBannerClick(int position) {
-        Toast.makeText(getActivity(), "你点了第" + (position + 1) + "张轮播图", Toast.LENGTH_SHORT).show();
-        switch (position){
-            case 0 :
-                Intent intent = new Intent(getActivity(), DietSuggest.class);
-                startActivity(intent);break;
-            case 1 :
-                Intent intent2 = new Intent(getActivity(), com.example.cognitive.Activity.Exercise.class);
-                startActivity(intent2);
-            case 2:
-                Intent intent3 = new Intent(getActivity(), com.example.cognitive.Activity.Habit.class);
-                startActivity(intent3);
-        }
-    }
-    private class MyImageLoader extends ImageLoader {
+//    public void OnBannerClick(int position) {
+//        Toast.makeText(getActivity(), "你点了第" + (position + 1) + "张轮播图", Toast.LENGTH_SHORT).show();
+//        switch (position){
+//            case 0 :
+//                Intent intent = new Intent(getActivity(), DietSuggest.class);
+//                startActivity(intent);break;
+//            case 1 :
+//                Intent intent2 = new Intent(getActivity(), com.example.cognitive.Activity.Exercise.class);
+//                startActivity(intent2);
+//            case 2:
+//                Intent intent3 = new Intent(getActivity(), com.example.cognitive.Activity.Habit.class);
+//                startActivity(intent3);
+//        }
+//    }
+//    private class MyImageLoader extends ImageLoader {
+//
+//        public void displayImage(Context context, Object path, ImageView imageView) {
+//
+//            Glide.with(context).load(path).into(imageView);
+//
+//        }
+//    }
 
-        public void displayImage(Context context, Object path, ImageView imageView) {
-
-            Glide.with(context).load(path).into(imageView);
-
-        }
-    }
-
-    private void initData() {
-        image.clear();
-        title.clear();
-        image.add(R.drawable.lidong);
-        image.add(R.drawable.xiaoxue);
-        image.add(R.drawable.three_photo);
-        title.add("细雨生寒未有霜，庭前木叶半青黄。小春此去无多日，何处梅花一绽香。");
-        title.add("冬腊风腌，蓄以御冬");
-        title.add("冬至已到，锻炼时须加倍防范运动损伤");
-    }
+//    private void initData() {
+//        image.clear();
+//        title.clear();
+//        image.add(R.drawable.lidong);
+//        image.add(R.drawable.xiaoxue);
+//        image.add(R.drawable.three_photo);
+//        title.add("细雨生寒未有霜，庭前木叶半青黄。小春此去无多日，何处梅花一绽香。");
+//        title.add("冬腊风腌，蓄以御冬");
+//        title.add("冬至已到，锻炼时须加倍防范运动损伤");
+//    }
 
 }
