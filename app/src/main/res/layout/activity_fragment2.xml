@@ -25,19 +25,19 @@
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:background="@color/background">
 
         <LinearLayout xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/LinearLayout1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             >
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="330dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/background"
                 android:orientation="vertical">
                 <TextView
@@ -61,8 +61,8 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="15dp"
                     android:id="@+id/banner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="220dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp" />
             </LinearLayout>
 
             <LinearLayout
