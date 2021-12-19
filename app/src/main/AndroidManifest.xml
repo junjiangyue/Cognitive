@@ -137,7 +137,9 @@
         <activity
             android:name=".Activity.ADIntro"
             android:exported="false" />
-
+        <activity
+            android:name=".Activity.TestHistory"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,37 +22,31 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.lucasurbas.listitemview.ListItemView;
 
 public class TestHistory extends AppCompatActivity {
     String TAG = MainActivity.class.getCanonicalName();
-    public TextView historyTestName1;
-    public TextView historyTestTime1;
-    public TextView historyTestScore1;
-    public TextView historyTestStrength1;
-    public TextView historyTestHealth1;
-    public TextView historyTestMemory1;
-    public TextView historyTestJudgement1;
-    public TextView historyTestCognition1;
 
-    private ListItemView historyRecord1;
-    private ListItemView historyRecord2;
-
-    private String userPhone;
-
-    private String testName;
-    private String testTime;
-    private String testScore;
-    private String testStrength;
-    private String testHealth;
-    private String testMemory;
-    private String testJudgement;
-    private String testCognition;
+    private LinearLayout historyRecord1;
+    private LinearLayout historyRecord2;
+    private LinearLayout historyRecord3;
+    private LinearLayout historyRecord4;
+    private LinearLayout historyRecord5;
+    private LinearLayout historyRecord6;
 
     private SharedPreferences sp;
     private HashMap<String,String> stringHashMap;
+    private List<Map<String,String>> historyTest=new ArrayList<Map<String,String>>();
+    //private Map<String,Object> map=new HashMap<String,Object>();
     public Handler mhandler;
+    private Handler mhandlerPost = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,46 +54,34 @@ public class TestHistory extends AppCompatActivity {
         setContentView(R.layout.activity_test_history);
 
         historyRecord1=findViewById(R.id.history_record1);
-        historyRecord1.setSubtitle("测试时间：2021-12-19\n测试项目：AD-8\n测试结果：4分\n衰弱评级：衰弱");
-
         historyRecord2=findViewById(R.id.history_record2);
-        historyRecord2.setSubtitle("测试时间：2021-12-19\n测试项目：FRAIL\n测试结果：0分\n衰弱评级：健康");
-//        historyTestName1=findViewById(R.id.history_test_name1);
-//        historyTestTime1=findViewById(R.id.history_test_time1);
-//        historyTestScore1=findViewById(R.id.history_test_score1);
-//        historyTestStrength1=findViewById(R.id.history_test_strength1);
-//        historyTestHealth1=findViewById(R.id.history_test_health1);
-//        historyTestMemory1=findViewById(R.id.history_test_memory1);
-//        historyTestJudgement1=findViewById(R.id.history_test_judgement1);
-//        historyTestCognition1=findViewById(R.id.history_test_cognition1);
+        historyRecord3=findViewById(R.id.history_record3);
+        historyRecord4=findViewById(R.id.history_record4);
+        historyRecord5=findViewById(R.id.history_record5);
+        historyRecord6=findViewById(R.id.history_record6);
 
-//        sp=getSharedPreferences("userInfo",MODE_PRIVATE);
-//        userPhone=sp.getString("USER_PHONE",null);
-//        Log.i("sptest",userPhone);
-//
-//        stringHashMap=new HashMap<>();
-//        stringHashMap.put("userphone",userPhone);
-//
-//        mhandler=new mHandler();
 
-        //new Thread(postRun).start();
+
+        sp=getSharedPreferences("userInfo",MODE_PRIVATE);
+        int userID = sp.getInt("USER_ID", 0);
+
+        stringHashMap=new HashMap<>();
+        stringHashMap.put("userid",Integer.toString(userID));
+
+        mhandler=new mHandler();
+        new Thread(postRun).start();
 
     }
 
-    Runnable postRun = new Runnable() {
-
+        Runnable postRun = new Runnable() {
         @Override
         public void run() {
             // TODO Auto-generated method stub
             requestPost(stringHashMap);
         }
     };
-    /**
-     * post提交数据
-     *
-     * @param paramsMap
-     */
-    private void requestPost(HashMap<String, String> paramsMap) {
+
+        private void requestPost(HashMap<String, String> paramsMap) {
         int code = 20;
         try {
             String baseUrl = "http://101.132.97.43:8080/ServiceTest/servlet/GetHistoryServlet";
@@ -157,29 +140,19 @@ public class TestHistory extends AppCompatActivity {
                     switch (code){
                         case 200 :
                             //获取用户信息
+                            Looper.prepare();
+                            Toast.makeText(TestHistory.this,"Post方式请求成功", Toast.LENGTH_LONG).show();
                             String data = jsonObject.optString("data");
-                            JSONObject jsonObject2 = new JSONObject(data);
-                            testName=jsonObject2.optString("testname");
-                            testTime=jsonObject2.optString("testtime");
-                            testScore=jsonObject2.optString("testscore");
-                            testStrength=jsonObject2.optString("teststrength");
-                            testHealth=jsonObject2.optString("testhealth");
-                            testMemory=jsonObject2.optString("testmemory");
-                            testJudgement=jsonObject2.optString("testjudgement");
-                            testCognition=jsonObject2.optString("testcognition");
+                            Log.i("jsontest",data);
+                            processStringToList(data);
+
+                            //JSONObject jsonObject2 = new JSONObject(data);
                             Message msg = Message.obtain();
                             msg.what = 1;
                             Bundle bundle = new Bundle();
-                            bundle.putString("testname",testName);
-                            bundle.putString("testtime",testTime);
-                            bundle.putString("testscore",testScore);
-                            bundle.putString("teststrength",testStrength);
-                            bundle.putString("testhealth",testHealth);
-                            bundle.putString("testmemory",testMemory);
-                            bundle.putString("testjudgement",testJudgement);
-                            bundle.putString("testcognition",testCognition);
                             msg.setData(bundle);//mes利用Bundle传递数据
                             mhandler.sendMessage(msg);//用activity中的handler发送消息
+                            Looper.loop();
                             break;
                         default:
                             Looper.prepare();
@@ -227,28 +200,103 @@ public class TestHistory extends AppCompatActivity {
         }
     }
 
+    public void processStringToList(String data)
+    {
+        //StringBuilder temp= new StringBuilder();
+        data=data.replace("[{","");
+        data=data.replace("}]","");
+        String str="\\},\\{";
+        String [] temp_arr=data.split(str);
+        for(String i:temp_arr)
+        {
+            Map<String,String> map=new HashMap<>();
+            Pattern pattern=Pattern.compile("\\d+(:|-)*(\\d)*(:|-)*(\\d)*|FRAIL|AD-8");
+            Matcher matcher=pattern.matcher(i);
+            int cnt=0;
+            while(matcher.find())
+            {
+                Log.w("jsontest", matcher.group());
+                switch (cnt)
+                {
+                    case 0:
+                        map.put("memoryScore",matcher.group());
+                        break;
+                    case 1:
+                        map.put("cognitionScore",matcher.group());
+                        break;
+                    case 2:
+                        map.put("strengthScore",matcher.group());
+                        break;
+                    case 3:
+                        map.put("testScore",matcher.group());
+                        break;
+                    case 4:
+                        map.put("testTime",matcher.group());
+                        break;
+                    case 5:
+                        map.put("healthScore",matcher.group());
+                        break;
+                    case 6:
+                        map.put("testDate",matcher.group());
+                        break;
+                    case 7:
+                        map.put("judgementScore",matcher.group());
+                        break;
+                    case 8:
+                        map.put("testName",matcher.group());
+                        break;
+                    default:
+                        break;
+                }
+                cnt++;
+            }
+            historyTest.add(map);
+            //Log.i("jsontest", i + "\n");
+        }
+
+
+        //}
+    }
+
+//
     class mHandler extends Handler{
         @Override
         public void handleMessage(Message msg) {
-//            String username = msg.getData().getString("username");//接受msg传递过来的参数
-//            String testscore=msg.getData().getString("score");
-            String testname=msg.getData().getString("testname");
-            String testtime=msg.getData().getString("testtime");
-            String testscore=msg.getData().getString("testscore");
-            String strength=msg.getData().getString("teststrength");
-            String health=msg.getData().getString("testhealth");
-            String memory=msg.getData().getString("testmemory");
-            String judgement=msg.getData().getString("testjudgement");
-            String cognition=msg.getData().getString("testcognition");
 
-//            historyTestName1.setText(testname);
-//            historyTestScore1.setText(testscore);
-//            historyTestTime1.setText(testtime);
-//            historyTestStrength1.setText(strength);
-//            historyTestHealth1.setText(health);
-//            historyTestMemory1.setText(memory);
-//            historyTestJudgement1.setText(judgement);
-//            historyTestCognition1.setText(cognition);
+            TextView historyName1 = findViewById(R.id.history_name1);
+            TextView historyName2 = findViewById(R.id.history_name2);
+            TextView historyName3 = findViewById(R.id.history_name3);
+            TextView historyName4 = findViewById(R.id.history_name4);
+            TextView historyName5 = findViewById(R.id.history_name5);
+            TextView historyName6 = findViewById(R.id.history_name6);
+
+            TextView historyScore1 = findViewById(R.id.history_score1);
+            TextView historyScore2 = findViewById(R.id.history_score2);
+            TextView historyScore3 = findViewById(R.id.history_score3);
+            TextView historyScore4 = findViewById(R.id.history_score4);
+            TextView historyScore5 = findViewById(R.id.history_score5);
+            TextView historyScore6 = findViewById(R.id.history_score6);
+
+            TextView historyDatetime1 = findViewById(R.id.history_datetime1);
+            TextView historyDatetime2 = findViewById(R.id.history_datetime2);
+            TextView historyDatetime3 = findViewById(R.id.history_datetime3);
+            TextView historyDatetime4 = findViewById(R.id.history_datetime4);
+            TextView historyDatetime5 = findViewById(R.id.history_datetime5);
+            TextView historyDatetime6 = findViewById(R.id.history_datetime6);
+
+            TextView [] nameTextViews={historyName1, historyName2, historyName3, historyName4, historyName5, historyName6};
+            TextView [] scoreTextViews={historyScore1,historyScore2,historyScore3,historyScore4,historyScore5,historyScore6};
+            TextView [] datetimeTextViews={historyDatetime1,historyDatetime2,historyDatetime3,historyDatetime4,historyDatetime5,historyDatetime6};
+
+            for(int i = 0; i<(Math.min(historyTest.size(), 6)); i++)
+            {
+                String s_name =historyTest.get(i).get("testName");
+                String s_score=historyTest.get(i).get("testScore");
+                String s_datetime=historyTest.get(i).get("testDate")+" "+historyTest.get(i).get("testTime");
+                nameTextViews[i].setText(s_name);
+                scoreTextViews[i].setText("分数："+s_score);
+                datetimeTextViews[i].setText("时间："+s_datetime);
+            }
         }
     }
 }

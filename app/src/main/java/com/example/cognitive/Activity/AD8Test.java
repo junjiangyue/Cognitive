@@ -79,12 +79,12 @@ public class AD8Test extends AppCompatActivity {
         cognition_point=mAdapter.result[1]+mAdapter.result[3]+mAdapter.result[5];
 
         sp=this.getSharedPreferences("userInfo",MODE_PRIVATE);
-        String userID=sp.getString("USER_ID",null);
+        int userID=sp.getInt("USER_ID",0);
         Log.i("sptest","userID:"+userID);
         Log.i("sptest","score:"+String.valueOf(score));
 
         stringHashMap=new HashMap<>();
-        stringHashMap.put("user_id",userID);
+        stringHashMap.put("user_id",Integer.toString(userID));
         stringHashMap.put("score",String.valueOf(score));
         stringHashMap.put("judgement_score",String.valueOf(judgement_point));
         stringHashMap.put("memory_score",String.valueOf(memory_point));
