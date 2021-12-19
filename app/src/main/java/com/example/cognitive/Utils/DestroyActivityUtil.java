@@ -27,6 +27,10 @@ public class DestroyActivityUtil {
             SharedPreferences.Editor editor = preferences.edit();
             editor.clear();
             editor.commit();
+            SharedPreferences preferences2 = act.getSharedPreferences("congfig", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor2 = preferences2.edit();
+            editor2.clear();
+            editor2.commit();
             act.finish();
 
         }

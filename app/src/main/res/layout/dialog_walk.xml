@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#EFF8FF"
+        android:paddingTop="30px"
+        android:paddingBottom="30px"
+        android:paddingLeft="40px"
+        android:paddingRight="40px">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="70px"
+                android:layout_height="70px"
+                android:layout_marginLeft="600px"
+                android:src="@drawable/info"/>
+        </LinearLayout>
+
+
+        <ImageView
+            android:src="@drawable/walk"
+            android:layout_width="700px"
+            android:layout_height="500px"
+            android:scaleType="centerInside"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="每日步行"
+            android:textColor="#1A1B1C"
+            android:textSize="80px"
+            android:layout_marginTop="20px"/>
+        <TextView
+            android:layout_width="700px"
+            android:layout_height="wrap_content"
+            android:text="经常步行的人，心肺功能更棒哦！"
+            android:textColor="#262627"
+            android:textSize="50px"
+            android:singleLine="false"
+            android:layout_marginTop="30px"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="30px">
+            <TextView
+                android:id="@+id/txt_WalkReal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#262627"
+                android:textSize="75px"
+                android:singleLine="false"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/txt_WalkGoal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#262627"
+                android:textSize="50px"
+                android:singleLine="false"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btn_walk_cancel"
+            android:layout_width="600px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20px"
+            android:paddingLeft="60dp"
+            android:paddingTop="10dp"
+            android:paddingRight="60dp"
+            android:paddingBottom="10dp"
+            fancy:fb_defaultColor="#EFF8FF"
+            fancy:fb_focusColor="#EFF8FF"
+            fancy:fb_radius="30dp"
+            fancy:fb_text="知道了"
+            fancy:fb_textColor="#1A1B1C"
+            fancy:fb_textSize = "55px"/>
+    </LinearLayout>
+
+
+</LinearLayout>

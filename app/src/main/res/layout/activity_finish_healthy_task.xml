@@ -70,6 +70,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_step"
                 android:layout_width="950px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -114,6 +115,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_water"
                 android:layout_width="950px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -158,6 +160,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_read"
                 android:layout_width="950px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -176,7 +179,7 @@
                     <ImageView
                         android:layout_width="80px"
                         android:layout_height="90px"
-                        android:src="@drawable/read" />
+                        android:src="@drawable/book" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -202,6 +205,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_hobby"
                 android:layout_width="950px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -246,6 +250,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_smile"
                 android:layout_width="950px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -290,6 +295,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_diary"
                 android:layout_width="950px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

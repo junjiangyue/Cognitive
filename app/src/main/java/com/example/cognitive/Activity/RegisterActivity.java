@@ -138,9 +138,13 @@ public class RegisterActivity extends AppCompatActivity {
                             break;
                         case 0: // 注册成功
                             Looper.prepare();
+                            SharedPreferences.Editor editor = sp.edit();
+                            editor.putString("USER_PHONE",  et_data_uphone.getText().toString());
+                            editor.putString("PASSWORD", et_data_upass.getText().toString());
+                            editor.commit();
                             Toast.makeText(RegisterActivity.this,"注册成功", Toast.LENGTH_LONG).show();
                             Intent intent2 = new Intent();
-                            intent2.setClassName(this,"com.example.cognitive.Activity.LoginActivity");
+                            intent2.setClassName(this,"com.example.cognitive.Activity.GuideActivity");
                             this.startActivity(intent2);
                             Looper.loop();
                             break;

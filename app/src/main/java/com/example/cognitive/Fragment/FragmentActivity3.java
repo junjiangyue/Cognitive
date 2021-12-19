@@ -33,6 +33,8 @@ import android.widget.TextView;
 
 import com.example.cognitive.Activity.FinishHealthyTask;
 import com.example.cognitive.Activity.SetHealthyTask;
+import com.example.cognitive.Activity.WeeklyExercise;
+import com.example.cognitive.Activity.WeeklyReport;
 import com.example.cognitive.R;
 import com.example.cognitive.SQLiteDB.DatabaseHelper;
 
@@ -55,6 +57,8 @@ public class FragmentActivity3 extends Fragment {
     private TextView health_task;
     private TextView finish_health_task;
     private boolean isVisible = true;
+    private LinearLayout llSport;
+    private LinearLayout llWeeklyReport;
 
     private SensorManager sensorManager;
     private Sensor sensor;
@@ -104,6 +108,27 @@ public class FragmentActivity3 extends Fragment {
 
         //获取步数
         step_num=view.findViewById(R.id.step_num);
+
+        llSport=view.findViewById(R.id.ll_sport);
+        llSport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                intent.setClass(getActivity(), WeeklyExercise.class);
+                startActivity(intent);
+            }
+        });
+        llWeeklyReport=view.findViewById(R.id.ll_weekly_report);
+        llWeeklyReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                intent.setClass(getActivity(), WeeklyReport.class);
+                startActivity(intent);
+            }
+        });
 
         //获取权限
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -157,12 +182,6 @@ public class FragmentActivity3 extends Fragment {
             values.clear();
             Log.d(TAG,"插入");
         }
-        /*ContentValues values=new ContentValues();
-        values.put("step_num",1000);
-        values.put("step_time","2021-12-09");
-        db.update("Step",values,"id=?", new String[] {"2"});
-        values.clear();
-        Log.d(TAG,"更新");*/
         if(cursor.moveToFirst()){ //查询数据库所有步数
             do{
                 id=cursor.getInt(cursor.getColumnIndex("id"));

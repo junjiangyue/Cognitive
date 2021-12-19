@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#D3EAEF"
+        android:paddingTop="30px"
+        android:paddingBottom="30px"
+        android:paddingLeft="40px"
+        android:paddingRight="40px">
+        <LinearLayout
+            android:id="@+id/ll_sport_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="350px">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="详细信息"
+                android:textColor="#343435"
+                android:textSize="55px"/>
+            <ImageView
+                android:layout_width="70px"
+                android:layout_height="70px"
+                android:layout_marginLeft="20px"
+                android:src="@drawable/info"/>
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="700px"
+            android:layout_height="600px"
+            android:scaleType="centerInside"
+            android:src="@drawable/other_sport_pic" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="其他运动"
+            android:textColor="#1A1B1C"
+            android:textSize="80px"/>
+        <TextView
+            android:layout_width="700px"
+            android:layout_height="wrap_content"
+            android:text="1. 准备活动：5-10分钟"
+            android:textColor="#262627"
+            android:textSize="60px"
+            android:singleLine="false"
+            android:layout_marginTop="20px"/>
+        <TextView
+            android:layout_width="700px"
+            android:layout_height="wrap_content"
+            android:text="2. 基本活动：30分钟"
+            android:textColor="#262627"
+            android:textSize="60px"
+            android:singleLine="false"
+            android:layout_marginTop="20px"/>
+        <TextView
+            android:layout_width="700px"
+            android:layout_height="wrap_content"
+            android:text="3. 放松活动：5-10分钟"
+            android:textColor="#262627"
+            android:textSize="60px"
+            android:singleLine="false"
+            android:layout_marginTop="20px"/>
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btn_sleep_finish"
+            android:layout_width="600px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="60dp"
+            android:paddingTop="10dp"
+            android:paddingRight="60dp"
+            android:paddingBottom="10dp"
+            fancy:fb_defaultColor="#3992A6"
+            fancy:fb_focusColor="#277587"
+            fancy:fb_radius="30dp"
+            fancy:fb_text="打卡"
+            fancy:fb_textColor="#fff"
+            fancy:fb_textSize = "55px"/>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btn_other_sport_cancel"
+            android:layout_width="600px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20px"
+            android:paddingLeft="60dp"
+            android:paddingTop="10dp"
+            android:paddingRight="60dp"
+            android:paddingBottom="10dp"
+            fancy:fb_defaultColor="#D3EAEF"
+            fancy:fb_focusColor="#D3EAEF"
+            fancy:fb_radius="30dp"
+            fancy:fb_text="知道了"
+            fancy:fb_textColor="#1A1B1C"
+            fancy:fb_textSize="55px" />
+    </LinearLayout>
+
+
+</LinearLayout>

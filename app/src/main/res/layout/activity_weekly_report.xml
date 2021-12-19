@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="147dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="打卡周报"
+                android:textColor="#1A1B1C"
+                android:textSize="90px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50px"
+                android:text="本周健康打卡7天"
+                android:textColor="#1F568E"
+                android:textSize="70px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20px"
+                android:text="每日打卡完成5天"
+                android:textColor="#1F568E"
+                android:textSize="70px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20px"
+                android:text="每周运动打卡完成3项"
+                android:textColor="#1F568E"
+                android:textSize="70px" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_sport1"
+                android:layout_width="950px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50px"
+                app:cardElevation="0dp"
+                card_view:cardCornerRadius="30dp">
+
+                <ImageView
+                    android:layout_width="950px"
+                    android:layout_height="500px"
+                    android:background="@drawable/sleep_back" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginTop="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginBottom="40px"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="睡眠"
+                        android:textColor="#fff"
+                        android:textSize="80px" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5天完成早睡"
+                        android:textColor="#fff"
+                        android:textSize="70px" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5天完成早起"
+                        android:textColor="#fff"
+                        android:textSize="70px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="养成良好的睡眠习惯需要持之以恒，继续加油哦！"
+                        android:textColor="#fff"
+                        android:textSize="45px"
+                        android:layout_marginTop="20px"/>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_sport2"
+                android:layout_width="950px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50px"
+                app:cardElevation="0dp"
+                card_view:cardCornerRadius="30dp">
+
+                <ImageView
+                    android:layout_width="950px"
+                    android:layout_height="700px"
+                    android:background="@drawable/sport_back" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginTop="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginBottom="40px"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="运动"
+                        android:textColor="#654333"
+                        android:textSize="80px" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5天达到目标步数"
+                        android:textColor="#654333"
+                        android:textSize="70px" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="运动2次"
+                        android:textColor="#654333"
+                        android:textSize="70px" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="完成力量训练1次"
+                        android:textColor="#654333"
+                        android:textSize="70px" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="总共运动100分钟"
+                        android:textColor="#654333"
+                        android:textSize="70px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="良好的运动习惯是身体健康的基石，保持运动有益身心！"
+                        android:textColor="#654333"
+                        android:textSize="45px"
+                        android:layout_marginTop="20px"/>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

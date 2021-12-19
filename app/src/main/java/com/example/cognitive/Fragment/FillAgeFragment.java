@@ -81,7 +81,7 @@ public class FillAgeFragment extends Fragment {
             public void onClick(View view) {
 
                 int y=datePicker.getYear();
-                int m=datePicker.getMonth();
+                int m=datePicker.getMonth()+1;
                 int d=datePicker.getDayOfMonth();
                 String birth = String.valueOf(y) +"年"+ String.valueOf(m) +"月"+String.valueOf(d)+"日";
                 calendar.set(y,m,d);
