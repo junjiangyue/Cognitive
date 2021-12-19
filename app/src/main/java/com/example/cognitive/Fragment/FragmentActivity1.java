@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 
 import com.example.cognitive.Activity.ADIntro;
 import com.example.cognitive.Activity.FrailIntro;
+import com.example.cognitive.Activity.TestHistory;
 import com.example.cognitive.R;
 
 public class FragmentActivity1 extends Fragment {
@@ -116,6 +117,14 @@ public class FragmentActivity1 extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), FrailIntro.class);
+                startActivity(intent);
+            }
+        });
+
+        button_history1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), TestHistory.class);
                 startActivity(intent);
             }
         });

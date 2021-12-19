@@ -79,18 +79,18 @@ public class AD8Test extends AppCompatActivity {
         cognition_point=mAdapter.result[1]+mAdapter.result[3]+mAdapter.result[5];
 
         sp=this.getSharedPreferences("userInfo",MODE_PRIVATE);
-        String userPhone=sp.getString("USER_PHONE",null);
-        Log.i("sptest","userPhone:"+userPhone);
+        String userID=sp.getString("USER_ID",null);
+        Log.i("sptest","userID:"+userID);
         Log.i("sptest","score:"+String.valueOf(score));
 
         stringHashMap=new HashMap<>();
-        stringHashMap.put("user_phone",userPhone);
+        stringHashMap.put("user_id",userID);
         stringHashMap.put("score",String.valueOf(score));
         stringHashMap.put("judgement_score",String.valueOf(judgement_point));
         stringHashMap.put("memory_score",String.valueOf(memory_point));
         stringHashMap.put("cognition_score",String.valueOf(cognition_point));
 
-        Log.i("backend-test",userPhone+" "+String.valueOf(score));
+        Log.i("backend-test",userID+" "+String.valueOf(score));
 
         //上传后端
         new Thread(postRun).start();

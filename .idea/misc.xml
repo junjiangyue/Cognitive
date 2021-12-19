@@ -4,7 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/activity_fragment3.xml" value="0.16893115942028986" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/drawable/shape_navigator.xml" value="0.20364583333333333" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_fragment1.xml" value="0.1" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_fragment4.xml" value="0.1" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_logo.xml" value="0.27395833333333336" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_main.xml" value="0.1875" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_test_history.xml" value="0.2006340579710145" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_welcome.xml" value="0.2006340579710145" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/expandlist_item.xml" value="0.2006340579710145" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable-v24/button_history10.xml" value="0.2074074074074074" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable-v24/button_history3.xml" value="0.2074074074074074" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable-v24/button_history6.xml" value="0.2074074074074074" />
@@ -80,7 +87,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

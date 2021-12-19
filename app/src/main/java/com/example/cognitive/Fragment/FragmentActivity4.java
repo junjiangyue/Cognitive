@@ -25,6 +25,7 @@ import com.example.cognitive.Activity.LoginActivity;
 import com.example.cognitive.Activity.MainActivity;
 import com.example.cognitive.Activity.PersonalSetting;
 import com.example.cognitive.Activity.Sleep;
+import com.example.cognitive.Activity.TestHistory;
 import com.example.cognitive.R;
 import com.example.cognitive.Utils.DestroyActivityUtil;
 import com.lucasurbas.listitemview.ListItemView;
@@ -97,7 +98,7 @@ public class FragmentActivity4 extends Fragment {
         history_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), FrailIntro.class);
+                Intent intent = new Intent(getActivity(), TestHistory.class);
 //                intent.putExtra("data", "mainActivity");
                 startActivity(intent);
             }
