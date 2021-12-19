@@ -79,15 +79,16 @@ public class FrailTest extends AppCompatActivity {
         health_point=((mAdapter.result[3]>5)?1:0)+mAdapter.result[4];
 
         sp=this.getSharedPreferences("userInfo",MODE_PRIVATE);
-        String userPhone=sp.getString("USER_PHONE",null);
+        int userID=sp.getInt("USER_ID",0);
 
         stringHashMap=new HashMap<>();
-        stringHashMap.put("user_phone",userPhone);
+        stringHashMap.put("user_id",Integer.toString(userID));
         stringHashMap.put("score",String.valueOf(score));
         stringHashMap.put("strength_score",String.valueOf(strength_point));
         stringHashMap.put("health_score",String.valueOf(health_point));
 
         //上传后端
+        Log.i("postRun","uploading...");
         new Thread(postRun).start();
 
         //Log.i("weight", "afterTextChanged: "+mAdapter.weight_cur);
