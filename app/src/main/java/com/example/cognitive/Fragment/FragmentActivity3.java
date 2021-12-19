@@ -131,7 +131,7 @@ public class FragmentActivity3 extends Fragment {
         });
 
         //获取权限
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             Log.d(TAG, "[权限]" + "ACTIVITY_RECOGNITION 未获得");
             if (ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACTIVITY_RECOGNITION) != PackageManager.PERMISSION_GRANTED) {
                 // 检查权限状态
@@ -226,7 +226,7 @@ public class FragmentActivity3 extends Fragment {
         Log.d(TAG,"step_time:"+stepTime);
         yesterdayStep=stepNum;
         Log.d(TAG,"查询后yesterdayStep:"+yesterdayStep);
-        cursor.close();*/
+        cursor.close();
 
 
         //我的步数图片的展开与收起

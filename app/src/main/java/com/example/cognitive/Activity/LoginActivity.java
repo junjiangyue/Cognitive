@@ -216,6 +216,10 @@ public class LoginActivity extends AppCompatActivity {
                     if (jsonObject != null) {
                         code = jsonObject.optInt("code");
                         editor.putString("USER_PHONE",  et_data_uphone.getText().toString());
+                        String data = jsonObject.optString("data");
+                        JSONObject jsonObject2 = new JSONObject(data);
+                        int user_id = jsonObject2.optInt("id");
+                        editor.putInt("USER_ID", user_id);
                         editor.commit();
                     }
                     switch (code){
