@@ -34,7 +34,7 @@ public class HealthRecipeFragment extends Fragment {
     /**
      * 新闻列表请求接口
      */
-    public static final String URL = "http://v.juhe.cn/toutiao/index?type=top&key=a1a755458cc22f129942b34904feb820";
+    public static final String URL = "https://route.showapi.com/1797-1?page=0&showapi_appid=866862.0&showapi_timestamp=20211219154227&url=MjM5ODQ2NzYyMA==&showapi_sign=dbcd7da95d8a46108890b0da428fddb9";
 
     /**
      * ListView对象
@@ -104,15 +104,15 @@ public class HealthRecipeFragment extends Fragment {
                 /**
                  * 对返回的json数据进行解析,然后装入data集合中
                  */
-                JSONObject jsonObject2 = jsonObject.getJSONObject("result");
-                JSONArray jsonArray = jsonObject2.getJSONArray("data");
+                JSONObject jsonObject2 = jsonObject.getJSONObject("showapi_res_body");
+                JSONArray jsonArray = jsonObject2.getJSONArray("article_info");
 
                 for (int i = 0; i <jsonArray.length() ; i++) {
                     JSONObject item = jsonArray.getJSONObject(i);
                     Articles datas = new Articles();
                     datas.setNewsTitle(item.getString("title"));
-                    datas.setNewsDate(item.getString("date"));
-                    datas.setNewsImgUrl(item.getString("thumbnail_pic_s"));
+                    datas.setNewsDate(item.getString("publish_time"));
+                    datas.setNewsImgUrl(item.getString("cover_img"));
                     datas.setNewsUrl(item.getString("url"));
                     data.add(datas);
                 }
