@@ -24,7 +24,7 @@
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/pink"
+        android:background="#3388FF"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:tabGravity="fill"
         app:tabIndicatorColor="@color/white"

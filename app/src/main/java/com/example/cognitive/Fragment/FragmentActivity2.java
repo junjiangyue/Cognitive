@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.cognitive.Activity.ArticleInfo;
 import com.example.cognitive.Activity.DietSuggest;
 import com.example.cognitive.Activity.Sleep;
 import com.example.cognitive.R;
@@ -49,45 +50,15 @@ public class FragmentActivity2 extends Fragment {
         banner = view.findViewById(R.id.banner);
         initData();
         initView();
-//        SearchView mSearchView = (SearchView) view.findViewById(R.id.sv);
-//        setUnderLineTransparent(mSearchView);
-//        mTvSearch = view.findViewById(R.id.tv_title);
-//        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                //在文字改变的时候回调，query是改变之后的文字
-//                setSearchStr(query);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                //文字提交的时候回调，newText是最后提交搜索的文字
-//                return false;
-//            }
-//        });
         return view;
     }
-//    private void setUnderLineTransparent(SearchView searchView){
-//        try {
-//            Class<?> argClass = searchView.getClass();
-//            // mSearchPlate是SearchView父布局的名字
-//            Field ownField = argClass.getDeclaredField("mSearchPlate");
-//            ownField.setAccessible(true);
-//            View mView = (View) ownField.get(searchView);
-//            mView.setBackgroundColor(Color.TRANSPARENT);
-//        } catch (NoSuchFieldException e) {
-//            e.printStackTrace();
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
-//    }
+
 
     @Override
     public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view,savedInstanceState);
-        //title_test=view.findViewById(R.id.title_test);
+
     }
 
     private void initView() {
@@ -113,16 +84,19 @@ public class FragmentActivity2 extends Fragment {
         banner.start();
     }
     public void OnBannerClick(int position) {
-        Toast.makeText(getActivity(), "你点了第" + (position + 1) + "张轮播图", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "你点了第" + (position + 1) + "张轮播图", Toast.LENGTH_SHORT).show();
         switch (position){
             case 0 :
-                Intent intent = new Intent(getActivity(),DietSuggest.class);
+                Intent intent = new Intent(getActivity(), ArticleInfo.class);
+                intent.putExtra("newsUrl","https://mp.weixin.qq.com/s/FpC5S4cuZIvPM3QSonH_tA");
                 startActivity(intent);break;
             case 1 :
-                Intent intent2 = new Intent(getActivity(), com.example.cognitive.Activity.Exercise.class);
+                Intent intent2 = new Intent(getActivity(), ArticleInfo.class);
+                intent2.putExtra("newsUrl","https://mp.weixin.qq.com/s/YW8OGqBE_SrtteIWc5ZuIA");
                 startActivity(intent2);
             case 2:
-                Intent intent3 = new Intent(getActivity(), com.example.cognitive.Activity.Habit.class);
+                Intent intent3 = new Intent(getActivity(), ArticleInfo.class);
+                intent3.putExtra("newsUrl","https://mp.weixin.qq.com/s/oSGlBN69fbbjhrfqT6HPaQ");
                 startActivity(intent3);
         }
     }
@@ -140,12 +114,12 @@ public class FragmentActivity2 extends Fragment {
     private void initData() {
         image.clear();
         title.clear();
-        image.add(R.drawable.lidong);
-        image.add(R.drawable.xiaoxue);
-        image.add(R.drawable.three_photo);
-        title.add("细雨生寒未有霜，庭前木叶半青黄。小春此去无多日，何处梅花一绽香。");
-        title.add("冬腊风腌，蓄以御冬");
-        title.add("冬至已到，锻炼时须加倍防范运动损伤");
+        image.add(R.drawable.article_1);
+        image.add(R.drawable.article_2);
+        image.add(R.drawable.article_3);
+        title.add("这6个健康准则，你做到了几条？");
+        title.add("请收好这份冬春季健康防护提示");
+        title.add("这3种竞技运动，不仅锻炼身体，还老少皆宜");
 
     }
     public void setSearchStr(String query) {

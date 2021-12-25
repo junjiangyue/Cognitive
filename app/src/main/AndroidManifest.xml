@@ -22,6 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cognitive"
         android:usesCleartextTraffic="true">
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <activity
+            android:name=".Activity.SearchUserActivity"
+            android:exported="true" />
         <activity
             android:name=".Activity.HistoryResult"
             android:exported="false" />
