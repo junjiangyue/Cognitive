@@ -1,11 +1,11 @@
 package com.example.cognitive.Activity;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cognitive.R;
 import com.github.mikephil.charting.charts.RadarChart;
@@ -19,7 +19,8 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AD8ResultPage extends AppCompatActivity {
+public class HistoryResult extends AppCompatActivity {
+
     //雷达图
     private RadarChart radar;
     //项目表
@@ -28,45 +29,67 @@ public class AD8ResultPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ad8_result_page);
+        setContentView(R.layout.activity_history_result);
 
         setScore();
-        AD8Test.Test.finish();
-        ADIntro.introPage.finish();
     }
 
+    @SuppressLint("SetTextI18n")
     private void setScore()
     {
-        TextView showScore = findViewById(R.id.ad8_score);
-        TextView ad8Advice = findViewById(R.id.ad8_advice);
+        TextView historyTestname;
+        TextView historyScore;
+        TextView historyAdvice=findViewById(R.id.history_advice);
+        TextView historyTime=findViewById(R.id.history_time);
+
+        historyTestname=findViewById(R.id.history_testname);
+        historyScore=findViewById(R.id.history_score);
 
         Intent getIntent=getIntent();
-        String scoreString=getIntent.getStringExtra("ad8_score");
-        String judgementString=getIntent.getStringExtra("ad8_judgement");
-        String memoryString=getIntent.getStringExtra("ad8_memory");
-        String cognitionString=getIntent.getStringExtra("ad8_cognition");
-        int score=Integer.parseInt(scoreString);
+        String scoreString=getIntent.getStringExtra("score");
+        String testdateString=getIntent.getStringExtra("testdate");
+        String testtimeString=getIntent.getStringExtra("testtime");
+        String testnameString=getIntent.getStringExtra("testname");
+        String strengthString=getIntent.getStringExtra("strength");
+        String healthString=getIntent.getStringExtra("health");
+        String judgementString=getIntent.getStringExtra("judgement");
+        String memoryString=getIntent.getStringExtra("memory");
+        String cognitionString=getIntent.getStringExtra("cognition");
+
+        int strength_point=Integer.parseInt(strengthString);
+        int health_point=Integer.parseInt(healthString);
         int judgement_point=Integer.parseInt(judgementString);
         int memory_point=Integer.parseInt(memoryString);
         int cognition_point=Integer.parseInt(cognitionString);
 
-        showScore.setText(scoreString+"分");
-        if(score<2)
-        {
-            ad8Advice.setText(R.string.FRAIL_healthy);
+        historyTestname.setText(testnameString);
+        historyScore.setText(scoreString);
+        historyTime.setText("测试时间："+testdateString+" "+testtimeString);
+        int score=Integer.parseInt(scoreString);
+        if(testnameString.equals("FRAIL")) {
+            if (score == 0) {
+                historyAdvice.setText(R.string.FRAIL_healthy);
+            } else if (score >= 3) {
+                historyAdvice.setText(R.string.FRAIL_frailty);
+            } else {
+                historyAdvice.setText(R.string.FRAIL_pre_frailty);
+            }
         }
-        else
+        else if(testnameString.equals("AD-8"))
         {
-            ad8Advice.setText(R.string.FRAIL_frailty);
+            if(score<2) {
+                historyAdvice.setText(R.string.FRAIL_healthy);
+            } else {
+                historyAdvice.setText(R.string.FRAIL_frailty);
+            }
         }
 
-
-        //雷达图的绘制
+        //绘制雷达图
         radar = (RadarChart) findViewById(R.id.ad8_radar);
         list=new ArrayList<>();
 
-        list.add(new RadarEntry(100));
-        list.add(new RadarEntry(100));
+        list.add(new RadarEntry((float)(2-health_point)/2*100));
+        list.add(new RadarEntry((float)(3-strength_point)/3*100));
         list.add(new RadarEntry((float)(5-memory_point)/5*100));
         list.add(new RadarEntry((float)(1-judgement_point)*100));
         list.add(new RadarEntry((float) (4-cognition_point)/4*100));
@@ -111,12 +134,5 @@ public class AD8ResultPage extends AppCompatActivity {
         radar.getDescription().setEnabled(false);
         radar.setRotationEnabled(false);
     }
-
-    public void backToMainPage(View view)
-    {
-        //Intent intent=new Intent(FrailResultPage.this, MainActivity.class);
-        finish();
-
-        //startActivity(intent);
-    }
 }
+

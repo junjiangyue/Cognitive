@@ -3,12 +3,14 @@ package com.example.cognitive.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.cognitive.R;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,13 +36,6 @@ import com.lucasurbas.listitemview.ListItemView;
 public class TestHistory extends AppCompatActivity {
     String TAG = MainActivity.class.getCanonicalName();
 
-    private LinearLayout historyRecord1;
-    private LinearLayout historyRecord2;
-    private LinearLayout historyRecord3;
-    private LinearLayout historyRecord4;
-    private LinearLayout historyRecord5;
-    private LinearLayout historyRecord6;
-
     private SharedPreferences sp;
     private HashMap<String,String> stringHashMap;
     private List<Map<String,String>> historyTest=new ArrayList<Map<String,String>>();
@@ -53,12 +48,7 @@ public class TestHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_history);
 
-        historyRecord1=findViewById(R.id.history_record1);
-        historyRecord2=findViewById(R.id.history_record2);
-        historyRecord3=findViewById(R.id.history_record3);
-        historyRecord4=findViewById(R.id.history_record4);
-        historyRecord5=findViewById(R.id.history_record5);
-        historyRecord6=findViewById(R.id.history_record6);
+
 
 
 
@@ -263,6 +253,13 @@ public class TestHistory extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
 
+            LinearLayout historyRecord1 = findViewById(R.id.history_record1);
+            LinearLayout historyRecord2 = findViewById(R.id.history_record2);
+            LinearLayout historyRecord3 = findViewById(R.id.history_record3);
+            LinearLayout historyRecord4 = findViewById(R.id.history_record4);
+            LinearLayout historyRecord5 = findViewById(R.id.history_record5);
+            LinearLayout historyRecord6 = findViewById(R.id.history_record6);
+
             TextView historyName1 = findViewById(R.id.history_name1);
             TextView historyName2 = findViewById(R.id.history_name2);
             TextView historyName3 = findViewById(R.id.history_name3);
@@ -284,6 +281,7 @@ public class TestHistory extends AppCompatActivity {
             TextView historyDatetime5 = findViewById(R.id.history_datetime5);
             TextView historyDatetime6 = findViewById(R.id.history_datetime6);
 
+            LinearLayout [] historyRecords={historyRecord1,historyRecord2,historyRecord3,historyRecord4,historyRecord5,historyRecord6};
             TextView [] nameTextViews={historyName1, historyName2, historyName3, historyName4, historyName5, historyName6};
             TextView [] scoreTextViews={historyScore1,historyScore2,historyScore3,historyScore4,historyScore5,historyScore6};
             TextView [] datetimeTextViews={historyDatetime1,historyDatetime2,historyDatetime3,historyDatetime4,historyDatetime5,historyDatetime6};
@@ -297,6 +295,31 @@ public class TestHistory extends AppCompatActivity {
                 scoreTextViews[i].setText("分数："+s_score);
                 datetimeTextViews[i].setText("时间："+s_datetime);
             }
+
+            for(int i=0;i<(Math.min(historyTest.size(), 6));i++)
+            {
+                int finalI = i;
+                historyRecords[i].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(TestHistory.this,HistoryResult.class);
+
+                        intent.putExtra("score",historyTest.get(finalI).get("testScore"));
+                        intent.putExtra("testdate",historyTest.get(finalI).get("testDate"));
+                        intent.putExtra("testtime",historyTest.get(finalI).get("testTime"));
+                        intent.putExtra("testname",historyTest.get(finalI).get("testName"));
+                        intent.putExtra("strength",historyTest.get(finalI).get("strengthScore"));
+                        intent.putExtra("health",historyTest.get(finalI).get("healthScore"));
+                        intent.putExtra("judgement",historyTest.get(finalI).get("judgementScore"));
+                        intent.putExtra("memory",historyTest.get(finalI).get("memoryScore"));
+                        intent.putExtra("cognition",historyTest.get(finalI).get("cognitionScore"));
+
+                        startActivity(intent);
+
+                    }
+                });
+            }
+
         }
     }
 }

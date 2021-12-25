@@ -27,6 +27,9 @@
             android:name=".Activity.SearchUserActivity"
             android:exported="true" />
         <activity
+            android:name=".Activity.HistoryResult"
+            android:exported="false" />
+        <activity
             android:name=".Activity.GuideActivity"
             android:exported="true" />
         <activity
