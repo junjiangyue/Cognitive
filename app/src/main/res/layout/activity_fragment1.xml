@@ -86,36 +86,6 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="20dp"
                     />
-
-                <Button
-                    android:id="@+id/test3"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp" />
-
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/test4"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    />
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/test5"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    />
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/test6"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="40dp"
-                    />
             </LinearLayout>
         </HorizontalScrollView>
     </LinearLayout>
@@ -153,88 +123,6 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     />
-
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/history2"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    />
-
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/history3"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    />
-
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/history4"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    />
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/history5"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    />
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/history6"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    />
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/history7"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    />
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/history8"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    />
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/history9"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    />
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/history10"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    />
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/history11"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    />
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/history12"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="40dp"
-                    />
-
             </LinearLayout>
         </HorizontalScrollView>
     </LinearLayout>

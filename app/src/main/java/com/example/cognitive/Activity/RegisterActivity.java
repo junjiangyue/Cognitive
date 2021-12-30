@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
     //随机数
     private static final String NONCE="123456";
     //短信模板ID
-    private static final String TEMPLATEID="19502142";
+    private static final String TEMPLATEID="19497091";
     //手机号
     private String MOBILE="13888888888";
     //验证码长度，范围4～10，默认为4
