@@ -154,6 +154,63 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="周三"
+                        android:textColor="#000000"
+                        android:textSize="90px"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="90px"
+                            android:layout_height="90px"
+                            android:src="@drawable/other_sport" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35px"
+                            android:text="其他运动"
+                            android:textColor="#1A1B1C"
+                            android:textSize="70px" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20分钟"
+                            android:textColor="#1A1B1C"
+                            android:textSize="70px"
+                            android:layout_marginLeft="220px"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_sport4"
+                android:layout_width="950px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50px"
+                card_view:cardCornerRadius="30dp"
+                app:cardElevation="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="40px"
+                    android:layout_marginBottom="40px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="周四"
                         android:textColor="#000000"
                         android:textSize="90px"/>
@@ -192,7 +249,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cv_sport4"
+                android:id="@+id/cv_sport4_1"
                 android:layout_width="950px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -211,7 +268,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="周五"
+                        android:text="周四"
                         android:textColor="#000000"
                         android:textSize="90px"/>
 
@@ -268,7 +325,178 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="周五"
+                        android:textColor="#000000"
+                        android:textSize="90px"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="90px"
+                            android:layout_height="90px"
+                            android:src="@drawable/other_sport" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35px"
+                            android:text="其他运动"
+                            android:textColor="#1A1B1C"
+                            android:textSize="70px" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20分钟"
+                            android:textColor="#1A1B1C"
+                            android:textSize="70px"
+                            android:layout_marginLeft="220px"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_sport6"
+                android:layout_width="950px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50px"
+                card_view:cardCornerRadius="30dp"
+                app:cardElevation="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="40px"
+                    android:layout_marginBottom="40px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="周六"
+                        android:textColor="#000000"
+                        android:textSize="90px"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="90px"
+                            android:layout_height="90px"
+                            android:src="@drawable/power_sport" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35px"
+                            android:text="力量训练"
+                            android:textColor="#1A1B1C"
+                            android:textSize="70px" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20分钟"
+                            android:textColor="#1A1B1C"
+                            android:textSize="70px"
+                            android:layout_marginLeft="220px"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_sport6_1"
+                android:layout_width="950px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50px"
+                card_view:cardCornerRadius="30dp"
+                app:cardElevation="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="40px"
+                    android:layout_marginBottom="40px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="周六"
+                        android:textColor="#000000"
+                        android:textSize="90px"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="90px"
+                            android:layout_height="90px"
+                            android:src="@drawable/other_sport" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35px"
+                            android:text="其他运动"
+                            android:textColor="#1A1B1C"
+                            android:textSize="70px" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20分钟"
+                            android:textColor="#1A1B1C"
+                            android:textSize="70px"
+                            android:layout_marginLeft="220px"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_sport7"
+                android:layout_width="950px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50px"
+                card_view:cardCornerRadius="30dp"
+                app:cardElevation="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="40px"
+                    android:layout_marginBottom="40px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="周日"
                         android:textColor="#000000"
                         android:textSize="90px"/>
 

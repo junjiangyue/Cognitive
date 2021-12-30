@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -541,36 +542,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="每日阅读"
+                            android:text="每日阅读30分钟"
                             android:textColor="#000000"
                             android:textSize="56px" />
-                        <EditText
-                            android:id="@+id/et_read"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:hint="目标时长"
-                            android:selectAllOnFocus="true"
-                            android:text="30"
-                            android:textColorHint="#95A1AA"
-                            android:textSize="56px" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="分钟"
-                            android:textColor="#000000"
-                            android:textSize="56px" />
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="right">
-                            <Button
-                                android:id="@+id/btn_read"
-                                android:layout_width="180px"
-                                android:layout_height="120px"
-                                android:layout_marginLeft="140px"
-                                android:text="确认"
-                                android:textSize="45px" />
-                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -649,36 +623,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="每日活动"
+                            android:text="每日活动45分钟"
                             android:textColor="#000000"
                             android:textSize="56px" />
-                        <EditText
-                            android:id="@+id/et_hobby"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:hint="目标时长"
-                            android:selectAllOnFocus="true"
-                            android:text="60"
-                            android:textColorHint="#95A1AA"
-                            android:textSize="56px" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="分钟"
-                            android:textColor="#000000"
-                            android:textSize="56px" />
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="right">
-                            <Button
-                                android:id="@+id/btn_hobby"
-                                android:layout_width="180px"
-                                android:layout_height="120px"
-                                android:layout_marginLeft="140px"
-                                android:text="确认"
-                                android:textSize="45px" />
-                        </LinearLayout>
 
                     </LinearLayout>
                     <TextView
@@ -848,6 +795,24 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btn_confirm_task"
+                android:layout_width="600px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40px"
+                android:paddingLeft="60dp"
+                android:paddingTop="10dp"
+                android:paddingRight="60dp"
+                android:paddingBottom="10dp"
+                fancy:fb_defaultColor="#2672C3"
+                fancy:fb_focusColor="#2C67AF"
+                fancy:fb_radius="30dp"
+                fancy:fb_text="确认设置"
+                fancy:fb_textColor="#fff"
+                fancy:fb_textSize = "55px"/>
 
         </LinearLayout>
 

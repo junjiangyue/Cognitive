@@ -1,14 +1,10 @@
 package com.example.cognitive.Activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,54 +21,23 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 
-public class WeeklyReport extends AppCompatActivity {
-    private String TAG="WeeklyReport";
+public class TaskHistory extends AppCompatActivity {
     private SharedPreferences sp;
     private HashMap<String, String> stringHashMap;
-    private Button btnHistoryTaskReport;
+    private String TAG="TaskHistory";
     private int userID;
-    private int dailyReal;
-    private int sportReal;
-    private int powerReal;
-    private int stepReal;
-    private int getupReal;
-    private int sleepReal;
-    private String beginDate;
-    private String endDate;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weekly_report);
+        setContentView(R.layout.activity_task_history);
         stringHashMap = new HashMap<>();
-        btnHistoryTaskReport=(Button) findViewById(R.id.btn_history_task_report);
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         userID=sp.getInt("USER_ID",0);
         Log.d(TAG,"userID:"+userID);
         stringHashMap.put("userID", String.valueOf(userID));
-        dailyReal=5;
-        stringHashMap.put("dailyReal", String.valueOf(dailyReal));
-        sportReal=5;
-        stringHashMap.put("sportReal", String.valueOf(sportReal));
-        powerReal=2;
-        stringHashMap.put("powerReal", String.valueOf(powerReal));
-        stepReal=6;
-        stringHashMap.put("stepReal", String.valueOf(stepReal));
-        getupReal=5;
-        stringHashMap.put("getupReal", String.valueOf(getupReal));
-        sleepReal=4;
-        stringHashMap.put("sleepReal", String.valueOf(sleepReal));
-        beginDate="2021-12-13";
-        stringHashMap.put("beginDate", beginDate);
-        endDate="2021-12-19";
-        stringHashMap.put("endDate", endDate);
+        stringHashMap.put("taskDate", "2021-12-27");
         new Thread(postRun).start();
-        btnHistoryTaskReport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(WeeklyReport.this, WeeklyReportHistory.class);
-                startActivity(intent);
-            }
-        });
     }
+
     Runnable postRun = new Runnable() {
 
         @Override
@@ -85,7 +50,7 @@ public class WeeklyReport extends AppCompatActivity {
     private void requestPost(HashMap<String, String> paramsMap){
         int code = 20;
         try {
-            String baseUrl = "http://101.132.97.43:8080/ServiceTest/servlet/SetWeekCheckServlet";
+            String baseUrl = "http://101.132.97.43:8080/ServiceTest/servlet/GetHistoryCheckServlet";
             //合成参数
             StringBuilder tempParams = new StringBuilder();
             int pos = 0;
@@ -142,13 +107,13 @@ public class WeeklyReport extends AppCompatActivity {
                     switch (code){
                         case 0 : // 上传失败
                             Looper.prepare();
-                            Log.d(TAG,"传打卡周报成功");
+                            Log.d(TAG,"请求打卡周报成功");
                             //Toast.makeText(this.getContext(),"信息修改失败！", Toast.LENGTH_LONG).show();
                             Looper.loop();
                             break;
                         case 1: // 上传成功
                             Looper.prepare();
-                            Log.d(TAG,"传打卡周报失败");
+                            Log.d(TAG,"请求打卡周报失败");
                             //Toast.makeText(this.getContext(),"信息修改成功！", Toast.LENGTH_LONG).show();
                             Looper.loop();
                             break;

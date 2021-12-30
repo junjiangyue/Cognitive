@@ -133,6 +133,42 @@
             android:name=".Activity.DialogSleep"
             android:theme="@style/dialog_style" />
         <activity
+            android:name=".Activity.DialogWalk"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogWater"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogRead"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogSmile"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogHobby"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogDiary"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogOtherSport"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.DialogPowerSport"
+            android:theme="@style/dialog_style" />
+        <activity
+            android:name=".Activity.WeeklyExercise"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.WeeklyReport"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.WeeklyReportHistory"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.TaskHistory"
+            android:exported="false" />
+        <activity
             android:name=".Activity.AD8ResultPage"
             android:exported="false" />
         <activity
@@ -143,6 +179,9 @@
             android:exported="false" />
         <activity
             android:name=".Activity.TestHistory"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.HistoryStep"
             android:exported="false" />
     </application>
 
