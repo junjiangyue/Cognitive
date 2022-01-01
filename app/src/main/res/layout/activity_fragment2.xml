@@ -133,27 +133,50 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:background="@color/background">
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="为你推荐"
+                    android:textSize="24sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"/>
                 <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/card_view2"
+                    android:id="@+id/card_view1"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="150dp"
                     android:layout_gravity="center"
                     android:layout_margin="20dp"
                     android:layout_weight="1"
+                    android:background="@drawable/suggest1"
                     card_view:cardCornerRadius="25dp">
-
-                    <TextView
+                    <ImageView
+                        android:id="@+id/info_text1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/suggest1"
+                        />
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/suggest1"
+                    card_view:cardCornerRadius="25dp">
+                    <ImageView
                         android:id="@+id/info_text2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="20dp"
-                        android:background="@drawable/rec"
-                        android:text="@string/recommendation"
-                        android:textSize="20sp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/suggest1"
+                        />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>

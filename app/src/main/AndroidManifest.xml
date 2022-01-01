@@ -22,7 +22,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cognitive"
         android:usesCleartextTraffic="true">
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <activity
+            android:name=".Activity.SetPassword"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.ForgetPassword"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.GetVerification"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.ChangePassword"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.ChangePhone"
+            android:exported="true" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
         <activity
             android:name=".Activity.SearchUserActivity"
             android:exported="true" />
@@ -31,6 +50,9 @@
             android:exported="false" />
         <activity
             android:name=".Activity.GuideActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.AccountSecurity"
             android:exported="true" />
         <activity
             android:name=".Activity.WelcomeActivity"
