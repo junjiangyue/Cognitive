@@ -61,36 +61,15 @@ public class FragmentActivity1 extends Fragment {
         title_test=view.findViewById(R.id.title_test);
         button_test1=view.findViewById(R.id.test1);
         button_test2=view.findViewById(R.id.test2);
-        button_test3=view.findViewById(R.id.test3);
-        button_test4=view.findViewById(R.id.test4);
-        button_test5=view.findViewById(R.id.test5);
-        button_test6=view.findViewById(R.id.test6);
 
         button_history1=view.findViewById(R.id.history1);
-        button_history2=view.findViewById(R.id.history2);
-        button_history3=view.findViewById(R.id.history3);
-        button_history4=view.findViewById(R.id.history4);
-        button_history5=view.findViewById(R.id.history5);
-        button_history6=view.findViewById(R.id.history6);
-        button_history7=view.findViewById(R.id.history7);
-        button_history8=view.findViewById(R.id.history8);
-        button_history9=view.findViewById(R.id.history9);
-        button_history10=view.findViewById(R.id.history10);
-        button_history11=view.findViewById(R.id.history11);
-        button_history12=view.findViewById(R.id.history12);
 
         go_test=view.findViewById(R.id.go_test_button);
-        Button [] buttons={button_test1,button_test2,button_test3,button_test4,button_test5,button_test6,button_history1,button_history2,button_history3,button_history4,
-                button_history5,button_history6,button_history7,button_history8,button_history9,button_history10,button_history11,button_history12
+        Button [] buttons={button_test1,button_test2,button_history1,
         };
-        int[] colors={R.color.indigo,R.color.orange,R.color.light_pink,
-                R.color.lighter_green,R.color.green_alt,R.color.blue_alt,
-                R.color.pink,R.color.light_orange,R.color.yellow,
-                R.color.light_green,R.color.green,R.color.blue_green,
-                R.color.light_blue,R.color.blue,R.color.purple,
-                R.color.light_purple,R.color.pink_alt,R.color.pink};
+        int[] colors={R.color.indigo,R.color.orange,R.color.light_pink,};
 
-        for(int i=0;i<18;i++)
+        for(int i=0;i<3;i++)
         {
             GradientDrawable shape=new GradientDrawable();
             shape.setCornerRadius(50);

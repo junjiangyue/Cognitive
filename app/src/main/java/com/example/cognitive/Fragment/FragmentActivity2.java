@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -38,6 +39,8 @@ public class FragmentActivity2 extends Fragment {
     private Banner banner;
     private List<Integer> image=new ArrayList<>();
     private List<String> title=new ArrayList<>();
+    private CardView suggest1;
+    private CardView suggest2;
     //@Nullable
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,8 +51,26 @@ public class FragmentActivity2 extends Fragment {
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.activity_fragment2,container,false);
         banner = view.findViewById(R.id.banner);
+        suggest1 = view.findViewById(R.id.card_view1);
+        suggest2 = view.findViewById(R.id.card_view2);
         initData();
         initView();
+        suggest1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ArticleInfo.class);
+                intent.putExtra("newsUrl","https://mp.weixin.qq.com/s/6xx808UhGhCT7WOJEkxysQ");
+                startActivity(intent);
+            }
+        });
+        suggest2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ArticleInfo.class);
+                intent.putExtra("newsUrl","https://mp.weixin.qq.com/s/6xx808UhGhCT7WOJEkxysQ");
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -62,6 +83,7 @@ public class FragmentActivity2 extends Fragment {
     }
 
     private void initView() {
+
 
         banner.setIndicatorGravity(BannerConfig.CENTER);
 

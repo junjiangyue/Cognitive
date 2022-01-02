@@ -44,23 +44,13 @@
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             app:liv_multiline="false"
-            app:liv_title="修改密码" />
+            app:liv_title="我的密码"
+            app:liv_subtitle="********"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="20dp"
             android:background="#e4e4e4" />
-        <com.lucasurbas.listitemview.ListItemView
-            android:id="@+id/reset_psw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            app:liv_multiline="false"
-            app:liv_title="重置密码" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="20dp"
-            android:background="#e4e4e4" />
+
     </LinearLayout>
 </LinearLayout>

@@ -10,12 +10,19 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cognitive.R;
 import com.example.cognitive.Utils.CheckSumBuilder;
-import com.example.cognitive.Utils.DestroyActivityUtil;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,19 +39,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import mehdi.sakout.fancybuttons.FancyButton;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-
-public class RegisterActivity extends AppCompatActivity {
+public class GetVerification extends AppCompatActivity {
+    private TextView confirm;
+    private EditText verify_code;
+    private String verificationCode;
     private SharedPreferences sp; // sharedPerferences实现记住密码和自动登录
-    private String userPhoneValue, passwordValue;
-    private String verficationCode;
+    private HashMap<String, String> stringHashMap;
+    private int userID;
+    private String newPhone;
+    String TAG = GetVerification.class.getCanonicalName();
 
     //发送验证码的请求路径URL
     private static final String
@@ -62,54 +65,41 @@ public class RegisterActivity extends AppCompatActivity {
     private String MOBILE="13888888888";
     //验证码长度，范围4～10，默认为4
     private static final String CODELEN="6";
-
-    String TAG = LoginActivity.class.getCanonicalName();
-    private EditText et_data_uphone;
-    private EditText et_data_upass;
-    private EditText et_data_veri;
-    private HashMap<String, String> stringHashMap;
-    private FancyButton button_signup;
-    private FancyButton get_veri_code;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        //DestroyActivityUtil.addActivity(RegisterActivity.this);
-        //获取输入框数据
-        et_data_uphone = (EditText) findViewById(R.id.et_data_uphone);
-        // 获取用户手机号
-        MOBILE = et_data_uphone.getText().toString();
-        et_data_upass = (EditText) findViewById(R.id.et_data_upass);
-        et_data_veri = (EditText) findViewById(R.id.et_data_veri);
+        setContentView(R.layout.activity_get_verification);
+        init();
         stringHashMap = new HashMap<>();
-        sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-
-        // button
-        button_signup = findViewById(R.id.btn_signup);
-        button_signup.setOnClickListener(MyListener);
-        get_veri_code = findViewById(R.id.get_veri);
-        get_veri_code.setOnClickListener(new View.OnClickListener() {
+        //new Thread(postVeri).start();
+        confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(postVeri).start();
+                // 先判断验证码是否正确
+                //if(!verify_code.getText().toString().equals("")&&verificationCode!=null&& verify_code.getText().toString().equals(verificationCode)){
+                    // 验证码正确，将修改请求发到后端
+                    stringHashMap.put("newPhone", newPhone);
+                    stringHashMap.put("userID", String.valueOf(userID));
+                    new Thread(postRun).start();
+                //}
+                //else {
+                    //Toast.makeText(GetVerification.this,"验证码错误", Toast.LENGTH_LONG).show();
+                //}
+
             }
         });
     }
-    private View.OnClickListener MyListener=new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-            if(!et_data_veri.getText().toString().equals("") &&et_data_veri.getText().toString().equals(verficationCode)) {
-                stringHashMap.put("userphone", et_data_uphone.getText().toString());
-                stringHashMap.put("password", et_data_upass.getText().toString());
-                new Thread(postRun).start();
-            }else {
-                Toast.makeText(RegisterActivity.this,"验证码错误", Toast.LENGTH_LONG).show();
-            }
-        }
-    };
-
+    void init(){
+        // 获取传递的消息
+        Intent intent = this.getIntent();
+        //verificationCode = intent.getStringExtra("verification");
+        newPhone = intent.getStringExtra("newPhone");
+        // 绑定组件
+        confirm = findViewById(R.id.confirm);
+        verify_code = findViewById(R.id.verification);
+        sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        userID = sp.getInt("USER_ID", 0);
+    }
     Runnable postVeri = new Runnable() {
 
         @Override
@@ -137,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
              * 3.params是根据你模板里面有几个参数，那里面的参数也是jsonArray格式
              */
             nvps.add(new BasicNameValuePair("templateid", TEMPLATEID));
-            MOBILE = et_data_uphone.getText().toString();
+            MOBILE = newPhone;
             nvps.add(new BasicNameValuePair("mobile", MOBILE));
             nvps.add(new BasicNameValuePair("codeLen", CODELEN));
 
@@ -163,14 +153,12 @@ public class RegisterActivity extends AppCompatActivity {
                 String res = EntityUtils.toString(response.getEntity(), "utf-8");
                 JSONObject jsonObject = new JSONObject(res);
                 System.out.println(jsonObject);
-                verficationCode = jsonObject.optString("obj");
+                verificationCode = jsonObject.optString("obj");
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
         }
     };
-
-
     Runnable postRun = new Runnable() {
 
         @Override
@@ -187,7 +175,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void requestPost(HashMap<String, String> paramsMap) {
         int code = 20;
         try {
-            String baseUrl = "http://101.132.97.43:8080/ServiceTest/servlet/RegisterServlet";
+            String baseUrl = "http://101.132.97.43:8080/ServiceTest/servlet/ChangePhoneServlet";
             //合成参数
             StringBuilder tempParams = new StringBuilder();
             int pos = 0;
@@ -241,20 +229,19 @@ public class RegisterActivity extends AppCompatActivity {
                         code = jsonObject.optInt("code");
                     }
                     switch (code){
-                        case -1 : // 已有账号，注册失败
+                        case 500 : // 失败
                             Looper.prepare();
-                            Toast.makeText(RegisterActivity.this,"该手机号已注册过账号", Toast.LENGTH_LONG).show();
+                            Toast.makeText(GetVerification.this,"该手机号已注册过账号", Toast.LENGTH_LONG).show();
                             Looper.loop();
                             break;
-                        case 0: // 注册成功
+                        case 200: // 修改成功
                             Looper.prepare();
                             SharedPreferences.Editor editor = sp.edit();
-                            editor.putString("USER_PHONE",  et_data_uphone.getText().toString());
-                            editor.putString("PASSWORD", et_data_upass.getText().toString());
+                            editor.putString("USER_PHONE",  newPhone);
                             editor.commit();
-                            Toast.makeText(RegisterActivity.this,"注册成功", Toast.LENGTH_LONG).show();
+                            Toast.makeText(GetVerification.this,"修改成功", Toast.LENGTH_LONG).show();
                             Intent intent2 = new Intent();
-                            intent2.setClassName(this,"com.example.cognitive.Activity.GuideActivity");
+                            intent2.setClassName(this,"com.example.cognitive.Activity.AccountSecurity");
                             this.startActivity(intent2);
                             Looper.loop();
                             break;
