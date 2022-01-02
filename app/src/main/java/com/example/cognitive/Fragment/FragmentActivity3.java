@@ -13,6 +13,7 @@ import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,6 +23,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.text.format.Time;
 import android.util.Log;
@@ -30,22 +32,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cognitive.Activity.FinishHealthyTask;
+import com.example.cognitive.Activity.HistoryStep;
+import com.example.cognitive.Activity.LoginActivity;
+import com.example.cognitive.Activity.PersonalSetting;
 import com.example.cognitive.Activity.SetHealthyTask;
 import com.example.cognitive.Activity.WeeklyExercise;
 import com.example.cognitive.Activity.WeeklyReport;
 import com.example.cognitive.R;
 import com.example.cognitive.SQLiteDB.DatabaseHelper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
+import java.util.HashMap;
 
 
 public class FragmentActivity3 extends Fragment {
+    private SharedPreferences sp;
+    private HashMap<String, String> stringHashMap;
+    private int userID;
     private LinearLayout title_test;
     private TextView get_date;
     private TextView get_weekday;
@@ -59,6 +77,8 @@ public class FragmentActivity3 extends Fragment {
     private boolean isVisible = true;
     private LinearLayout llSport;
     private LinearLayout llWeeklyReport;
+    private TextView txtDistance;
+    private TextView txtCalorie;
 
     private SensorManager sensorManager;
     private Sensor sensor;
@@ -77,6 +97,12 @@ public class FragmentActivity3 extends Fragment {
     String stepTime;
     int stepNum;
     String todayDate;
+    int yestSQLStep1;
+    int yestSQLStep2;
+    int yestSQLStep;
+    String yestTime;
+    private double distance;
+    private int calorie;
     //0点广播
     //private ZeroBroadcastReceiver zeroBcReceiver;
 
@@ -92,6 +118,8 @@ public class FragmentActivity3 extends Fragment {
     {
         super.onViewCreated(view,savedInstanceState);
         title_test=view.findViewById(R.id.title_test);
+
+        stringHashMap = new HashMap<>();
 
         //获取日期
         get_date=view.findViewById(R.id.get_date);
@@ -173,7 +201,8 @@ public class FragmentActivity3 extends Fragment {
             values.clear();
             Log.d(TAG,"插入");
             //cursor.close();
-        } else if(cursor.getCount()==1) {
+        }
+        else if(cursor.getCount()==1) {
             ContentValues values=new ContentValues();
             values.put("id",2);
             values.put("step_num",0);
@@ -190,6 +219,13 @@ public class FragmentActivity3 extends Fragment {
                 Log.d(TAG,"id:"+id);
                 Log.d(TAG,"step_num:"+stepNum);
                 Log.d(TAG,"step_time:"+stepTime);
+                if(id==1) {
+                    yestSQLStep1=stepNum;
+                    Log.d(TAG,"yestSQLStep1:"+yestSQLStep1);
+                } else if(id==2) {
+                    yestSQLStep2=stepNum;
+                    Log.d(TAG,"yestSQLStep2:"+yestSQLStep2);
+                }
             } while (cursor.moveToNext());
             Log.d(TAG,"查询数据库中所有数据");
         }
@@ -221,6 +257,7 @@ public class FragmentActivity3 extends Fragment {
         id=cursor.getInt(cursor.getColumnIndex("id"));
         stepNum=cursor.getInt(cursor.getColumnIndex("step_num"));
         stepTime=cursor.getString(cursor.getColumnIndex("step_time"));
+        yestTime=stepTime;
         Log.d(TAG,"id:"+id);
         Log.d(TAG,"step_num:"+stepNum);
         Log.d(TAG,"step_time:"+stepTime);
@@ -270,11 +307,10 @@ public class FragmentActivity3 extends Fragment {
         history_step.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fl_container, new EverydayStepNum(), null)
-                        .addToBackStack(null)
-                        .commit();
+                Intent intent = new Intent();
+                //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                intent.setClass(getActivity(), HistoryStep.class);
+                startActivity(intent);
             }
         });
 
@@ -302,6 +338,25 @@ public class FragmentActivity3 extends Fragment {
             }
         });
 
+        //距离
+        txtDistance=view.findViewById(R.id.txt_distance);
+        //卡路里
+        txtCalorie=view.findViewById(R.id.txt_calorie);
+
+        if(result==true){
+            yestSQLStep=yestSQLStep2-yestSQLStep1;
+            if(yestSQLStep<0) {
+                yestSQLStep=yestSQLStep2;
+            }
+            Log.d(TAG,"yestSQLStep:"+yestSQLStep);
+            sp = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+            userID=sp.getInt("USER_ID",0);
+            Log.d(TAG,"userID:"+userID);
+            stringHashMap.put("userID", String.valueOf(userID));
+            stringHashMap.put("stepNum",String.valueOf(yestSQLStep));
+            stringHashMap.put("stepDate",yestTime);
+            new Thread(postRun).start();
+        }
     }
 
     //获取星期
@@ -372,7 +427,18 @@ public class FragmentActivity3 extends Fragment {
                 }
                 Log.d(TAG, "计算的Step:" + todayStep);
                 step_num.setText("今天走了"+todayStep+"步");
-                timedBroadcast();
+                double distance1;
+                distance1=todayStep*0.7/1000;
+                java.text.DecimalFormat df =new java.text.DecimalFormat("#.00");
+                String s = df.format(distance1);
+                distance=Double.parseDouble(s);
+                Log.d(TAG,"distance:"+distance);
+                txtDistance.setText("相当于走了"+distance+"公里");
+                double calorie1;
+                calorie1=todayStep/20;
+                calorie=(int) calorie1;
+                Log.d(TAG,"calorie:"+calorie);
+                txtCalorie.setText("消耗了"+calorie+"卡路里");
             }
 
 
@@ -417,7 +483,7 @@ public class FragmentActivity3 extends Fragment {
     }
 
 
-    public void timedBroadcast() {
+    /*public void timedBroadcast() {
         AlarmManager am = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -433,7 +499,7 @@ public class FragmentActivity3 extends Fragment {
         //am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pi);
         //am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,SystemClock.elapsedRealtime() +10 * 1000,  AlarmManager.INTERVAL_DAY, pi);
 
-    }
+    }*/
 
     public static boolean isDate2Bigger(String str1, String str2) {
         boolean isBigger = false;
@@ -452,6 +518,129 @@ public class FragmentActivity3 extends Fragment {
             isBigger = true;
         }
         return isBigger;
+    }
+    /*上传步数*/
+    Runnable postRun = new Runnable() {
+
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            requestPost(stringHashMap);
+        }
+    };
+
+    private void requestPost(HashMap<String, String> paramsMap){
+        int code = 20;
+        try {
+            String baseUrl = "http://101.132.97.43:8080/ServiceTest/servlet/UploadStepServlet";
+            //合成参数
+            StringBuilder tempParams = new StringBuilder();
+            int pos = 0;
+            for (String key : paramsMap.keySet()) {
+                if (pos >0) {
+                    tempParams.append("&");
+                }
+                tempParams.append(String.format("%s=%s", key, URLEncoder.encode(paramsMap.get(key), "utf-8")));
+                pos++;
+            }
+            String params = tempParams.toString();
+            Log.e(TAG,"params--post-->>"+params);
+            // 请求的参数转换为byte数组
+//            byte[] postData = params.getBytes();
+            // 新建一个URL对象
+            URL url = new URL(baseUrl);
+            // 打开一个HttpURLConnection连接
+            HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
+            // 设置连接超时时间
+            urlConn.setConnectTimeout(5 * 1000);
+            //设置从主机读取数据超时
+            urlConn.setReadTimeout(5 * 1000);
+            // Post请求必须设置允许输出 默认false
+            urlConn.setDoOutput(true);
+            //设置请求允许输入 默认是true
+            urlConn.setDoInput(true);
+            // Post请求不能使用缓存
+            urlConn.setUseCaches(false);
+            // 设置为Post请求
+            urlConn.setRequestMethod("POST");
+            //设置本次连接是否自动处理重定向
+            urlConn.setInstanceFollowRedirects(true);
+            //配置请求Content-Type
+//            urlConn.setRequestProperty("Content-Type", "application/json");//post请求不能设置这个
+            // 开始连接
+            urlConn.connect();
+
+            // 发送请求参数
+            PrintWriter dos = new PrintWriter(urlConn.getOutputStream());
+            dos.write(params);
+            dos.flush();
+            dos.close();
+            // 判断请求是否成功
+            if (urlConn.getResponseCode() == 200) {
+                // 获取返回的数据
+                String result = streamToString(urlConn.getInputStream());
+                Log.e(TAG, "Post方式请求成功，result--->" + result);
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    if (jsonObject != null) {
+                        code = jsonObject.optInt("code");
+                        Log.d(TAG,"返回结果："+code);
+                    }
+                    switch (code){
+                        case 0 : // 上传失败
+                            Looper.prepare();
+                            Log.d(TAG,"传步数成功");
+                            //Toast.makeText(this.getContext(),"信息修改失败！", Toast.LENGTH_LONG).show();
+                            Looper.loop();
+                            break;
+                        case 1: // 上传成功
+                            Looper.prepare();
+                            Log.d(TAG,"传步数失败");
+                            //Toast.makeText(this.getContext(),"信息修改成功！", Toast.LENGTH_LONG).show();
+                            Looper.loop();
+                            break;
+                        default:
+                            //Toast.makeText(RegisterActivity.this,"用户名或密码错误，请重新登录", Toast.LENGTH_LONG).show();
+                            break;
+                    }
+                }catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            } else {
+                Looper.prepare();
+                Log.e(TAG, "Post方式请求失败");
+                //Toast.makeText(this.getContext(),"手机号或密码错误，请重新登录", Toast.LENGTH_LONG).show();
+                Looper.loop();
+            }
+            // 关闭连接
+            urlConn.disconnect();
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+    }
+    /**
+     * 将输入流转换成字符串
+     *
+     * @param is 从网络获取的输入流
+     * @return
+     */
+    public String streamToString(InputStream is) {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int len = 0;
+            while ((len = is.read(buffer)) != -1) {
+                baos.write(buffer, 0, len);
+            }
+            baos.close();
+            is.close();
+            byte[] byteArray = baos.toByteArray();
+            return new String(byteArray);
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+            return null;
+        }
     }
 
 }
