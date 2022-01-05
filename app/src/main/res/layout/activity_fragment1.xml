@@ -17,35 +17,43 @@
             android:textSize="30sp"
             android:textStyle="bold" />
     </android.widget.Toolbar>
-    <TextView
-        android:id="@+id/continue_test"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/continue_test"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+            android:id="@+id/continue_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/continue_test"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/test_name"
-        android:textColor="@color/black"
-        android:textSize="36sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/test"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:text="@string/test_name"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="36sp" />-->
 
-    <Button
-        android:id="@+id/go_test_button"
-        android:layout_width="122dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/button_go"
-        android:text="@string/begin_test"
-        android:textSize="20sp"/>
+<!--    <Button-->
+<!--        android:id="@+id/go_test_button"-->
+<!--        android:layout_width="122dp"-->
+<!--        android:layout_height="68dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:background="@drawable/button_go"-->
+<!--        android:text="@string/begin_test"-->
+<!--        android:textSize="20sp"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,37 +65,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
+            android:textSize="24dp"
             android:text="@string/test_list_string"
             android:textColor="@color/black" />
 
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollbars="none"
-            android:id="@+id/scroll_test">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <Button
-                    android:layout_width="80dp"
+                <ImageView
+                    android:src="@drawable/test1"
+                    android:layout_width="match_parent"
                     android:id="@+id/test1"
-                    android:layout_height="80dp"
+                    android:layout_height="130dp"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="10dp"
                     />
 
-                <Button
-                    android:layout_width="80dp"
+                <ImageView
+                    android:src="@drawable/test2"
+                    android:layout_width="match_parent"
                     android:id="@+id/test2"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_height="130dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="10dp"
                     />
             </LinearLayout>
-        </HorizontalScrollView>
+
     </LinearLayout>
 
     <LinearLayout
@@ -100,30 +109,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
+            android:textSize="24dp"
             android:text="@string/history_list_string"
             android:textColor="@color/black" />
 
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollbars="none"
-            android:id="@+id/scroll_history">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
-
-
-
-                <Button
-                    android:layout_width="80dp"
-                    android:id="@+id/history1"
-                    android:layout_height="80dp"
+                <ImageView
+                    android:src="@drawable/test_history"
+                    android:layout_width="match_parent"
+                    android:id="@+id/history"
+                    android:layout_height="130dp"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="10dp"
                     />
             </LinearLayout>
-        </HorizontalScrollView>
     </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

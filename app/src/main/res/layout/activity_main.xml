@@ -25,10 +25,9 @@
             android:id="@+id/bottom_bar"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
-            android:background="@drawable/shape_navigator"
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_marginBottom="10dp"
             >
 
             <RelativeLayout

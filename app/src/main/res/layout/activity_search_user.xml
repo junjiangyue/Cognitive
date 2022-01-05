@@ -4,8 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activity.SearchUserActivity">
     <!-- 这里是搜索框-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <android.widget.SearchView
         android:id="@+id/sv"
         android:layout_width="0dp"
@@ -18,4 +22,15 @@
         android:iconifiedByDefault="false"
         android:queryHint="请输入手机号搜索用户"
         />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
+    </LinearLayout>
 </LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/family"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:liv_displayMode="icon"
+        app:liv_icon="@drawable/contacts"
+        app:liv_multiline="true"
+        app:liv_subtitle="关联账号"
+        app:liv_title="我的亲人" />
+</RelativeLayout>

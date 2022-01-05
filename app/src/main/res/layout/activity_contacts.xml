@@ -22,6 +22,7 @@
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,20 +44,30 @@
             android:background="@drawable/divider"
             android:layout_marginBottom="20dp"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <com.lucasurbas.listitemview.ListItemView
-            android:id="@+id/family"
-            android:background="#ffffff"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            app:liv_displayMode="icon"
-            app:liv_icon="@drawable/contacts"
-            app:liv_multiline="true"
-            app:liv_subtitle="关联账号"
-            app:liv_title="我的亲人" />
+            android:text="联系人申请"
+            />
+        <ListView
+            android:id="@+id/newApply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="我的联系人"
+            />
+        <ListView
+            android:id="@+id/contacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp" />
     </LinearLayout>
 </LinearLayout>

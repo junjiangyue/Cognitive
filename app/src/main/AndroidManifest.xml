@@ -23,6 +23,9 @@
         android:theme="@style/Theme.Cognitive"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.AnotherPersonpage"
+            android:exported="true" />
+        <activity
             android:name=".Activity.SetPassword"
             android:exported="true" />
         <activity

@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Cognitive</string>
-    <string name="detect">detect</string>
-    <string name="health">health</string>
-    <string name="consult">consult</string>
-    <string name="personal">personal</string>
+    <string name="detect">认知自测</string>
+    <string name="health">健康打卡</string>
+    <string name="consult">养生知识</string>
+    <string name="personal">个人中心</string>
     <string name="continue_test">是否继续</string>
     <string name="test_name">量表一</string>
     <string name="begin_test">GO!</string>

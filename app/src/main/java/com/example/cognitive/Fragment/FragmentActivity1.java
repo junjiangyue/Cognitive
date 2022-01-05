@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.cognitive.Activity.ADIntro;
@@ -21,27 +22,12 @@ import com.example.cognitive.R;
 
 public class FragmentActivity1 extends Fragment {
     private LinearLayout title_test;
-    private Button button_test1;
-    private Button button_test2;
-    private Button button_test3;
-    private Button button_test4;
-    private Button button_test5;
-    private Button button_test6;
+    private ImageView button_test1;
+    private ImageView button_test2;
 
-    private Button button_history1;
-    private Button button_history2;
-    private Button button_history3;
-    private Button button_history4;
-    private Button button_history5;
-    private Button button_history6;
-    private Button button_history7;
-    private Button button_history8;
-    private Button button_history9;
-    private Button button_history10;
-    private Button button_history11;
-    private Button button_history12;
+    private ImageView history;
 
-    private Button go_test;
+    //private Button go_test;
 
 
 
@@ -62,29 +48,11 @@ public class FragmentActivity1 extends Fragment {
         button_test1=view.findViewById(R.id.test1);
         button_test2=view.findViewById(R.id.test2);
 
-        button_history1=view.findViewById(R.id.history1);
+        history=view.findViewById(R.id.history);
 
-        go_test=view.findViewById(R.id.go_test_button);
-        Button [] buttons={button_test1,button_test2,button_history1,
-        };
-        int[] colors={R.color.indigo,R.color.orange,R.color.light_pink,};
+        //go_test=view.findViewById(R.id.go_test_button);
 
-        for(int i=0;i<3;i++)
-        {
-            GradientDrawable shape=new GradientDrawable();
-            shape.setCornerRadius(50);
-            shape.setColor(getResources().getColor(colors[i]));
-            buttons[i].setBackground(shape);
-        }
         button_test1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), FrailIntro.class);
-                startActivity(intent);
-            }
-        });
-
-        button_test2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), ADIntro.class);
@@ -92,7 +60,7 @@ public class FragmentActivity1 extends Fragment {
             }
         });
 
-        go_test.setOnClickListener(new View.OnClickListener() {
+        button_test2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), FrailIntro.class);
@@ -100,7 +68,15 @@ public class FragmentActivity1 extends Fragment {
             }
         });
 
-        button_history1.setOnClickListener(new View.OnClickListener() {
+//        go_test.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(getActivity(), FrailIntro.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), TestHistory.class);
