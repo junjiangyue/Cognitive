@@ -85,7 +85,7 @@ public class HistoryResult extends AppCompatActivity {
         }
 
         //绘制雷达图
-        radar = (RadarChart) findViewById(R.id.ad8_radar);
+        radar = (RadarChart) findViewById(R.id.history_radar);
         list=new ArrayList<>();
 
         list.add(new RadarEntry((float)(2-health_point)/2*100));
@@ -94,7 +94,7 @@ public class HistoryResult extends AppCompatActivity {
         list.add(new RadarEntry((float)(1-judgement_point)*100));
         list.add(new RadarEntry((float) (4-cognition_point)/4*100));
 
-        RadarDataSet radarDataSet=new RadarDataSet(list,"AD-8测试结果");
+        RadarDataSet radarDataSet=new RadarDataSet(list,"历史测试结果");
         RadarData radarData=new RadarData(radarDataSet);
         radar.setData(radarData);
 

@@ -3,16 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/activity_finish_healthy_task.xml" value="0.13360507246376813" />
         <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/activity_fragment3.xml" value="0.16893115942028986" />
-        <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/activity_set_healthy_task.xml" value="0.13360507246376813" />
-        <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/activity_task_history.xml" value="0.25364583333333335" />
-        <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/activity_weekly_exercise.xml" value="0.14221014492753623" />
-        <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/activity_weekly_report.xml" value="0.14221014492753623" />
-        <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/activity_weekly_report_history.xml" value="0.1015625" />
-        <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/dialog_diary.xml" value="0.13360507246376813" />
-        <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/dialog_walk.xml" value="0.14221014492753623" />
-        <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/fragment_everyday_step_num.xml" value="0.11302083333333333" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/drawable/shape_navigator.xml" value="0.20364583333333333" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_ad8_result_page.xml" value="0.14673913043478262" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_fragment1.xml" value="0.264" />
@@ -44,7 +35,7 @@
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable/white_button_chosen.xml" value="0.19322916666666667" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable/white_with_stroke.xml" value="0.19322916666666667" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_account_security.xml" value="0.21422101449275363" />
-        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_ad8_result_page.xml" value="0.22509057971014493" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_ad8_result_page.xml" value="0.19827586206896552" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_ad8_test.xml" value="0.22509057971014493" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_adintro.xml" value="0.22509057971014493" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_another_personpage.xml" value="0.22916666666666666" />
@@ -59,8 +50,8 @@
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_exercise.xml" value="0.24456521739130435" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_finish_healthy_task.xml" value="0.22509057971014493" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_forget_password.xml" value="0.1765625" />
-        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_fragment1.xml" value="0.20199275362318841" />
-        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_fragment2.xml" value="0.264" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_fragment1.xml" value="0.2" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_fragment2.xml" value="0.1" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_fragment3.xml" value="0.1911231884057971" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_fragment4.xml" value="0.25364583333333335" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_frail_intropage.xml" value="0.21875" />
@@ -69,6 +60,7 @@
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_get_verification.xml" value="0.2390625" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_guide.xml" value="0.16799999999999998" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_habit.xml" value="0.24048913043478262" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_history_result.xml" value="0.23052536231884058" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_login.xml" value="0.2504528985507246" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_logo.xml" value="0.23369565217391305" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -80,7 +72,17 @@
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_sign_up.xml" value="0.23369565217391305" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_sleep.xml" value="0.12335359675785208" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_solar_terms.xml" value="0.24456521739130435" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_sport_info.xml" value="0.23052536231884058" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_task_history.xml" value="0.23052536231884058" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_test_history.xml" value="0.1" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/activity_welcome.xml" value="0.25364583333333335" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/ad8_1.xml" value="0.23052536231884058" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/ad8_2.xml" value="0.23052536231884058" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/ad8_3.xml" value="0.23052536231884058" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/ad8_4.xml" value="0.23052536231884058" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/ad8_5.xml" value="0.23052536231884058" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/ad8_6.xml" value="0.23052536231884058" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/ad8_7.xml" value="0.23052536231884058" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/bar_title.xml" value="0.22509057971014493" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/dialog_getup.xml" value="0.20208333333333334" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/everyday_step_num.xml" value="0.25364583333333335" />
@@ -95,6 +97,10 @@
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/fragment_sleep_help.xml" value="0.20677083333333332" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/fragment_solar_term.xml" value="0.18840579710144928" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/fragment_tab.xml" value="0.18840579710144928" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/frail_1.xml" value="0.23052536231884058" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/frail_2.xml" value="0.23052536231884058" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/frail_3.xml" value="0.23052536231884058" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/frail_4.xml" value="0.23052536231884058" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/frail_5.xml" value="0.24365942028985507" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/health_recipe_layout.xml" value="0.18840579710144928" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/item_group_layout.xml" value="0.21302083333333333" />
@@ -108,6 +114,7 @@
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/layout_fillknowledge.xml" value="0.2390625" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/layout_fillname.xml" value="0.25364583333333335" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/layout_fillsex.xml" value="0.2390625" />
+        <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/layout_history.xml" value="0.1" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/muti_action_menu.xml" value="0.22509057971014493" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/new_article_layout.xml" value="0.2105978260869565" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/layout/new_item_layout.xml" value="0.23596014492753623" />

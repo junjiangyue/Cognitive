@@ -5,7 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,7 +26,7 @@ public class FragmentActivity1 extends Fragment {
     private LinearLayout title_test;
     private ImageView button_test1;
     private ImageView button_test2;
-
+    private SharedPreferences sp;
     private ImageView history;
 
     //private Button go_test;
@@ -80,6 +82,9 @@ public class FragmentActivity1 extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), TestHistory.class);
+                sp=getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                int userID = sp.getInt("USER_ID", 0);
+                intent.putExtra("USER_ID",String.valueOf(userID));
                 startActivity(intent);
             }
         });

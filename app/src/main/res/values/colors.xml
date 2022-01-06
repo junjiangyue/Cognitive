@@ -23,12 +23,14 @@
     <color name="light_purple">#D9B3FF</color>
     <color name="pink_alt">#FFB3FF</color>
     <color name="dark_pink">#FFB3D9</color>
-    <color name="background">#F4F4F4</color>
-    <color name="background_yellow">#F4F4F4</color>
     <color name="lighter_green">#E6FFCC</color>
     <color name="green_alt">#CCFFCC</color>
     <color name="blue_alt">#CCE6FF</color>
     <!-- 登录界面-->
     <color name="button_blue">#193855</color>
     <color name="button_focus">#325F80</color>
+    <color name="background">#f4f4f4</color>
+    <color name="background_yellow">#FFFFFFFF</color>
+    <color name="page_background">#f4f4f4</color>
+    <color name="content_background">#FFFFFFFF</color>
 </resources>

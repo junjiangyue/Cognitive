@@ -27,7 +27,7 @@
             android:orientation="horizontal"
             android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             >
 
             <RelativeLayout
@@ -51,8 +51,8 @@
 
                 <ImageView
                     android:id="@+id/bottom_bar_image_1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_above="@+id/bottom_bar_text_1"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
@@ -79,8 +79,8 @@
 
                 <ImageView
                     android:id="@+id/bottom_bar_image_2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_above="@+id/bottom_bar_text_2"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
@@ -106,8 +106,8 @@
 
                 <ImageView
                     android:id="@+id/bottom_bar_image_3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_above="@+id/bottom_bar_text_3"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
@@ -133,8 +133,8 @@
 
                 <ImageView
                     android:id="@+id/bottom_bar_image_4"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_above="@+id/bottom_bar_text_4"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"

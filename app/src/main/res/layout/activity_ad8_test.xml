@@ -9,6 +9,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:id="@+id/ad8_viewpager"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <Button
         android:id="@+id/AD8_submit"
         android:layout_width="match_parent"
@@ -18,4 +22,5 @@
         android:onClick="getAD8Result"
         android:text="完成"
         />
+    </LinearLayout>
 </LinearLayout>
