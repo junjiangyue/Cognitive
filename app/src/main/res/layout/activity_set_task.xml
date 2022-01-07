@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:fancy="http://schemas.android.com/apk/res-auto">
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="设置健康打卡内容"
+                android:text="推荐健康打卡设置"
                 android:textColor="#000000"
                 android:textSize="90px" />
             <TextView
@@ -32,15 +32,7 @@
                 android:layout_marginTop="30px"
                 android:layout_marginLeft="60px"
                 android:layout_marginRight="20px"
-                android:text="根据您的认知测试结果生成了以下打卡项目，您也可以根据您的喜好进行修改。"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="必选项目"
-                android:textColor="#000000"
-                android:textSize="75px"
-                android:layout_marginTop="30px"
-                android:layout_marginLeft="60px"/>
+                android:text="根据您的认知测试结果生成了以下打卡项目，您也可以根据您的喜好在每日打卡页面进行修改。"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="950px"
@@ -78,31 +70,6 @@
                             android:textSize="70px" />
 
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50px"
-                        android:text="早睡早起"
-                        android:textColor="#000000"
-                        android:textSize="60px" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30px"
-                        android:layout_marginTop="10px"
-                        android:text="早睡早起，保持充足的睡眠，规律生活每一天！" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50px"
-                        android:text="目标设置"
-                        android:textColor="#000000"
-                        android:textSize="60px" />
-
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -124,20 +91,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15px"
                             android:textSize="56px" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="right">
-
-                            <Button
-                                android:id="@+id/btn_getUpTime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="120px"
-                                android:gravity="right"
-                                android:text="选择起床时间"
-                                android:textSize="45px" />
-                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -160,20 +113,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15px"
                             android:textSize="56px" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="right">
-
-                            <Button
-                                android:id="@+id/btn_sleepTime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="120px"
-                                android:gravity="right"
-                                android:text="选择睡觉时间"
-                                android:textSize="45px" />
-                        </LinearLayout>
                     </LinearLayout>
 
 
@@ -218,29 +157,6 @@
 
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50px"
-                        android:text="每日步行"
-                        android:textColor="#000000"
-                        android:textSize="60px" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30px"
-                        android:layout_marginTop="10px"
-                        android:text="经常步行的人，心肺功能更棒哦！" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50px"
-                        android:text="目标设置"
-                        android:textColor="#000000"
-                        android:textSize="60px" />
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -266,47 +182,10 @@
                                     android:textColor="#000000"
                                     android:textSize="56px" />
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="right">
-
-                                    <Button
-                                        android:id="@+id/btn_everydayStep"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="120px"
-                                        android:gravity="right"
-                                        android:text="选择目标步数"
-                                        android:textSize="45px"/>
-                                </LinearLayout>
-
                             </LinearLayout>
                         </LinearLayout>
 
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="80px"
-                        android:text="每周运动"
-                        android:textColor="#000000"
-                        android:textSize="60px" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30px"
-                        android:layout_marginTop="10px"
-                        android:text="运动可以提高健康水平，使人充满活力，提高幸福指数。" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50px"
-                        android:text="目标设置"
-                        android:textColor="#000000"
-                        android:textSize="60px" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -331,19 +210,6 @@
                                     android:text="每周运动4次"
                                     android:textColor="#000000"
                                     android:textSize="56px" />
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="right">
-
-                                    <Button
-                                        android:id="@+id/btn_everyWeekSport"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="120px"
-                                        android:gravity="right"
-                                        android:text="选择运动次数"
-                                        android:textSize="45px"/>
-                                </LinearLayout>
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -357,17 +223,6 @@
                                     android:text="其中力量训练2次"
                                     android:textColor="#000000"
                                     android:textSize="56px" />
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="right">
-                                    <Button
-                                        android:id="@+id/btn_everyWeekPower"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="120px"
-                                        android:text="选择力量训练次数"
-                                        android:textSize="45px"/>
-                                </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
 
@@ -375,27 +230,6 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="可选项目"
-                    android:textColor="#000000"
-                    android:textSize="75px"
-                    android:layout_marginTop="30px"
-                    android:layout_marginLeft="60px"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="可根据需要增加打卡任务，选择属于你的健康生活"
-                    android:textSize="40px"
-                    android:layout_marginTop="10px"
-                    android:layout_marginLeft="60px"/>
-            </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="950px"
@@ -440,28 +274,6 @@
                             android:layout_gravity="right"/>
 
                     </LinearLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50px"
-                        android:text="每日喝水"
-                        android:textColor="#000000"
-                        android:textSize="60px"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30px"
-                        android:layout_marginTop="10px"
-                        android:text="再忙也要保持身心平衡哦！" />
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50px"
-                        android:text="目标设置"
-                        android:textColor="#000000"
-                        android:textSize="60px" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -520,29 +332,6 @@
 
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="每日读书"
-                        android:layout_marginTop="50px"
-                        android:textColor="#000000"
-                        android:textSize="60px"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30px"
-                        android:layout_marginTop="10px"
-                        android:text="阅读与思考可以刺激大脑保持活力，使头脑更灵敏哦。" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50px"
-                        android:text="目标设置"
-                        android:textColor="#000000"
-                        android:textSize="60px" />
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -600,29 +389,6 @@
                             android:layout_gravity="right"/>
 
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="兴趣爱好与社会活动"
-                        android:layout_marginTop="50px"
-                        android:textColor="#000000"
-                        android:textSize="60px"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30px"
-                        android:layout_marginTop="10px"
-                        android:text="拥有丰富多彩的兴趣爱好和社会活动，更能提高对生活的热爱哦。" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50px"
-                        android:text="目标设置"
-                        android:textColor="#000000"
-                        android:textSize="60px" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -688,28 +454,6 @@
                             android:layout_gravity="right"/>
 
                     </LinearLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50px"
-                        android:text="每日微笑"
-                        android:textColor="#000000"
-                        android:textSize="60px"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30px"
-                        android:layout_marginTop="10px"
-                        android:text="笑一笑，十年少！" />
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50px"
-                        android:text="目标设置"
-                        android:textColor="#000000"
-                        android:textSize="60px" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -770,29 +514,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="50px"
-                        android:text="记日记"
-                        android:textColor="#000000"
-                        android:textSize="60px"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30px"
-                        android:layout_marginTop="10px"
-                        android:text="记录生活中的美好。" />
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50px"
-                        android:text="目标设置"
-                        android:textColor="#000000"
-                        android:textSize="60px" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginLeft="30px"
                         android:layout_marginTop="10px"
                         android:layout_marginBottom="10px"
@@ -818,6 +539,23 @@
                 fancy:fb_focusColor="#2C67AF"
                 fancy:fb_radius="30dp"
                 fancy:fb_text="确认设置"
+                fancy:fb_textColor="#fff"
+                fancy:fb_textSize = "55px"/>
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btn_cancel_task"
+                android:layout_width="600px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40px"
+                android:paddingLeft="60dp"
+                android:paddingTop="10dp"
+                android:paddingRight="60dp"
+                android:paddingBottom="10dp"
+                fancy:fb_defaultColor="#2672C3"
+                fancy:fb_focusColor="#2C67AF"
+                fancy:fb_radius="30dp"
+                fancy:fb_text="取消设置"
                 fancy:fb_textColor="#fff"
                 fancy:fb_textSize = "55px"/>
 

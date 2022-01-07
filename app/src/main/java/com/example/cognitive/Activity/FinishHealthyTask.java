@@ -8,12 +8,16 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.cognitive.R;
+import com.example.cognitive.Utils.AppManager;
+import com.example.cognitive.Utils.DestroyActivityUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,38 +28,58 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class FinishHealthyTask extends AppCompatActivity implements View.OnClickListener {
     private String TAG="FinishHealthyTask";
-    private SharedPreferences sp;
-    private SharedPreferences sp1;
+    private SharedPreferences sp;//账号
+    private SharedPreferences sp1;//打卡设置
+    private SharedPreferences spFinishTask;//完成打卡
+    private SharedPreferences spStepTask;//步数
     private HashMap<String, String> stringHashMap;
     private HashMap<String, String> stringHashMap1;
+    private TextView txtSetHealthyTask;
+    private TextView txtSetTip;
     private CardView cvGetup;
     private TextView txtGetupReal;
     private TextView txtGetupGoal;
+    private ImageView imgGetup;
     private CardView cvSleep;
     private TextView txtSleepReal;
     private TextView txtSleepGoal;
+    private ImageView imgSleep;
     private CardView cvStep;
     private TextView txtStepReal;
     private TextView txtStepGoal;
+    private ImageView imgStep;
     private CardView cvWater;
     private TextView txtWaterReal;
     private TextView txtWaterGoal;
+    private ImageView imgWater;
     private CardView cvRead;
     private TextView txtReadReal;
     private TextView txtReadGoal;
+    private ImageView imgRead;
     private CardView cvHobby;
     private TextView txtHobbyReal;
     private TextView txtHobbyGoal;
+    private ImageView imgHobby;
     private CardView cvSmile;
     private TextView txtSmileReal;
     private TextView txtSmileGoal;
+    private ImageView imgSmile;
     private CardView cvDiary;
     private TextView txtDairyReal;
     private TextView txtDairyGoal;
+    private ImageView imgDiary;
+    private CardView cvPowerSport;
+    private ImageView imgPowerSport;
+    private CardView cvOtherSport;
+    private ImageView imgOtherSport;
     private Button btnTaskHistory;
     private int userID;
     private String getupTime;
@@ -70,8 +94,21 @@ public class FinishHealthyTask extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish_healthy_task);
+        AppManager.getAppManager().addActivity(this);//界面栈
+        DestroyActivityUtil.addActivity(FinishHealthyTask.this);
         stringHashMap = new HashMap<>();
         stringHashMap1 = new HashMap<>();
+        txtSetHealthyTask=(TextView) findViewById(R.id.txt_setHealthyTask);
+        txtSetHealthyTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                intent.setClass(FinishHealthyTask.this,SetHealthyTask.class);
+                startActivity(intent);
+            }
+        });
+        //获取打卡项目设置
         sp1= this.getSharedPreferences("userHealthyTask", Context.MODE_PRIVATE);
         getupTime= sp1.getString("getupTime","7:00");
         getupTime=getupTime.substring(0,getupTime.length()-3);
@@ -91,73 +128,215 @@ public class FinishHealthyTask extends AppCompatActivity implements View.OnClick
         Log.d(TAG,"smileGoal:"+smileGoal);
         diaryGoal = sp1.getInt("diaryGoal",0);
         Log.d(TAG,"diaryGoal:"+diaryGoal);
+        boolean setOrNot= sp1.getBoolean("setOrNot", false);
+
+        //打卡项目显示
         cvGetup=(CardView) findViewById(R.id.cv_getup);
         txtGetupReal= (TextView) findViewById(R.id.txt_GetupReal);
-        txtGetupReal.setText("6:45");
+        //txtGetupReal.setText("6:45");
         txtGetupGoal= (TextView) findViewById(R.id.txt_GetupGoal);
         txtGetupGoal.setText(" / "+getupTime);
         cvSleep=(CardView) findViewById(R.id.cv_sleep);
         txtSleepReal= (TextView) findViewById(R.id.txt_SleepReal);
-        txtSleepReal.setText("22:45");
+        //txtSleepReal.setText("22:45");
         txtSleepGoal= (TextView) findViewById(R.id.txt_SleepGoal);
         txtSleepGoal.setText(" / "+sleepTime);
         cvStep=(CardView) findViewById(R.id.cv_step);
         txtStepReal= (TextView) findViewById(R.id.txt_StepReal);
-        txtStepReal.setText("4567");
+        //txtStepReal.setText("4567");
+        spStepTask=this.getSharedPreferences("userStepTask", Context.MODE_PRIVATE);
+        int step;
+        step=spStepTask.getInt("stepFinish",0);
+        txtStepReal.setText(String.valueOf(step));
         txtStepGoal= (TextView) findViewById(R.id.txt_StepGoal);
-        txtStepGoal.setText(" / "+postStepGoal+"步");
+        txtStepGoal.setText(" / "+postStepGoal);
         cvWater=(CardView) findViewById(R.id.cv_water);
         txtWaterReal= (TextView) findViewById(R.id.txt_WaterReal);
-        txtWaterReal.setText("1.5L");
+        //txtWaterReal.setText("1.5L");
         txtWaterGoal= (TextView) findViewById(R.id.txt_WaterGoal);
         txtWaterGoal.setText(" / 1.5L");
-        if(drinkGoal==1) {
+        /*if(drinkGoal==1) {
             cvWater.setVisibility(View.GONE);
-        }
+        }*/
         cvRead=(CardView) findViewById(R.id.cv_read);
         txtReadReal= (TextView) findViewById(R.id.txt_ReadReal);
-        txtReadReal.setText("20");
+        txtReadReal.setText("0");
         txtReadGoal= (TextView) findViewById(R.id.txt_ReadGoal);
         txtReadGoal.setText("分钟 / 30分钟");
-        if(readGoal==1) {
+        /*if(readGoal==1) {
             cvRead.setVisibility(View.GONE);
-        }
+        }*/
         cvHobby=(CardView) findViewById(R.id.cv_hobby);
         txtHobbyReal= (TextView) findViewById(R.id.txt_HobbyReal);
-        txtHobbyReal.setText("70");
+        txtHobbyReal.setText("0");
         txtHobbyGoal= (TextView) findViewById(R.id.txt_HobbyGoal);
         txtHobbyGoal.setText("分钟 / 45分钟");
-        if(hobbyGoal==1) {
+        /*if(hobbyGoal==1) {
             cvHobby.setVisibility(View.GONE);
-        }
+        }*/
         cvSmile=(CardView) findViewById(R.id.cv_smile);
         txtSmileReal= (TextView) findViewById(R.id.txt_SmileReal);
         txtSmileReal.setText("0");
         txtSmileGoal= (TextView) findViewById(R.id.txt_SmileGoal);
         txtSmileGoal.setText(" / 1次");
-        if(smileGoal==1) {
+        /*if(smileGoal==1) {
             cvSmile.setVisibility(View.GONE);
-        }
+        }*/
         cvDiary=(CardView) findViewById(R.id.cv_diary);
         txtDairyReal= (TextView) findViewById(R.id.txt_DairyReal);
         txtDairyReal.setText("0");
         txtDairyGoal= (TextView) findViewById(R.id.txt_DairyGoal);
         txtDairyGoal.setText(" / 1篇");
-        if(diaryGoal==1) {
+        /*if(diaryGoal==1) {
             cvDiary.setVisibility(View.GONE);
+        }*/
+        Calendar instance = Calendar.getInstance();
+        int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+        int sport=0;
+        if(weekDay==1){
+            sport=sp1.getInt("SunSport",0);
+        } else if(weekDay==2) {
+            sport=sp1.getInt("MonSport",0);
+        } else if(weekDay==3) {
+            sport=sp1.getInt("TueSport",0);
+        } else if(weekDay==4) {
+            sport=sp1.getInt("WenSport",0);
+        } else if(weekDay==5) {
+            sport=sp1.getInt("ThurSport",0);
+        } else if(weekDay==6) {
+            sport=sp1.getInt("FriSport",0);
+        } else if(weekDay==7) {
+            sport=sp1.getInt("SatSport",0);
         }
+        cvPowerSport=(CardView) findViewById(R.id.cv_power_sport);
+        cvOtherSport=(CardView) findViewById(R.id.cv_other_sport);
+        if(sport==0){
+            cvPowerSport.setVisibility(View.GONE);
+            cvOtherSport.setVisibility(View.GONE);
+        } else if (sport==1){
+            cvOtherSport.setVisibility(View.GONE);
+        } else if (sport==2){
+            cvPowerSport.setVisibility(View.GONE);
+        }
+
+        //是否设置过打卡
+        txtSetTip=findViewById(R.id.txt_set_tip);
+        if (setOrNot==true){
+            txtSetTip.setVisibility(View.GONE);
+        } else {
+            cvGetup.setVisibility(View.GONE);
+            cvSleep.setVisibility(View.GONE);
+            cvStep.setVisibility(View.GONE);
+            cvWater.setVisibility(View.GONE);
+            cvRead.setVisibility(View.GONE);
+            cvHobby.setVisibility(View.GONE);
+            cvSmile.setVisibility(View.GONE);
+            cvDiary.setVisibility(View.GONE);
+            cvPowerSport.setVisibility(View.GONE);
+            cvOtherSport.setVisibility(View.GONE);
+        }
+
+        //打卡项目对话框
         cvGetup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FinishHealthyTask.this, DialogGetup.class);
-                startActivity(intent);
+                DialogGetup dialogGetup = new DialogGetup(FinishHealthyTask.this,new DialogGetup.DataBackListener() {
+                    @Override
+                    public void getData(int data) {
+                        int result = data;
+                        if(result==1) {
+                            SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("HH:mm");
+                            Date now=new Date(System.currentTimeMillis());
+                            SharedPreferences.Editor editor = spFinishTask.edit();
+                            editor.putString("getupFinish", simpleDateFormat1.format(now));
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            //获取当前日期
+                            Date date = new Date(System.currentTimeMillis());
+                            editor.putString("finishDate",simpleDateFormat.format(date));
+                            editor.commit();
+                            //存周报
+                            String getupTime= sp1.getString("getupTime","7:00");
+                            getupTime=getupTime.substring(0,getupTime.length()-3);
+                            SharedPreferences spWeekReport;
+                            spWeekReport=FinishHealthyTask.this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                            int getupReal=spWeekReport.getInt("getupReal",0);
+                            if(isDate2Bigger(simpleDateFormat1.format(now),getupTime)){
+                                getupReal=getupReal+1;
+                            }
+                            SharedPreferences.Editor editor1 = spWeekReport.edit();
+                            editor1.putInt("getupReal",getupReal);
+                            editor1.putString("endDate",simpleDateFormat.format(date));
+                            if(spWeekReport.getString("beginDate",null)==null){
+                                editor1.putString("beginDate",simpleDateFormat.format(date));
+                            }
+                            editor1.commit();
+                            Log.d(TAG,"完成早起");
+                            String getupFinish=spFinishTask.getString("getupFinish", null);
+                            isDate2Bigger(getupFinish,getupTime);
+                            imgGetup=findViewById(R.id.img_getup);
+                            if(isDate2Bigger(getupFinish,getupTime)){
+                                imgGetup.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                            } else {
+                                imgGetup.setImageDrawable(getResources().getDrawable(R.drawable.unfinished));
+                            }
+                            txtGetupReal.setText(getupFinish);
+                            cvGetup.setOnClickListener(null);
+                            cvGetup.setAlpha(0.6f);
+                        }
+                    }
+                });
+                dialogGetup.show();
             }
         });
         cvSleep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FinishHealthyTask.this, DialogSleep.class);
-                startActivity(intent);
+                DialogSleep dialogSleep = new DialogSleep(FinishHealthyTask.this,new DialogSleep.DataBackListener() {
+                    @Override
+                    public void getData(int data) {
+                        int result = data;
+                        if(result==1) {
+                            SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("HH:mm");
+                            Date now=new Date(System.currentTimeMillis());
+                            SharedPreferences.Editor editor = spFinishTask.edit();
+                            editor.putString("sleepFinish", simpleDateFormat1.format(now));
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            //获取当前日期
+                            Date date = new Date(System.currentTimeMillis());
+                            editor.putString("finishDate",simpleDateFormat.format(date));
+                            editor.commit();
+                            //存周报
+                            String sleepTime= sp1.getString("sleepTime","23:00");
+                            sleepTime=sleepTime.substring(0,sleepTime.length()-3);
+                            SharedPreferences spWeekReport;
+                            spWeekReport=FinishHealthyTask.this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                            int sleepReal=spWeekReport.getInt("sleepReal",0);
+                            if(isDate2Bigger(simpleDateFormat1.format(now),sleepTime)){
+                                sleepReal=sleepReal+1;
+                            }
+                            SharedPreferences.Editor editor1 = spWeekReport.edit();
+                            editor1.putInt("sleepReal",sleepReal);
+                            editor1.putString("endDate",simpleDateFormat.format(date));
+                            if(spWeekReport.getString("beginDate",null)==null){
+                                editor1.putString("beginDate",simpleDateFormat.format(date));
+                            }
+                            editor1.commit();
+                            Log.d(TAG,"完成早睡");
+                            String sleepFinish=spFinishTask.getString("sleepFinish", null);
+                            isDate2Bigger(sleepFinish,sleepTime);
+                            imgSleep=findViewById(R.id.img_sleep);
+                            if(isDate2Bigger(sleepFinish,sleepTime)){
+                                imgSleep.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                            } else {
+                                imgSleep.setImageDrawable(getResources().getDrawable(R.drawable.unfinished));
+                            }
+                            txtSleepReal.setText(sleepFinish);
+                            cvSleep.setOnClickListener(null);
+                            cvSleep.setAlpha(0.6f);
+                        }
+                    }
+                });
+                dialogSleep.show();
             }
         });
         cvStep.setOnClickListener(new View.OnClickListener() {
@@ -170,36 +349,248 @@ public class FinishHealthyTask extends AppCompatActivity implements View.OnClick
         cvWater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FinishHealthyTask.this, DialogWater.class);
-                startActivity(intent);
+                DialogWater dialogWater = new DialogWater(FinishHealthyTask.this,new DialogWater.DataBackListener() {
+                    @Override
+                    public void getData(int data) {
+                        int result = data;
+                        if(result==1) {
+                            SharedPreferences.Editor editor = spFinishTask.edit();
+                            editor.putInt("waterFinish", 0);
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            //获取当前日期
+                            Date date = new Date(System.currentTimeMillis());
+                            editor.putString("finishDate",simpleDateFormat.format(date));
+                            editor.commit();
+                            Log.d(TAG,"完成饮水");
+                            imgWater=findViewById(R.id.img_water);
+                            imgWater.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                            txtWaterReal.setText("1.5L");
+                            cvWater.setOnClickListener(null);
+                            cvWater.setAlpha(0.6f);
+                        }
+                    }
+                });
+                dialogWater.show();
             }
         });
         cvRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FinishHealthyTask.this, DialogRead.class);
-                startActivity(intent);
+                DialogRead dialogRead = new DialogRead(FinishHealthyTask.this,new DialogRead.DataBackListener() {
+                    @Override
+                    public void getData(int data) {
+                        int result = data;
+                        if(result==1) {
+                            SharedPreferences.Editor editor = spFinishTask.edit();
+                            editor.putInt("readFinish", 0);
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            //获取当前日期
+                            Date date = new Date(System.currentTimeMillis());
+                            editor.putString("finishDate",simpleDateFormat.format(date));
+                            editor.commit();
+                            Log.d(TAG,"完成阅读");
+                            imgRead=findViewById(R.id.img_read);
+                            imgRead.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                            txtReadReal.setText("30");
+                            cvRead.setOnClickListener(null);
+                            cvRead.setAlpha(0.6f);
+                        }
+                    }
+                });
+                dialogRead.show();
             }
         });
         cvHobby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FinishHealthyTask.this, DialogHobby.class);
-                startActivity(intent);
+                DialogHobby dialogHobby = new DialogHobby(FinishHealthyTask.this,new DialogHobby.DataBackListener() {
+                    @Override
+                    public void getData(int data) {
+                        int result = data;
+                        if(result==1) {
+                            SharedPreferences.Editor editor = spFinishTask.edit();
+                            editor.putInt("hobbyFinish", 0);
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            //获取当前日期
+                            Date date = new Date(System.currentTimeMillis());
+                            editor.putString("finishDate",simpleDateFormat.format(date));
+                            editor.commit();
+                            Log.d(TAG,"完成兴趣爱好");
+                            imgHobby=findViewById(R.id.img_hobby);
+                            imgHobby.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                            txtHobbyReal.setText("45");
+                            cvHobby.setOnClickListener(null);
+                            cvHobby.setAlpha(0.6f);
+                        }
+                    }
+                });
+                dialogHobby.show();
             }
         });
         cvSmile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FinishHealthyTask.this, DialogSmile.class);
-                startActivity(intent);
+                DialogSmile dialogSmile = new DialogSmile(FinishHealthyTask.this,new DialogSmile.DataBackListener() {
+                    @Override
+                    public void getData(int data) {
+                        int result = data;
+                        if(result==1) {
+                            SharedPreferences.Editor editor = spFinishTask.edit();
+                            editor.putInt("smileFinish", 0);
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            //获取当前日期
+                            Date date = new Date(System.currentTimeMillis());
+                            editor.putString("finishDate",simpleDateFormat.format(date));
+                            editor.commit();
+                            Log.d(TAG,"完成微笑");
+                            imgSmile=findViewById(R.id.img_smile);
+                            imgSmile.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                            txtSmileReal.setText("1");
+                            cvSmile.setOnClickListener(null);
+                            cvSmile.setAlpha(0.6f);
+                        }
+                    }
+                });
+                dialogSmile.show();
             }
         });
         cvDiary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FinishHealthyTask.this, DialogDiary.class);
-                startActivity(intent);
+                DialogDiary dialogDiary = new DialogDiary(FinishHealthyTask.this,new DialogDiary.DataBackListener() {
+                    @Override
+                    public void getData(int data) {
+                        int result = data;
+                        if(result==1) {
+                            SharedPreferences.Editor editor = spFinishTask.edit();
+                            editor.putInt("diaryFinish", 0);
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            //获取当前日期
+                            Date date = new Date(System.currentTimeMillis());
+                            editor.putString("finishDate",simpleDateFormat.format(date));
+                            editor.commit();
+                            Log.d(TAG,"完成日记");
+                            imgDiary=findViewById(R.id.img_diary);
+                            imgDiary.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                            txtDairyReal.setText("1");
+                            cvDiary.setOnClickListener(null);
+                            cvDiary.setAlpha(0.6f);
+                        }
+                    }
+                });
+                dialogDiary.show();
+            }
+        });
+        cvPowerSport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogPowerSport dialogPowerSport = new DialogPowerSport(FinishHealthyTask.this,new DialogPowerSport.DataBackListener()
+                {
+                    @Override
+                    public void getData(int data) {
+                        int result = data;
+                        if(result==1) {
+                            SharedPreferences.Editor editor = spFinishTask.edit();
+                            editor.putInt("powerSportFinish", 0);
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            //获取当前日期
+                            Date date = new Date(System.currentTimeMillis());
+                            editor.putString("finishDate",simpleDateFormat.format(date));
+                            editor.commit();
+                            SharedPreferences spWeekReport;
+                            spWeekReport=FinishHealthyTask.this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                            int sportReal=spWeekReport.getInt("sportReal",0);
+                            sportReal=sportReal+1;
+                            SharedPreferences.Editor editor1 = spWeekReport.edit();
+                            editor1.putInt("sportReal",sportReal);
+                            int powerReal=spWeekReport.getInt("powerReal",0);
+                            powerReal=powerReal+1;
+                            editor1.putInt("powerReal",powerReal);
+                            Calendar instance = Calendar.getInstance();
+                            int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+                            if(weekDay==1){
+                                editor1.putInt("SunReal",1);
+                            } else if(weekDay==2) {
+                                editor1.putInt("MonReal",1);
+                            } else if(weekDay==3) {
+                                editor1.putInt("TueReal",1);
+                            } else if(weekDay==4) {
+                                editor1.putInt("WenReal",1);
+                            } else if(weekDay==5) {
+                                editor1.putInt("ThurReal",1);
+                            } else if(weekDay==6) {
+                                editor1.putInt("FriReal",1);
+                            } else if(weekDay==7) {
+                                editor1.putInt("SatReal",1);
+                            }
+                            editor1.putString("endDate",simpleDateFormat.format(date));
+                            if(spWeekReport.getString("beginDate",null)==null){
+                                editor1.putString("beginDate",simpleDateFormat.format(date));
+                            }
+                            editor1.commit();
+                            Log.d(TAG,"完成力量训练");
+                            imgPowerSport=findViewById(R.id.img_power_sport);
+                            imgPowerSport.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                            cvPowerSport.setOnClickListener(null);
+                            cvPowerSport.setAlpha(0.6f);
+                        }
+                    }
+                });
+                dialogPowerSport.show();
+            }
+        });
+        cvOtherSport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogOtherSport dialogOtherSport = new DialogOtherSport(FinishHealthyTask.this,new DialogOtherSport.DataBackListener() {
+                    @Override
+                    public void getData(int data) {
+                        int result = data;
+                        if(result==1) {
+                            SharedPreferences.Editor editor = spFinishTask.edit();
+                            editor.putInt("otherSportFinish", 0);
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            //获取当前日期
+                            Date date = new Date(System.currentTimeMillis());
+                            editor.putString("finishDate",simpleDateFormat.format(date));
+                            editor.commit();
+                            SharedPreferences spWeekReport;
+                            spWeekReport=FinishHealthyTask.this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                            int sportReal=spWeekReport.getInt("sportReal",0);
+                            sportReal=sportReal+1;
+                            SharedPreferences.Editor editor1 = spWeekReport.edit();
+                            editor1.putInt("sportReal",sportReal);
+                            Calendar instance = Calendar.getInstance();
+                            int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+                            if(weekDay==1){
+                                editor1.putInt("SunReal",1);
+                            } else if(weekDay==2) {
+                                editor1.putInt("MonReal",1);
+                            } else if(weekDay==3) {
+                                editor1.putInt("TueReal",1);
+                            } else if(weekDay==4) {
+                                editor1.putInt("WenReal",1);
+                            } else if(weekDay==5) {
+                                editor1.putInt("ThurReal",1);
+                            } else if(weekDay==6) {
+                                editor1.putInt("FriReal",1);
+                            } else if(weekDay==7) {
+                                editor1.putInt("SatReal",1);
+                            }
+                            editor1.putString("endDate",simpleDateFormat.format(date));
+                            if(spWeekReport.getString("beginDate",null)==null){
+                                editor1.putString("beginDate",simpleDateFormat.format(date));
+                            }
+                            editor1.commit();
+                            Log.d(TAG,"完成其他运动");
+                            imgOtherSport=findViewById(R.id.img_other_sport);
+                            imgOtherSport.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                            cvOtherSport.setOnClickListener(null);
+                            cvOtherSport.setAlpha(0.6f);
+                        }
+                    }
+                });
+                dialogOtherSport.show();
             }
         });
 
@@ -212,30 +603,248 @@ public class FinishHealthyTask extends AppCompatActivity implements View.OnClick
             }
         });
 
+        //判断某一项是否打卡了
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(System.currentTimeMillis());
+        String today=simpleDateFormat.format(date);
+        Log.d(TAG,"查日期："+today);
+        spFinishTask=this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
+        if(spFinishTask.getString("finishDate",null)==null) {
+            Log.d(TAG,"userFinishTask为空");
+        } else {
+            String finishDate=spFinishTask.getString("finishDate",null);
+            Log.d(TAG,"获取日期："+finishDate);
+
+            if(finishDate.equals(today)) {
+                if(spFinishTask.getInt("diaryFinish", 1)==0){
+                    Log.d(TAG,"完成日记");
+                    imgDiary=findViewById(R.id.img_diary);
+                    imgDiary.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                    txtDairyReal.setText("1");
+                    cvDiary.setOnClickListener(null);
+                    cvDiary.setAlpha(0.6f);
+                }
+                if(spFinishTask.getInt("hobbyFinish", 1)==0){
+                    Log.d(TAG,"完成兴趣爱好");
+                    imgHobby=findViewById(R.id.img_hobby);
+                    imgHobby.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                    txtHobbyReal.setText("45");
+                    cvHobby.setOnClickListener(null);
+                    cvHobby.setAlpha(0.6f);
+                }
+                if(spFinishTask.getInt("smileFinish", 1)==0){
+                    Log.d(TAG,"完成微笑");
+                    imgSmile=findViewById(R.id.img_smile);
+                    imgSmile.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                    txtSmileReal.setText("1");
+                    cvSmile.setOnClickListener(null);
+                    cvSmile.setAlpha(0.6f);
+                }
+                if(spFinishTask.getInt("readFinish", 1)==0){
+                    Log.d(TAG,"完成阅读");
+                    imgRead=findViewById(R.id.img_read);
+                    imgRead.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                    txtReadReal.setText("30");
+                    cvRead.setOnClickListener(null);
+                    cvRead.setAlpha(0.6f);
+                }
+                if(spFinishTask.getInt("waterFinish", 1)==0){
+                    Log.d(TAG,"完成饮水");
+                    imgWater=findViewById(R.id.img_water);
+                    imgWater.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                    txtWaterReal.setText("1.5L");
+                    cvWater.setOnClickListener(null);
+                    cvWater.setAlpha(0.6f);
+                }
+                if(spFinishTask.getString("getupFinish", null)!=null){
+                    Log.d(TAG,"完成早起");
+                    String getupFinish=spFinishTask.getString("getupFinish", null);
+                    isDate2Bigger(getupFinish,getupTime);
+                    imgGetup=findViewById(R.id.img_getup);
+                    if(isDate2Bigger(getupFinish,getupTime)){
+                        imgGetup.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                    } else {
+                        imgGetup.setImageDrawable(getResources().getDrawable(R.drawable.unfinished));
+                    }
+                    txtGetupReal.setText(getupFinish);
+                    cvGetup.setOnClickListener(null);
+                    cvGetup.setAlpha(0.6f);
+                }
+                if(spFinishTask.getString("sleepFinish", null)!=null){
+                    Log.d(TAG,"完成早睡");
+                    String sleepFinish=spFinishTask.getString("sleepFinish", null);
+                    isDate2Bigger(sleepFinish,sleepTime);
+                    imgSleep=findViewById(R.id.img_sleep);
+                    if(isDate2Bigger(sleepFinish,sleepTime)){
+                        imgSleep.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                    } else {
+                        imgSleep.setImageDrawable(getResources().getDrawable(R.drawable.unfinished));
+                    }
+                    txtSleepReal.setText(sleepFinish);
+                    cvSleep.setOnClickListener(null);
+                    cvSleep.setAlpha(0.6f);
+                }
+                if(spFinishTask.getInt("powerSportFinish", 1)==0) {
+                    Log.d(TAG,"完成力量训练");
+                    imgPowerSport=findViewById(R.id.img_power_sport);
+                    imgPowerSport.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                    cvPowerSport.setOnClickListener(null);
+                    cvPowerSport.setAlpha(0.6f);
+                }
+                if(spFinishTask.getInt("otherSportFinish", 1)==0) {
+                    Log.d(TAG,"完成其他运动");
+                    imgOtherSport=findViewById(R.id.img_other_sport);
+                    imgOtherSport.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                    cvOtherSport.setOnClickListener(null);
+                    cvOtherSport.setAlpha(0.6f);
+                }
+                //记录步数
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("stepFinish", step);
+                editor.commit();
+            } else {
+                uploadTaskHistory();
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.clear();
+                /*editor.putString("getupTime",null);
+                editor.putString("sleepTime",null);
+                editor.putInt("stepFinish", 0);
+                editor.putInt("waterFinish", 1);
+                editor.putInt("readFinish", 1);
+                editor.putInt("hobbyFinish", 1);
+                editor.putInt("smileFinish", 1);
+                editor.putInt("diaryFinish", 1);
+                editor.putInt("powerSportFinish", 1);
+                editor.putInt("otherSportFinish", 1);*/
+                editor.commit();
+            }
+        }
+        //步数是否完成
+        if(step>=postStepGoal){
+            imgStep=findViewById(R.id.img_step);
+            imgStep.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+            cvStep.setAlpha(0.6f);
+        }
+
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         userID=sp.getInt("USER_ID",0);
         Log.d(TAG,"userID:"+userID);
         stringHashMap.put("userID", String.valueOf(userID));
         new Thread(postRun).start();//获取打卡设置
-        uploadTaskHistory();
+
+    }
+
+    public static boolean isDate2Bigger(String str1, String str2) {
+        boolean isBigger = false;
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        Date dt1 = null;
+        Date dt2 = null;
+        try {
+            dt1 = sdf.parse(str1);
+            dt2 = sdf.parse(str2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (dt1.getTime() >= dt2.getTime()) {
+            isBigger = false;
+        } else if (dt1.getTime() < dt2.getTime()) {
+            isBigger = true;
+        }
+        return isBigger;
     }
 
     private void uploadTaskHistory(){
+        int taskNum=0;//总任务数
+        int taskRealNum=0;//完成任务数
+        SharedPreferences spWeekReport;
+        spWeekReport=this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
         Log.d(TAG,"传打卡记录");
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         userID=sp.getInt("USER_ID",0);
         Log.d(TAG,"userID:"+userID);
         stringHashMap1.put("userID", String.valueOf(userID));
-        stringHashMap1.put("getupTime", "7:10:00");
-        stringHashMap1.put("sleepTime", "22:10:00");
-        stringHashMap1.put("stepRealNum", String.valueOf(6789));
-        stringHashMap1.put("readReal", String.valueOf(0));
-        stringHashMap1.put("drinkReal", String.valueOf(0));
-        stringHashMap1.put("hobbyReal", String.valueOf(1));
-        stringHashMap1.put("smileReal", String.valueOf(0));
-        stringHashMap1.put("diaryReal", String.valueOf(2));
-        stringHashMap1.put("taskDate", "2021-12-27");
+        String getupFinish=spFinishTask.getString("getupFinish", null);
+        stringHashMap1.put("getupTime", getupFinish);
+        taskNum=taskNum+1;
+        if(isDate2Bigger(getupFinish,getupTime)){
+            taskRealNum=taskRealNum+1;
+        }
+        String sleepFinish=spFinishTask.getString("sleepFinish", null);
+        stringHashMap1.put("sleepTime", sleepFinish);
+        taskNum=taskNum+1;
+        if(isDate2Bigger(sleepFinish,sleepTime)){
+            taskRealNum=taskRealNum+1;
+        }
+        int stepReal=spFinishTask.getInt("stepFinish",0);
+        stringHashMap1.put("stepRealNum", String.valueOf(stepReal));
+        taskNum=taskNum+1;
+        if(stepReal>=postStepGoal) {
+            int stepDays=spWeekReport.getInt("stepReal",0);
+            stepDays=stepDays+1;
+            SharedPreferences.Editor editor1 = spWeekReport.edit();
+            editor1.putInt("stepReal",stepDays);
+            editor1.commit();
+            taskRealNum=taskRealNum+1;
+        }
+        if(drinkGoal==1) {
+            stringHashMap1.put("drinkReal", String.valueOf(2));
+        } else {
+            int drinkReal=spFinishTask.getInt("waterFinish", 1);
+            stringHashMap1.put("drinkReal", String.valueOf(drinkReal));
+            taskNum=taskNum+1;
+            if(drinkReal==0) {
+                taskRealNum=taskRealNum+1;
+            }
+        }
+        if(readGoal==1) {
+            stringHashMap1.put("readReal", String.valueOf(2));
+        } else {
+            int readReal=spFinishTask.getInt("readFinish", 1);
+            stringHashMap1.put("readReal", String.valueOf(readReal));
+            taskNum=taskNum+1;
+            if(readReal==0) {
+                taskRealNum=taskRealNum+1;
+            }
+        }
+        if(hobbyGoal==1) {
+            stringHashMap1.put("hobbyReal", String.valueOf(2));
+        } else {
+            int hobbyReal=spFinishTask.getInt("hobbyFinish", 1);
+            stringHashMap1.put("hobbyReal", String.valueOf(hobbyReal));
+            taskNum=taskNum+1;
+            if(hobbyReal==0) {
+                taskRealNum=taskRealNum+1;
+            }
+        }
+        if(smileGoal==1) {
+            stringHashMap1.put("smileReal", String.valueOf(2));
+        } else {
+            int smileReal=spFinishTask.getInt("smileFinish", 1);
+            stringHashMap1.put("smileReal", String.valueOf(smileReal));
+            taskNum=taskNum+1;
+            if(smileReal==0) {
+                taskRealNum=taskRealNum+1;
+            }
+        }
+        if(diaryGoal==1) {
+            stringHashMap1.put("diaryReal", String.valueOf(2));
+        } else {
+            int diaryReal=spFinishTask.getInt("diaryFinish", 1);
+            stringHashMap1.put("diaryReal", String.valueOf(diaryReal));
+            taskNum=taskNum+1;
+            if(diaryReal==0) {
+                taskRealNum=taskRealNum+1;
+            }
+        }
+        stringHashMap1.put("taskDate", spFinishTask.getString("finishDate",null));
         new Thread(postRunHistory).start();//传每日打卡记录
+        if(taskNum==taskRealNum) {
+            int dailyReal=spWeekReport.getInt("dailyReal",0);
+            dailyReal=dailyReal+1;
+            SharedPreferences.Editor editor1 = spWeekReport.edit();
+            editor1.putInt("dailyReal",dailyReal);
+            editor1.commit();
+        }
     }
     @Override
     public void onClick(View view) {

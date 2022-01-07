@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/white_button"
-            android:text="点击返回主页"
+            android:text="点击查看推荐健康打卡设置"
             android:layout_gravity="center"
             android:onClick="backToMainPage"/>
 

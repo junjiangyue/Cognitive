@@ -3,16 +3,21 @@ package com.example.cognitive.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cognitive.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,12 +27,15 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class HistoryStep extends AppCompatActivity {
     private SharedPreferences sp;
     private HashMap<String, String> stringHashMap;
     private ListView listView;
+    public Handler mhandler;
     private String TAG="HistoryStep";
     private int userID;
     String[] data = { "11月9号            12345步", "11月8号            11101步", "11月7号            9666步", "11月6号            8574步",
@@ -36,11 +44,12 @@ public class HistoryStep extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_everyday_step_num);
         stringHashMap = new HashMap<>();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        mhandler = new mHandler();
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_expandable_list_item_1,data
-        );
+        );*/
         listView =findViewById(R.id.step_list);
-        listView.setAdapter(adapter);
+        //listView.setAdapter(adapter);
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         userID=sp.getInt("USER_ID",0);
         Log.d(TAG,"userID:"+userID);
@@ -111,6 +120,31 @@ public class HistoryStep extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject != null) {
                         code = jsonObject.optInt("code");
+                        JSONArray dataList=jsonObject.getJSONArray("data");
+                        if(dataList.length()==0) {
+                            Message msg = Message.obtain();
+                            msg.what = 1;
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("dataListLength",0); //往Bundle中存放数据
+                            msg.setData(bundle);//mes利用Bundle传递数据
+                            mhandler.sendMessage(msg);
+                        } else {
+                            ArrayList<String> dateList = new ArrayList<>();
+                            ArrayList<String> stepList = new ArrayList<>();
+                            for (int i = 0; i < dataList.length(); i++) {
+                                JSONObject object=dataList.getJSONObject(i);
+                                dateList.add(object.optString("stepDate"));
+                                stepList.add(object.optString("stepNum"));
+                            }
+                            Message msg = Message.obtain();
+                            msg.what = 1;
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("dataListLength",dataList.length()); //往Bundle中存放数据
+                            bundle.putStringArrayList("dateList",dateList);
+                            bundle.putStringArrayList("stepList",stepList);
+                            msg.setData(bundle);//mes利用Bundle传递数据
+                            mhandler.sendMessage(msg);
+                        }
                         Log.d(TAG,"返回结果："+code);
                     }
                     switch (code){
@@ -167,6 +201,25 @@ public class HistoryStep extends AppCompatActivity {
         } catch (Exception e) {
             Log.e(TAG, e.toString());
             return null;
+        }
+    }
+    class mHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            int dataListLength = msg.getData().getInt("dataListLength");
+            ArrayList<String> dateList = new ArrayList<>();
+            dateList=msg.getData().getStringArrayList("dateList");
+            ArrayList<String> stepList = new ArrayList<>();
+            stepList=msg.getData().getStringArrayList("stepList");
+            String[] stepDate=new String[dataListLength];
+            for(int i=0;i<dataListLength;i++) {
+                stepDate[i]=dateList.get(i)+"                  "+stepList.get(i);
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                    HistoryStep.this, android.R.layout.simple_expandable_list_item_1,stepDate
+            );
+            //listView =findViewById(R.id.step_list);
+            listView.setAdapter(adapter);
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.example.cognitive.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -28,10 +30,13 @@ public class FrailResultPage extends AppCompatActivity {
     private RadarChart radar;
     //项目表
     List<RadarEntry> list;
+    //存分数
+    private SharedPreferences spTestScore;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_frail_result_page);
+            spTestScore= this.getSharedPreferences("userTestScore", Context.MODE_PRIVATE);
             ResultPage=this;
             setScore();
             FrailTest.Test.finish();
@@ -53,7 +58,10 @@ public class FrailResultPage extends AppCompatActivity {
             int score=Integer.parseInt(scoreString);
             int strength_point=Integer.parseInt(strengthString);
             int health_point=Integer.parseInt(healthString);
-
+            SharedPreferences.Editor editor = spTestScore.edit();
+            editor.putInt("strengthScore", strength_point);
+            editor.putInt("healthScore", health_point);
+            editor.commit();
 
             showScore.setText(scoreString+"分");
             //showScore.setText(healthString+"分");
@@ -123,9 +131,9 @@ public class FrailResultPage extends AppCompatActivity {
 
         public void backToMainPage(View view)
         {
-            //Intent intent=new Intent(FrailResultPage.this, MainActivity.class);
+            Intent intent=new Intent(FrailResultPage.this, SetTask.class);
+            //finish();
+            startActivity(intent);
             finish();
-
-            //startActivity(intent);
         }
     }

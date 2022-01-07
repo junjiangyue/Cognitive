@@ -1,16 +1,74 @@
 package com.example.cognitive.Activity;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cognitive.R;
+import com.example.cognitive.Utils.AppManager;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
-public class DialogRead extends AppCompatActivity {
+/*public class DialogRead extends AppCompatActivity {
+    private SharedPreferences spFinishTask;
     private FancyButton btnReadCancel;
+    private FancyButton btnReadFinish;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.dialog_read);
+        spFinishTask=this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
+        btnReadCancel=findViewById(R.id.btn_read_cancel);
+        btnReadCancel.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                DialogRead.this.finish();
+            }
+        });
+        //完成一项打卡
+        btnReadFinish=findViewById(R.id.btn_read_finish);
+        btnReadFinish.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("readFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                Intent intent = new Intent(DialogRead.this, FinishHealthyTask.class);
+                AppManager.getAppManager().finishActivity(FinishHealthyTask.class);
+                startActivity(intent);
+                finish();
+
+                //DialogDiary.this.finish();
+            }
+        });
+    }
+}*/
+
+public class DialogRead extends Dialog {
+    private FancyButton btnReadCancel;
+    private FancyButton btnReadFinish;
+    public interface DataBackListener{
+        public void getData(int data);
+    }
+    DialogRead.DataBackListener listener;
+    public DialogRead(Context context, final DialogRead.DataBackListener listener){
+        super(context);
+        //用传递过来的监听器来初始化
+        this.listener = listener;
+    }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_read);
@@ -19,7 +77,18 @@ public class DialogRead extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                DialogRead.this.finish();
+                dismiss();
+            }
+        });
+        //完成一项打卡
+        btnReadFinish=findViewById(R.id.btn_read_finish);
+        btnReadFinish.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                listener.getData(1);
+                dismiss();
+                //DialogDiary.this.finish();
             }
         });
     }
