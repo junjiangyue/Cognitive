@@ -18,6 +18,15 @@
                 android:layout_gravity="center_horizontal"
                 android:textColor="#1A1B1C"
                 android:textSize="90px"/>
+            <TextView
+                android:id="@+id/txt_sport_task_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="还没有设置每周运动打卡，快去每日打卡页面设置吧！"
+                android:textSize="70px"
+                android:layout_marginTop="30px"
+                android:layout_marginLeft="50px"
+                android:layout_marginRight="50px"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_sport1"

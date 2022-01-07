@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -21,6 +22,7 @@ public class WeeklyExercise extends AppCompatActivity {
     private SharedPreferences sp1;
     private SharedPreferences spWeekReport;
     private String TAG="WeeklyExercise";
+    private TextView txtSportTaskTip;
     private CardView cvSport1;
     private CardView cvSport2;
     private CardView cvSport3;
@@ -50,6 +52,7 @@ public class WeeklyExercise extends AppCompatActivity {
         Log.d(TAG,"everyWeekSport:"+everyWeekSport);
         weeklyPowerSport = sp1.getInt("weeklyPowerSport",2);
         Log.d(TAG,"weeklyPowerSport:"+weeklyPowerSport);
+        txtSportTaskTip=(TextView) findViewById(R.id.txt_sport_task_tip);
         cvSport1=(CardView) findViewById(R.id.cv_sport1);
         cvSport2=(CardView) findViewById(R.id.cv_sport2);
         cvSport3=(CardView) findViewById(R.id.cv_sport3);
@@ -59,18 +62,28 @@ public class WeeklyExercise extends AppCompatActivity {
         cvSport6=(CardView) findViewById(R.id.cv_sport6);
         cvSport61=(CardView) findViewById(R.id.cv_sport6_1);
         cvSport7=(CardView) findViewById(R.id.cv_sport7);
+        int sport1;
         int sport2;
         int sport3;
         int sport4;
         int sport5;
         int sport6;
         int sport7;
+        sport1=sp1.getInt("MonSport",0);
         sport2=sp1.getInt("TueSport",0);
         sport3=sp1.getInt("WenSport",0);
         sport4=sp1.getInt("ThurSport",0);
         sport5=sp1.getInt("FriSport",0);
         sport6=sp1.getInt("SatSport",0);
         sport7=sp1.getInt("SunSport",0);
+        if(sport1==0&&sport2==0&&sport3==0&&sport4==0&&sport5==0&&sport6==0&&sport7==0) {
+
+        } else {
+            txtSportTaskTip.setVisibility(View.GONE);
+        }
+        if(sport1==0) {
+            cvSport1.setVisibility(View.GONE);
+        }
         if(sport2==0) {
             cvSport2.setVisibility(View.GONE);
         }

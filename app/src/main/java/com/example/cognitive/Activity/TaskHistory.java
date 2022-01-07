@@ -96,11 +96,15 @@ public class TaskHistory extends AppCompatActivity {
         cvDairy=findViewById(R.id.cv_diary);
         sp1= this.getSharedPreferences("userHealthyTask", Context.MODE_PRIVATE);
         String getupGoal= sp1.getString("getupTime","7:00");
-        getupGoal=getupGoal.substring(0,getupGoal.length()-3);
+        if(getupGoal.length()>5) {
+            getupGoal=getupGoal.substring(0,getupGoal.length()-3);
+        }
         txtGetupGoal=findViewById(R.id.txt_GetupGoal);
         txtGetupGoal.setText(" / "+getupGoal);
         String sleepGoal= sp1.getString("sleepTime","23:00");
-        sleepGoal=sleepGoal.substring(0,sleepGoal.length()-3);
+        if(sleepGoal.length()>5) {
+            sleepGoal=sleepGoal.substring(0,sleepGoal.length()-3);
+        }
         txtSleepGoal=findViewById(R.id.txt_SleepGoal);
         txtSleepGoal.setText(" / "+sleepGoal);
         int stepGoal = sp1.getInt("stepGoal",7000);

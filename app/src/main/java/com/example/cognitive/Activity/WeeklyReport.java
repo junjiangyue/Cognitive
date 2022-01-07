@@ -73,7 +73,7 @@ public class WeeklyReport extends AppCompatActivity {
         Log.d(TAG,"userID:"+userID);
         stringHashMap.put("userID", String.valueOf(userID));
         dailyReal=spWeekReport.getInt("dailyReal",0);
-        txtDailyReal.setText("每日打卡完成"+dailyReal+"天");
+        txtDailyReal.setText("共"+dailyReal+"天完成了所有每日打卡");
         stringHashMap.put("dailyReal", String.valueOf(dailyReal));
         sportReal=spWeekReport.getInt("sportReal",0);
         txtSportReal.setText("每周运动打卡完成"+sportReal+"项");
@@ -106,8 +106,12 @@ public class WeeklyReport extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        long days=getDay(beginDate,endDate)+1;
-        txtTaskDay.setText("本周健康打卡"+days+"天");
+        if(beginDate==null||endDate==null) {
+            txtTaskDay.setText("本周还未开始健康打卡");
+        } else {
+            long days=getDay(beginDate,endDate)+1;
+            txtTaskDay.setText("本周健康打卡"+days+"天");
+        }
         Calendar instance = Calendar.getInstance();
         int weekDay = instance.get(Calendar.DAY_OF_WEEK);
         if(weekDay==2){
@@ -133,7 +137,6 @@ public class WeeklyReport extends AppCompatActivity {
 
         @Override
         public void run() {
-            // TODO Auto-generated method stub
             requestPost(stringHashMap);
         }
     };
