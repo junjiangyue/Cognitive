@@ -12,14 +12,36 @@
             android:layout_height="match_parent"
             android:layout_marginTop="10px"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="每日打卡"
+                    android:textColor="#000000"
+                    android:textSize="90px"
+                    android:layout_marginLeft="300px"/>
+                <TextView
+                    android:id="@+id/txt_setHealthyTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="设置"
+                    android:textSize="65px"
+                    android:layout_marginLeft="200px"/>
+
+            </LinearLayout>
 
             <TextView
+                android:id="@+id/txt_set_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="每日打卡"
-                android:textColor="#000000"
-                android:textSize="90px"/>
+                android:text="还没有设置健康打卡哦，快点击右上角设置健康打卡项目吧！"
+                android:textSize="70px"
+                android:layout_marginTop="30px"
+                android:layout_marginLeft="50px"
+                android:layout_marginRight="50px"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_getup"
@@ -87,6 +109,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/img_step"
                         android:layout_width="80px"
                         android:layout_height="90px"
                         android:src="@drawable/stepnum" />
@@ -132,6 +155,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/img_water"
                         android:layout_width="80px"
                         android:layout_height="90px"
                         android:src="@drawable/water" />
@@ -177,6 +201,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/img_read"
                         android:layout_width="80px"
                         android:layout_height="90px"
                         android:src="@drawable/book" />
@@ -222,6 +247,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/img_hobby"
                         android:layout_width="80px"
                         android:layout_height="90px"
                         android:src="@drawable/hobby" />
@@ -267,6 +293,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/img_smile"
                         android:layout_width="80px"
                         android:layout_height="90px"
                         android:src="@drawable/smile" />
@@ -312,6 +339,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/img_diary"
                         android:layout_width="80px"
                         android:layout_height="90px"
                         android:src="@drawable/diary" />
@@ -357,6 +385,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/img_sleep"
                         android:layout_width="80px"
                         android:layout_height="90px"
                         android:src="@drawable/sleep" />
@@ -382,6 +411,108 @@
                         android:textSize="50px"/>
 
                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_power_sport"
+                android:layout_width="950px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50px"
+                card_view:cardCornerRadius="30dp"
+                app:cardElevation="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="40px"
+                    android:layout_marginBottom="40px">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/img_power_sport"
+                            android:layout_width="90px"
+                            android:layout_height="90px"
+                            android:src="@drawable/power_sport" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35px"
+                            android:text="力量训练"
+                            android:textColor="#1A1B1C"
+                            android:textSize="70px" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20分钟"
+                            android:textColor="#1A1B1C"
+                            android:textSize="70px"
+                            android:layout_marginLeft="220px"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_other_sport"
+                android:layout_width="950px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50px"
+                card_view:cardCornerRadius="30dp"
+                app:cardElevation="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="40px"
+                    android:layout_marginBottom="40px">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/img_other_sport"
+                            android:layout_width="90px"
+                            android:layout_height="90px"
+                            android:src="@drawable/other_sport" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35px"
+                            android:text="其他运动"
+                            android:textColor="#1A1B1C"
+                            android:textSize="70px" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="30分钟"
+                            android:textColor="#1A1B1C"
+                            android:textSize="70px"
+                            android:layout_marginLeft="220px"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
             </androidx.cardview.widget.CardView>
 
             <Button

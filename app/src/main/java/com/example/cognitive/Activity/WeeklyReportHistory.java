@@ -1,15 +1,23 @@
 package com.example.cognitive.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cognitive.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,6 +27,7 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WeeklyReportHistory extends AppCompatActivity {
@@ -26,10 +35,13 @@ public class WeeklyReportHistory extends AppCompatActivity {
     private HashMap<String, String> stringHashMap;
     private String TAG="WeeklyReportHistory";
     private int userID;
+    private ListView listView;
+    public Handler mhandler;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_report_history);
         stringHashMap = new HashMap<>();
+        mhandler = new mHandler();
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         userID=sp.getInt("USER_ID",0);
         Log.d(TAG,"userID:"+userID);
@@ -100,6 +112,49 @@ public class WeeklyReportHistory extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject != null) {
                         code = jsonObject.optInt("code");
+                        JSONArray dataList=jsonObject.getJSONArray("data");
+                        if(dataList.length()==0) {
+                            Message msg = Message.obtain();
+                            msg.what = 1;
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("dataListLength",0); //往Bundle中存放数据
+                            msg.setData(bundle);//mes利用Bundle传递数据
+                            mhandler.sendMessage(msg);
+                        } else {
+                            ArrayList<String> beginDateList = new ArrayList<>();
+                            ArrayList<String> endDateList = new ArrayList<>();
+                            ArrayList<Integer> dailyRealList = new ArrayList<>();
+                            ArrayList<Integer> sportRealList = new ArrayList<>();
+                            ArrayList<Integer> getupRealList = new ArrayList<>();
+                            ArrayList<Integer> sleepRealList = new ArrayList<>();
+                            ArrayList<Integer> powerRealList = new ArrayList<>();
+                            ArrayList<Integer> stepRealList = new ArrayList<>();
+                            for (int i = 0; i < dataList.length(); i++) {
+                                JSONObject object=dataList.getJSONObject(i);
+                                beginDateList.add(object.optString("beginDate"));
+                                endDateList.add(object.optString("endDate"));
+                                dailyRealList.add(object.optInt("dailyReal"));
+                                sportRealList.add(object.optInt("sportReal"));
+                                getupRealList.add(object.optInt("getupReal"));
+                                sleepRealList.add(object.optInt("sleepReal"));
+                                powerRealList.add(object.optInt("powerReal"));
+                                stepRealList.add(object.optInt("stepReal"));
+                            }
+                            Message msg = Message.obtain();
+                            msg.what = 1;
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("dataListLength",dataList.length()); //往Bundle中存放数据
+                            bundle.putStringArrayList("beginDateList",beginDateList);
+                            bundle.putStringArrayList("endDateList",endDateList);
+                            bundle.putIntegerArrayList("dailyRealList",dailyRealList);
+                            bundle.putIntegerArrayList("sportRealList",sportRealList);
+                            bundle.putIntegerArrayList("getupRealList",getupRealList);
+                            bundle.putIntegerArrayList("sleepRealList",sleepRealList);
+                            bundle.putIntegerArrayList("powerRealList",powerRealList);
+                            bundle.putIntegerArrayList("stepRealList",stepRealList);
+                            msg.setData(bundle);//mes利用Bundle传递数据
+                            mhandler.sendMessage(msg);
+                        }
                         Log.d(TAG,"返回结果："+code);
                     }
                     switch (code){
@@ -156,6 +211,58 @@ public class WeeklyReportHistory extends AppCompatActivity {
         } catch (Exception e) {
             Log.e(TAG, e.toString());
             return null;
+        }
+    }
+    class mHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            int dataListLength = msg.getData().getInt("dataListLength");
+            ArrayList<String> beginDateList;
+            beginDateList=msg.getData().getStringArrayList("beginDateList");
+            ArrayList<String> endDateList;
+            endDateList=msg.getData().getStringArrayList("endDateList");
+            ArrayList<Integer> dailyRealList;
+            dailyRealList=msg.getData().getIntegerArrayList("dailyRealList");
+            ArrayList<Integer> sportRealList;
+            sportRealList=msg.getData().getIntegerArrayList("sportRealList");
+            ArrayList<Integer> getupRealList;
+            getupRealList=msg.getData().getIntegerArrayList("getupRealList");
+            ArrayList<Integer> sleepRealList;
+            sleepRealList=msg.getData().getIntegerArrayList("sleepRealList");
+            ArrayList<Integer> powerRealList;
+            powerRealList=msg.getData().getIntegerArrayList("powerRealList");
+            ArrayList<Integer> stepRealList;
+            stepRealList=msg.getData().getIntegerArrayList("stepRealList");
+            String[] weekReportDate=new String[dataListLength];
+            for(int i=0;i<dataListLength;i++) {
+                weekReportDate[i]=beginDateList.get(i)+"  ~  "+endDateList.get(i);
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                    WeeklyReportHistory.this, android.R.layout.simple_expandable_list_item_1,weekReportDate
+            );
+            listView =findViewById(R.id.week_report_list);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Log.d(TAG,"dailyReal:"+ dailyRealList.get(i));
+                    Log.d(TAG,"sportReal:"+ sportRealList.get(i));
+                    Log.d(TAG,"getupReal:"+ getupRealList.get(i));
+                    Log.d(TAG,"sleepReal:"+ sleepRealList.get(i));
+                    Log.d(TAG,"powerReal:"+ powerRealList.get(i));
+                    Log.d(TAG,"stepReal:"+ stepRealList.get(i));
+                    Intent intent  = new Intent(WeeklyReportHistory.this,OneWeekReport.class);
+                    intent.putExtra("beginDate", beginDateList.get(i));//设置参数
+                    intent.putExtra("endDate", endDateList.get(i));//设置参数
+                    intent.putExtra("dailyReal", dailyRealList.get(i));//设置参数
+                    intent.putExtra("sportReal", sportRealList.get(i));//设置参数
+                    intent.putExtra("getupReal", getupRealList.get(i));//设置参数
+                    intent.putExtra("sleepReal", sleepRealList.get(i));//设置参数
+                    intent.putExtra("powerReal", powerRealList.get(i));//设置参数
+                    intent.putExtra("stepReal", stepRealList.get(i));//设置参数
+                    startActivity(intent);
+                }
+            });
         }
     }
 }

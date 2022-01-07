@@ -138,7 +138,7 @@
                 app:liv_displayMode="icon"
                 app:liv_icon="@drawable/report"
                 app:liv_multiline="false"
-                app:liv_title="打卡周月年报" />
+                app:liv_title="打卡周报" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"

@@ -31,6 +31,18 @@ public class DestroyActivityUtil {
             SharedPreferences.Editor editor2 = preferences2.edit();
             editor2.clear();
             editor2.commit();
+            SharedPreferences preferences3 = act.getSharedPreferences("userFinishTask", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor3 = preferences3.edit();
+            editor3.clear();
+            editor3.commit();
+            SharedPreferences preferences4 = act.getSharedPreferences("userStepTask", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor4 = preferences4.edit();
+            editor4.clear();
+            editor4.commit();
+            SharedPreferences preferences5 = act.getSharedPreferences("userHealthyTask", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor5 = preferences5.edit();
+            editor5.clear();
+            editor5.commit();
             act.finish();
 
         }

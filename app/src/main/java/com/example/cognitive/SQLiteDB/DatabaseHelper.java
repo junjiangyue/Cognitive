@@ -29,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("drop table if exists Step");
-        onCreate(sqLiteDatabase);
+        //sqLiteDatabase.execSQL("drop table if exists Step");
+        //onCreate(sqLiteDatabase);
     }
 }

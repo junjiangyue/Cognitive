@@ -23,13 +23,27 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class WeeklyReport extends AppCompatActivity {
     private String TAG="WeeklyReport";
     private SharedPreferences sp;
+    private SharedPreferences spWeekReport;
     private HashMap<String, String> stringHashMap;
     private Button btnHistoryTaskReport;
+    private TextView txtTaskDay;
+    private TextView txtDailyReal;
+    private TextView txtSportReal;
+    private TextView txtSleepFinish;
+    private TextView txtGetupFinish;
+    private TextView txtStepFinish;
+    private TextView txtSportFinish;
+    private TextView txtPowerFinish;
+    private TextView txtSportTime;
     private int userID;
     private int dailyReal;
     private int sportReal;
@@ -42,29 +56,49 @@ public class WeeklyReport extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_report);
+        spWeekReport=this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
         stringHashMap = new HashMap<>();
         btnHistoryTaskReport=(Button) findViewById(R.id.btn_history_task_report);
+        txtTaskDay=findViewById(R.id.txt_taskDay);
+        txtDailyReal=findViewById(R.id.txt_dailyReal);
+        txtSportReal=findViewById(R.id.txt_sportReal);
+        txtSleepFinish=findViewById(R.id.txt_sleepFinish);
+        txtGetupFinish=findViewById(R.id.txt_getupFinish);
+        txtStepFinish=findViewById(R.id.txt_stepFinish);
+        txtSportFinish=findViewById(R.id.txt_sportFinish);
+        txtPowerFinish=findViewById(R.id.txt_powerFinish);
+        txtSportTime=findViewById(R.id.txt_sportTime);
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         userID=sp.getInt("USER_ID",0);
         Log.d(TAG,"userID:"+userID);
         stringHashMap.put("userID", String.valueOf(userID));
-        dailyReal=5;
+        dailyReal=spWeekReport.getInt("dailyReal",0);
+        txtDailyReal.setText("每日打卡完成"+dailyReal+"天");
         stringHashMap.put("dailyReal", String.valueOf(dailyReal));
-        sportReal=5;
+        sportReal=spWeekReport.getInt("sportReal",0);
+        txtSportReal.setText("每周运动打卡完成"+sportReal+"项");
+        txtSportFinish.setText("运动"+sportReal+"次");
         stringHashMap.put("sportReal", String.valueOf(sportReal));
-        powerReal=2;
+        powerReal=spWeekReport.getInt("powerReal",0);
+        txtPowerFinish.setText("完成力量训练"+powerReal+"次");
         stringHashMap.put("powerReal", String.valueOf(powerReal));
-        stepReal=6;
+        stepReal=spWeekReport.getInt("stepReal",0);
+        txtStepFinish.setText(stepReal+"天达到目标步数");
         stringHashMap.put("stepReal", String.valueOf(stepReal));
-        getupReal=5;
+        getupReal=spWeekReport.getInt("getupReal",0);
+        txtGetupFinish.setText(getupReal+"天完成早起");
         stringHashMap.put("getupReal", String.valueOf(getupReal));
-        sleepReal=4;
+        sleepReal=spWeekReport.getInt("sleepReal",0);
+        txtSleepFinish.setText(sleepReal+"天完成早睡");
         stringHashMap.put("sleepReal", String.valueOf(sleepReal));
-        beginDate="2021-12-13";
+        beginDate=spWeekReport.getString("beginDate",null);
         stringHashMap.put("beginDate", beginDate);
-        endDate="2021-12-19";
+        endDate=spWeekReport.getString("endDate",null);
         stringHashMap.put("endDate", endDate);
-        new Thread(postRun).start();
+        int sportTime=powerReal*20+(sportReal-powerReal)*30;
+        txtSportTime.setText("总共运动"+sportTime+"分钟");
+
+        //new Thread(postRun).start();
         btnHistoryTaskReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +106,28 @@ public class WeeklyReport extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        long days=getDay(beginDate,endDate)+1;
+        txtTaskDay.setText("本周健康打卡"+days+"天");
+        Calendar instance = Calendar.getInstance();
+        int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+        if(weekDay==2){
+            new Thread(postRun).start();
+        }
+    }
+    public long getDay(String str1,String str2) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date1 = simpleDateFormat.parse(str1);
+            Date date2 = simpleDateFormat.parse(str2);
+            long Maxtime =(date2.getTime()>date1.getTime())?date2.getTime():date1.getTime();
+            long Mintime = (date2.getTime()>date1.getTime())?date1.getTime():date2.getTime();
+            long l = Maxtime - Mintime;
+            long l1 =l/(1000*60*60*24);
+            return l1;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
     Runnable postRun = new Runnable() {
 

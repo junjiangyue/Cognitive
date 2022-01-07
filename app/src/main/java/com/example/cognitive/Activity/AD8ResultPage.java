@@ -1,6 +1,8 @@
 package com.example.cognitive.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -24,12 +26,14 @@ public class AD8ResultPage extends AppCompatActivity {
     private RadarChart radar;
     //项目表
     List<RadarEntry> list;
+    //存分数
+    private SharedPreferences spTestScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad8_result_page);
-
+        spTestScore= this.getSharedPreferences("userTestScore", Context.MODE_PRIVATE);
         setScore();
         AD8Test.Test.finish();
         ADIntro.introPage.finish();
@@ -49,7 +53,11 @@ public class AD8ResultPage extends AppCompatActivity {
         int judgement_point=Integer.parseInt(judgementString);
         int memory_point=Integer.parseInt(memoryString);
         int cognition_point=Integer.parseInt(cognitionString);
-
+        SharedPreferences.Editor editor = spTestScore.edit();
+        editor.putInt("judgementScore", judgement_point);
+        editor.putInt("memoryScore", memory_point);
+        editor.putInt("cognitionScore", cognition_point);
+        editor.commit();
         showScore.setText(scoreString+"分");
         if(score<2)
         {
@@ -115,8 +123,9 @@ public class AD8ResultPage extends AppCompatActivity {
     public void backToMainPage(View view)
     {
         //Intent intent=new Intent(FrailResultPage.this, MainActivity.class);
+        //finish();
+        Intent intent=new Intent(AD8ResultPage.this, SetTask.class);
+        startActivity(intent);
         finish();
-
-        //startActivity(intent);
     }
 }

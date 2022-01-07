@@ -151,28 +151,28 @@
         <activity
             android:name=".Activity.FinishHealthyTask"
             android:exported="true" />
-        <activity
+        <!--<activity
             android:name=".Activity.DialogGetup"
             android:theme="@style/dialog_style" />
         <activity
             android:name=".Activity.DialogSleep"
-            android:theme="@style/dialog_style" />
+            android:theme="@style/dialog_style" />-->
         <activity
             android:name=".Activity.DialogWalk"
             android:theme="@style/dialog_style" />
-        <activity
+        <!--<activity
             android:name=".Activity.DialogWater"
-            android:theme="@style/dialog_style" />
-        <activity
+            android:theme="@style/dialog_style" />-->
+        <!--<activity
             android:name=".Activity.DialogRead"
             android:theme="@style/dialog_style" />
         <activity
             android:name=".Activity.DialogSmile"
-            android:theme="@style/dialog_style" />
-        <activity
+            android:theme="@style/dialog_style" />-->
+        <!--<activity
             android:name=".Activity.DialogHobby"
-            android:theme="@style/dialog_style" />
-        <activity
+            android:theme="@style/dialog_style" />-->
+        <!--<activity
             android:name=".Activity.DialogDiary"
             android:theme="@style/dialog_style" />
         <activity
@@ -180,7 +180,7 @@
             android:theme="@style/dialog_style" />
         <activity
             android:name=".Activity.DialogPowerSport"
-            android:theme="@style/dialog_style" />
+            android:theme="@style/dialog_style" />-->
         <activity
             android:name=".Activity.WeeklyExercise"
             android:exported="false" />
@@ -207,6 +207,15 @@
             android:exported="false" />
         <activity
             android:name=".Activity.HistoryStep"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.SportInfo"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.OneWeekReport"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.SetTask"
             android:exported="false" />
     </application>
 
