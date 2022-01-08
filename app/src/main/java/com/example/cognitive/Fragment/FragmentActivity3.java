@@ -53,6 +53,7 @@ import com.example.cognitive.Activity.HistoryStep;
 import com.example.cognitive.Activity.LoginActivity;
 import com.example.cognitive.Activity.PersonalSetting;
 import com.example.cognitive.Activity.SetHealthyTask;
+import com.example.cognitive.Activity.TimeCounter;
 import com.example.cognitive.Activity.WalkingActivity;
 import com.example.cognitive.Activity.WeeklyExercise;
 import com.example.cognitive.Activity.WeeklyReport;
@@ -191,7 +192,11 @@ public class FragmentActivity3 extends Fragment {
         get_weekday=view.findViewById(R.id.get_weekday);
         String weekDay=getWeekDay();
         get_weekday.setText("星期"+weekDay);
-
+        //初始化图片
+        imgRead=view.findViewById(R.id.img_read);
+        imgHobby=view.findViewById(R.id.img_hobby);
+        imgPowerSport=view.findViewById(R.id.img_power_sport);
+        imgOtherSport=view.findViewById(R.id.img_other_sport);
         //获取步数
         step_num=view.findViewById(R.id.step_num);
 
@@ -425,7 +430,14 @@ public class FragmentActivity3 extends Fragment {
         }*/
         cvRead=(CardView) view.findViewById(R.id.cv_read);
         txtReadReal= (TextView) view.findViewById(R.id.txt_ReadReal);
-        txtReadReal.setText("0");
+        SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+        int readTime=spTaskTime.getInt("readTime",0);
+        if(readTime!=0) {
+            int minuteFinish=readTime/60;
+            txtReadReal.setText(String.valueOf(minuteFinish));
+        } else {
+            txtReadReal.setText("0");
+        }
         txtReadGoal= (TextView) view.findViewById(R.id.txt_ReadGoal);
         txtReadGoal.setText("分钟 / 30分钟");
         /*if(readGoal==1) {
@@ -433,7 +445,14 @@ public class FragmentActivity3 extends Fragment {
         }*/
         cvHobby=(CardView) view.findViewById(R.id.cv_hobby);
         txtHobbyReal= (TextView) view.findViewById(R.id.txt_HobbyReal);
-        txtHobbyReal.setText("0");
+        spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+        int hobbyTime=spTaskTime.getInt("hobbyTime",0);
+        if(hobbyTime!=0) {
+            int minuteFinish=hobbyTime/60;
+            txtHobbyReal.setText(String.valueOf(minuteFinish));
+        } else {
+            txtHobbyReal.setText("0");
+        }
         txtHobbyGoal= (TextView) view.findViewById(R.id.txt_HobbyGoal);
         txtHobbyGoal.setText("分钟 / 45分钟");
         /*if(hobbyGoal==1) {
@@ -646,7 +665,7 @@ public class FragmentActivity3 extends Fragment {
                     public void getData(int data) {
                         int result = data;
                         if(result==1) {
-                            SharedPreferences.Editor editor = spFinishTask.edit();
+                            /*SharedPreferences.Editor editor = spFinishTask.edit();
                             editor.putInt("readFinish", 0);
                             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                             //获取当前日期
@@ -658,7 +677,17 @@ public class FragmentActivity3 extends Fragment {
                             imgRead.setImageDrawable(getResources().getDrawable(R.drawable.finished));
                             txtReadReal.setText("30");
                             cvRead.setOnClickListener(null);
-                            cvRead.setAlpha(0.6f);
+                            cvRead.setAlpha(0.6f);*/
+                            SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                            int readTime=spTaskTime.getInt("readTime",0);
+                            Intent intent = new Intent();
+                            //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                            intent.setClass(getActivity(), TimeCounter.class);
+                            intent.putExtra("taskName", "阅读");//设置参数
+                            intent.putExtra("taskTime", 1800);//设置参数
+                            intent.putExtra("finishTime", readTime);//设置参数
+                            //startActivity(intent);
+                            startActivityForResult(intent, 1); // requestCode -> 1,read
                         }
                     }
                 });
@@ -675,7 +704,7 @@ public class FragmentActivity3 extends Fragment {
                     public void getData(int data) {
                         int result = data;
                         if(result==1) {
-                            SharedPreferences.Editor editor = spFinishTask.edit();
+                            /*SharedPreferences.Editor editor = spFinishTask.edit();
                             editor.putInt("hobbyFinish", 0);
                             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                             //获取当前日期
@@ -687,7 +716,17 @@ public class FragmentActivity3 extends Fragment {
                             imgHobby.setImageDrawable(getResources().getDrawable(R.drawable.finished));
                             txtHobbyReal.setText("45");
                             cvHobby.setOnClickListener(null);
-                            cvHobby.setAlpha(0.6f);
+                            cvHobby.setAlpha(0.6f);*/
+                            SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                            int hobbyTime=spTaskTime.getInt("hobbyTime",0);
+                            Intent intent = new Intent();
+                            //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                            intent.setClass(getActivity(), TimeCounter.class);
+                            intent.putExtra("taskName", "兴趣爱好");//设置参数
+                            intent.putExtra("taskTime", 2700);//设置参数
+                            intent.putExtra("finishTime", hobbyTime);//设置参数
+                            //startActivity(intent);
+                            startActivityForResult(intent, 2); // requestCode -> 2,hobby
                         }
                     }
                 });
@@ -759,7 +798,7 @@ public class FragmentActivity3 extends Fragment {
                     public void getData(int data) {
                         int result = data;
                         if(result==1) {
-                            SharedPreferences.Editor editor = spFinishTask.edit();
+                            /*SharedPreferences.Editor editor = spFinishTask.edit();
                             editor.putInt("powerSportFinish", 0);
                             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                             //获取当前日期
@@ -801,7 +840,17 @@ public class FragmentActivity3 extends Fragment {
                             imgPowerSport=view.findViewById(R.id.img_power_sport);
                             imgPowerSport.setImageDrawable(getResources().getDrawable(R.drawable.finished));
                             cvPowerSport.setOnClickListener(null);
-                            cvPowerSport.setAlpha(0.6f);
+                            cvPowerSport.setAlpha(0.6f);*/
+                            SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                            int powerTime=spTaskTime.getInt("powerTime",0);
+                            Intent intent = new Intent();
+                            //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                            intent.setClass(getActivity(), TimeCounter.class);
+                            intent.putExtra("taskName", "力量训练");//设置参数
+                            intent.putExtra("taskTime", 1200);//设置参数
+                            intent.putExtra("finishTime", powerTime);//设置参数
+                            //startActivity(intent);
+                            startActivityForResult(intent, 3); // requestCode -> 3,power
                         }
                     }
                 });
@@ -816,7 +865,7 @@ public class FragmentActivity3 extends Fragment {
                     public void getData(int data) {
                         int result = data;
                         if(result==1) {
-                            SharedPreferences.Editor editor = spFinishTask.edit();
+                            /*SharedPreferences.Editor editor = spFinishTask.edit();
                             editor.putInt("otherSportFinish", 0);
                             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                             //获取当前日期
@@ -855,7 +904,17 @@ public class FragmentActivity3 extends Fragment {
                             imgOtherSport=view.findViewById(R.id.img_other_sport);
                             imgOtherSport.setImageDrawable(getResources().getDrawable(R.drawable.finished));
                             cvOtherSport.setOnClickListener(null);
-                            cvOtherSport.setAlpha(0.6f);
+                            cvOtherSport.setAlpha(0.6f);*/
+                            SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                            int sportTime=spTaskTime.getInt("sportTime",0);
+                            Intent intent = new Intent();
+                            //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                            intent.setClass(getActivity(), TimeCounter.class);
+                            intent.putExtra("taskName", "其他运动");//设置参数
+                            intent.putExtra("taskTime", 1800);//设置参数
+                            intent.putExtra("finishTime", sportTime);//设置参数
+                            //startActivity(intent);
+                            startActivityForResult(intent, 4); // requestCode -> 4,other sport
                         }
                     }
                 });
@@ -1054,11 +1113,12 @@ public class FragmentActivity3 extends Fragment {
                 }
                 Log.d(TAG, "计算的Step:" + todayStep);
                 step_num.setText("今天走了"+todayStep+"步");
+                txtStepReal.setText(String.valueOf(todayStep));
                 SharedPreferences.Editor editor = spStepTask.edit();
                 editor.putInt("stepFinish", todayStep);
                 editor.commit();
                 double distance1;
-                distance1=todayStep*0.7/1000;
+                distance1=todayStep*0.6/1000;
                 java.text.DecimalFormat df =new java.text.DecimalFormat("#.00");
                 String s = df.format(distance1);
                 distance=Double.parseDouble(s);
@@ -1123,11 +1183,16 @@ public class FragmentActivity3 extends Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if (dt1.getTime() >= dt2.getTime()) {
+        if(dt1 == null||dt2 == null) {
             isBigger = false;
-        } else if (dt1.getTime() < dt2.getTime()) {
-            isBigger = true;
+        } else {
+            if (dt1.getTime() >= dt2.getTime()) {
+                isBigger = false;
+            } else if (dt1.getTime() < dt2.getTime()) {
+                isBigger = true;
+            }
         }
+
         return isBigger;
     }
     /*上传步数*/
@@ -1267,15 +1332,21 @@ public class FragmentActivity3 extends Fragment {
         String getupFinish=spFinishTask.getString("getupFinish", null);
         stringHashMap1.put("getupTime", getupFinish);
         taskNum=taskNum+1;
-        if(isDate2Bigger(getupFinish,getupTime)){
-            taskRealNum=taskRealNum+1;
+        if(getupFinish!=null&&getupTime!=null) {
+            if(isDate2Bigger(getupFinish,getupTime)){
+                taskRealNum=taskRealNum+1;
+            }
         }
+
         String sleepFinish=spFinishTask.getString("sleepFinish", null);
         stringHashMap1.put("sleepTime", sleepFinish);
         taskNum=taskNum+1;
-        if(isDate2Bigger(sleepFinish,sleepTime)){
-            taskRealNum=taskRealNum+1;
+        if(sleepFinish!=null&&sleepTime!=null){
+            if(isDate2Bigger(sleepFinish,sleepTime)){
+                taskRealNum=taskRealNum+1;
+            }
         }
+
         int stepReal=spFinishTask.getInt("stepFinish",0);
         stringHashMap1.put("stepRealNum", String.valueOf(stepReal));
         taskNum=taskNum+1;
@@ -1463,4 +1534,196 @@ public class FragmentActivity3 extends Fragment {
         }
         return isBigger;
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+// RESULT_OK，判断另外一个activity已经结束数据输入功能，Standard activity result:
+// operation succeeded. 默认值是-1
+        if (resultCode == 2) {
+            if (requestCode == 1) {
+                int finishTime = data.getIntExtra("finishTime", 0);
+                Log.e(TAG,"finishTime:"+finishTime);
+                //设置结果显示框的显示数值
+                SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                int trueFinish=spTaskTime.getInt("readTime",0);
+                trueFinish=trueFinish+finishTime;
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("readTime",trueFinish);
+                editorTime.commit();
+                int minuteFinish=trueFinish/60;
+                txtReadReal.setText(String.valueOf(minuteFinish));
+            }
+            if (requestCode == 2) {
+                int finishTime = data.getIntExtra("finishTime", 0);
+                Log.e(TAG,"finishTime:"+finishTime);
+                //设置结果显示框的显示数值
+                SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                int trueFinish=spTaskTime.getInt("hobbyTime",0);
+                trueFinish=trueFinish+finishTime;
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("hobbyTime",trueFinish);
+                editorTime.commit();
+                int minuteFinish=trueFinish/60;
+                txtHobbyReal.setText(String.valueOf(minuteFinish));
+            }
+            if (requestCode == 3) {
+                int finishTime = data.getIntExtra("finishTime", 0);
+                Log.e(TAG,"finishTime:"+finishTime);
+                //设置结果显示框的显示数值
+                SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                int trueFinish=spTaskTime.getInt("powerTime",0);
+                trueFinish=trueFinish+finishTime;
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("powerTime",trueFinish);
+                editorTime.commit();
+            }
+            if (requestCode == 4) {
+                int finishTime = data.getIntExtra("finishTime", 0);
+                Log.e(TAG,"finishTime:"+finishTime);
+                //设置结果显示框的显示数值
+                SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                int trueFinish=spTaskTime.getInt("sportTime",0);
+                trueFinish=trueFinish+finishTime;
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("sportTime",trueFinish);
+                editorTime.commit();
+            }
+        }
+        if (resultCode==1) {
+            if (requestCode == 1) {
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("readFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                Log.d(TAG,"完成阅读");
+                //imgRead=view.findViewById(R.id.img_read);
+                imgRead.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                txtReadReal.setText("30");
+                cvRead.setOnClickListener(null);
+                cvRead.setAlpha(0.6f);
+                SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("readTime",0);
+                editorTime.commit();
+            }
+            if (requestCode == 2) {
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("hobbyFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                Log.d(TAG,"完成兴趣爱好");
+                //imgHobby=view.findViewById(R.id.img_hobby);
+                imgHobby.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                txtHobbyReal.setText("45");
+                cvHobby.setOnClickListener(null);
+                cvHobby.setAlpha(0.6f);
+                SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("hobbyTime",0);
+                editorTime.commit();
+            }
+            if(requestCode==3) {
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("powerSportFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                SharedPreferences spWeekReport;
+                spWeekReport=getActivity().getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                int sportReal=spWeekReport.getInt("sportReal",0);
+                sportReal=sportReal+1;
+                SharedPreferences.Editor editor1 = spWeekReport.edit();
+                editor1.putInt("sportReal",sportReal);
+                int powerReal=spWeekReport.getInt("powerReal",0);
+                powerReal=powerReal+1;
+                editor1.putInt("powerReal",powerReal);
+                Calendar instance = Calendar.getInstance();
+                int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+                if(weekDay==1){
+                    editor1.putInt("SunReal",1);
+                } else if(weekDay==2) {
+                    editor1.putInt("MonReal",1);
+                } else if(weekDay==3) {
+                    editor1.putInt("TueReal",1);
+                } else if(weekDay==4) {
+                    editor1.putInt("WenReal",1);
+                } else if(weekDay==5) {
+                    editor1.putInt("ThurReal",1);
+                } else if(weekDay==6) {
+                    editor1.putInt("FriReal",1);
+                } else if(weekDay==7) {
+                    editor1.putInt("SatReal",1);
+                }
+                editor1.putString("endDate",simpleDateFormat.format(date));
+                if(spWeekReport.getString("beginDate",null)==null){
+                    editor1.putString("beginDate",simpleDateFormat.format(date));
+                }
+                editor1.commit();
+                Log.d(TAG,"完成力量训练");
+                //imgPowerSport=view.findViewById(R.id.img_power_sport);
+                imgPowerSport.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                cvPowerSport.setOnClickListener(null);
+                cvPowerSport.setAlpha(0.6f);
+                SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("powerTime",0);
+                editorTime.commit();
+            }
+            if(requestCode==4) {
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("otherSportFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                SharedPreferences spWeekReport;
+                spWeekReport=getActivity().getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                int sportReal=spWeekReport.getInt("sportReal",0);
+                sportReal=sportReal+1;
+                SharedPreferences.Editor editor1 = spWeekReport.edit();
+                editor1.putInt("sportReal",sportReal);
+                Calendar instance = Calendar.getInstance();
+                int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+                if(weekDay==1){
+                    editor1.putInt("SunReal",1);
+                } else if(weekDay==2) {
+                    editor1.putInt("MonReal",1);
+                } else if(weekDay==3) {
+                    editor1.putInt("TueReal",1);
+                } else if(weekDay==4) {
+                    editor1.putInt("WenReal",1);
+                } else if(weekDay==5) {
+                    editor1.putInt("ThurReal",1);
+                } else if(weekDay==6) {
+                    editor1.putInt("FriReal",1);
+                } else if(weekDay==7) {
+                    editor1.putInt("SatReal",1);
+                }
+                editor1.putString("endDate",simpleDateFormat.format(date));
+                if(spWeekReport.getString("beginDate",null)==null){
+                    editor1.putString("beginDate",simpleDateFormat.format(date));
+                }
+                editor1.commit();
+                Log.d(TAG,"完成其他运动");
+                //imgOtherSport=view.findViewById(R.id.img_other_sport);
+                imgOtherSport.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                cvOtherSport.setOnClickListener(null);
+                cvOtherSport.setAlpha(0.6f);
+                SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("sportTime",0);
+                editorTime.commit();
+            }
+        }
+    }
+
 }

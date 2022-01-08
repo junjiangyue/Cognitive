@@ -186,7 +186,7 @@ public class WeeklyExercise extends AppCompatActivity {
                     public void getData(int data) {
                         int result = data;
                         if(result==1) {
-                            SharedPreferences spFinishTask;
+                            /*SharedPreferences spFinishTask;
                             spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = spFinishTask.edit();
                             editor.putInt("powerSportFinish", 0);
@@ -229,7 +229,17 @@ public class WeeklyExercise extends AppCompatActivity {
                             Log.d(TAG,"完成力量训练");
                             imgMon=findViewById(R.id.img_Mon);
                             imgMon.setImageDrawable(getResources().getDrawable(R.drawable.finished));
-                            cvSport1.setOnClickListener(null);
+                            cvSport1.setOnClickListener(null);*/
+                            SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                            int powerTime=spTaskTime.getInt("powerTime",0);
+                            Intent intent = new Intent();
+                            //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                            intent.setClass(WeeklyExercise.this, TimeCounter.class);
+                            intent.putExtra("taskName", "力量训练");//设置参数
+                            intent.putExtra("taskTime", 1200);//设置参数
+                            intent.putExtra("finishTime", powerTime);//设置参数
+                            //startActivity(intent);
+                            startActivityForResult(intent, 31); // requestCode -> 31,power Mon
                         }
                     }
                 });
@@ -244,7 +254,7 @@ public class WeeklyExercise extends AppCompatActivity {
                     public void getData(int data) {
                         int result = data;
                         if(result==1) {
-                            SharedPreferences spFinishTask;
+                            /*SharedPreferences spFinishTask;
                             spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = spFinishTask.edit();
                             editor.putInt("otherSportFinish", 0);
@@ -284,7 +294,17 @@ public class WeeklyExercise extends AppCompatActivity {
                             Log.d(TAG,"完成其他运动");
                             imgTue=findViewById(R.id.img_Tue);
                             imgTue.setImageDrawable(getResources().getDrawable(R.drawable.finished));
-                            cvSport2.setOnClickListener(null);
+                            cvSport2.setOnClickListener(null);*/
+                            SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                            int sportTime=spTaskTime.getInt("sportTime",0);
+                            Intent intent = new Intent();
+                            //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                            intent.setClass(WeeklyExercise.this, TimeCounter.class);
+                            intent.putExtra("taskName", "其他运动");//设置参数
+                            intent.putExtra("taskTime", 1800);//设置参数
+                            intent.putExtra("finishTime", sportTime);//设置参数
+                            //startActivity(intent);
+                            startActivityForResult(intent, 42); // requestCode -> 42,other sport Tue
                         }
                     }
                 });
@@ -299,7 +319,7 @@ public class WeeklyExercise extends AppCompatActivity {
                     public void getData(int data) {
                         int result = data;
                         if(result==1) {
-                            SharedPreferences spFinishTask;
+                            /*SharedPreferences spFinishTask;
                             spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = spFinishTask.edit();
                             editor.putInt("otherSportFinish", 0);
@@ -339,7 +359,17 @@ public class WeeklyExercise extends AppCompatActivity {
                             Log.d(TAG,"完成其他运动");
                             imgWen=findViewById(R.id.img_Wen);
                             imgWen.setImageDrawable(getResources().getDrawable(R.drawable.finished));
-                            cvSport3.setOnClickListener(null);
+                            cvSport3.setOnClickListener(null);*/
+                            SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                            int sportTime=spTaskTime.getInt("sportTime",0);
+                            Intent intent = new Intent();
+                            //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                            intent.setClass(WeeklyExercise.this, TimeCounter.class);
+                            intent.putExtra("taskName", "其他运动");//设置参数
+                            intent.putExtra("taskTime", 1800);//设置参数
+                            intent.putExtra("finishTime", sportTime);//设置参数
+                            //startActivity(intent);
+                            startActivityForResult(intent, 43); // requestCode -> 43,other sport Wen
                         }
                     }
                 });
@@ -355,7 +385,7 @@ public class WeeklyExercise extends AppCompatActivity {
                     public void getData(int data) {
                         int result = data;
                         if(result==1) {
-                            SharedPreferences spFinishTask;
+                            /*SharedPreferences spFinishTask;
                             spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = spFinishTask.edit();
                             editor.putInt("powerSportFinish", 0);
@@ -398,7 +428,17 @@ public class WeeklyExercise extends AppCompatActivity {
                             Log.d(TAG,"完成力量训练");
                             imgThur=findViewById(R.id.img_Thur);
                             imgThur.setImageDrawable(getResources().getDrawable(R.drawable.finished));
-                            cvSport4.setOnClickListener(null);
+                            cvSport4.setOnClickListener(null);*/
+                            SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                            int powerTime=spTaskTime.getInt("powerTime",0);
+                            Intent intent = new Intent();
+                            //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                            intent.setClass(WeeklyExercise.this, TimeCounter.class);
+                            intent.putExtra("taskName", "力量训练");//设置参数
+                            intent.putExtra("taskTime", 1200);//设置参数
+                            intent.putExtra("finishTime", powerTime);//设置参数
+                            //startActivity(intent);
+                            startActivityForResult(intent, 34); // requestCode -> 34,power Thu
                         }
                     }
                 });
@@ -413,7 +453,7 @@ public class WeeklyExercise extends AppCompatActivity {
                     public void getData(int data) {
                         int result = data;
                         if(result==1) {
-                            SharedPreferences spFinishTask;
+                            /*SharedPreferences spFinishTask;
                             spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = spFinishTask.edit();
                             editor.putInt("otherSportFinish", 0);
@@ -453,7 +493,17 @@ public class WeeklyExercise extends AppCompatActivity {
                             Log.d(TAG,"完成其他运动");
                             imgThur1=findViewById(R.id.img_Thur1);
                             imgThur1.setImageDrawable(getResources().getDrawable(R.drawable.finished));
-                            cvSport41.setOnClickListener(null);
+                            cvSport41.setOnClickListener(null);*/
+                            SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                            int sportTime=spTaskTime.getInt("sportTime",0);
+                            Intent intent = new Intent();
+                            //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                            intent.setClass(WeeklyExercise.this, TimeCounter.class);
+                            intent.putExtra("taskName", "其他运动");//设置参数
+                            intent.putExtra("taskTime", 1800);//设置参数
+                            intent.putExtra("finishTime", sportTime);//设置参数
+                            //startActivity(intent);
+                            startActivityForResult(intent, 44); // requestCode -> 44,other sport Thu
                         }
                     }
                 });
@@ -468,7 +518,7 @@ public class WeeklyExercise extends AppCompatActivity {
                     public void getData(int data) {
                         int result = data;
                         if(result==1) {
-                            SharedPreferences spFinishTask;
+                            /*SharedPreferences spFinishTask;
                             spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = spFinishTask.edit();
                             editor.putInt("otherSportFinish", 0);
@@ -508,7 +558,17 @@ public class WeeklyExercise extends AppCompatActivity {
                             Log.d(TAG,"完成其他运动");
                             imgFri=findViewById(R.id.img_Fri);
                             imgFri.setImageDrawable(getResources().getDrawable(R.drawable.finished));
-                            cvSport5.setOnClickListener(null);
+                            cvSport5.setOnClickListener(null);*/
+                            SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                            int sportTime=spTaskTime.getInt("sportTime",0);
+                            Intent intent = new Intent();
+                            //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                            intent.setClass(WeeklyExercise.this, TimeCounter.class);
+                            intent.putExtra("taskName", "其他运动");//设置参数
+                            intent.putExtra("taskTime", 1800);//设置参数
+                            intent.putExtra("finishTime", sportTime);//设置参数
+                            //startActivity(intent);
+                            startActivityForResult(intent, 45); // requestCode -> 45,other sport Fri
                         }
                     }
                 });
@@ -524,7 +584,7 @@ public class WeeklyExercise extends AppCompatActivity {
                     public void getData(int data) {
                         int result = data;
                         if(result==1) {
-                            SharedPreferences spFinishTask;
+                            /*SharedPreferences spFinishTask;
                             spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = spFinishTask.edit();
                             editor.putInt("powerSportFinish", 0);
@@ -567,7 +627,17 @@ public class WeeklyExercise extends AppCompatActivity {
                             Log.d(TAG,"完成力量训练");
                             imgSat=findViewById(R.id.img_Sat);
                             imgSat.setImageDrawable(getResources().getDrawable(R.drawable.finished));
-                            cvSport6.setOnClickListener(null);
+                            cvSport6.setOnClickListener(null);*/
+                            SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                            int powerTime=spTaskTime.getInt("powerTime",0);
+                            Intent intent = new Intent();
+                            //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                            intent.setClass(WeeklyExercise.this, TimeCounter.class);
+                            intent.putExtra("taskName", "力量训练");//设置参数
+                            intent.putExtra("taskTime", 1200);//设置参数
+                            intent.putExtra("finishTime", powerTime);//设置参数
+                            //startActivity(intent);
+                            startActivityForResult(intent, 36); // requestCode -> 36,power Sat
                         }
                     }
                 });
@@ -582,7 +652,7 @@ public class WeeklyExercise extends AppCompatActivity {
                     public void getData(int data) {
                         int result = data;
                         if(result==1) {
-                            SharedPreferences spFinishTask;
+                            /*SharedPreferences spFinishTask;
                             spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = spFinishTask.edit();
                             editor.putInt("otherSportFinish", 0);
@@ -622,7 +692,17 @@ public class WeeklyExercise extends AppCompatActivity {
                             Log.d(TAG,"完成其他运动");
                             imgSat1=findViewById(R.id.img_Sat1);
                             imgSat1.setImageDrawable(getResources().getDrawable(R.drawable.finished));
-                            cvSport61.setOnClickListener(null);
+                            cvSport61.setOnClickListener(null);*/
+                            SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                            int sportTime=spTaskTime.getInt("sportTime",0);
+                            Intent intent = new Intent();
+                            //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                            intent.setClass(WeeklyExercise.this, TimeCounter.class);
+                            intent.putExtra("taskName", "其他运动");//设置参数
+                            intent.putExtra("taskTime", 1800);//设置参数
+                            intent.putExtra("finishTime", sportTime);//设置参数
+                            //startActivity(intent);
+                            startActivityForResult(intent, 46); // requestCode -> 46,other sport Sat
                         }
                     }
                 });
@@ -637,7 +717,7 @@ public class WeeklyExercise extends AppCompatActivity {
                     public void getData(int data) {
                         int result = data;
                         if(result==1) {
-                            SharedPreferences spFinishTask;
+                            /*SharedPreferences spFinishTask;
                             spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = spFinishTask.edit();
                             editor.putInt("otherSportFinish", 0);
@@ -677,7 +757,17 @@ public class WeeklyExercise extends AppCompatActivity {
                             Log.d(TAG,"完成其他运动");
                             imgSun=findViewById(R.id.img_Sun);
                             imgSun.setImageDrawable(getResources().getDrawable(R.drawable.finished));
-                            cvSport7.setOnClickListener(null);
+                            cvSport7.setOnClickListener(null);*/
+                            SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                            int sportTime=spTaskTime.getInt("sportTime",0);
+                            Intent intent = new Intent();
+                            //前一个（MainActivity.this）是目前页面，后面一个是要跳转的下一个页面
+                            intent.setClass(WeeklyExercise.this, TimeCounter.class);
+                            intent.putExtra("taskName", "其他运动");//设置参数
+                            intent.putExtra("taskTime", 1800);//设置参数
+                            intent.putExtra("finishTime", sportTime);//设置参数
+                            //startActivity(intent);
+                            startActivityForResult(intent, 47); // requestCode -> 47,other sport Sun
                         }
                     }
                 });
@@ -842,6 +932,470 @@ public class WeeklyExercise extends AppCompatActivity {
             cvSport5.setAlpha(0.5f);
             cvSport7.setOnClickListener(null);
             cvSport7.setAlpha(0.5f);
+        }
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+// RESULT_OK，判断另外一个activity已经结束数据输入功能，Standard activity result:
+// operation succeeded. 默认值是-1
+        if (resultCode == 2) {
+            if (requestCode == 31||requestCode == 34||requestCode == 36) {
+                int finishTime = data.getIntExtra("finishTime", 0);
+                Log.e(TAG,"finishTime:"+finishTime);
+                //设置结果显示框的显示数值
+                SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                int trueFinish=spTaskTime.getInt("powerTime",0);
+                trueFinish=trueFinish+finishTime;
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("powerTime",trueFinish);
+                editorTime.commit();
+            }
+            if (requestCode == 42||requestCode == 43||requestCode == 44||requestCode == 45||requestCode == 46||requestCode == 47) {
+                int finishTime = data.getIntExtra("finishTime", 0);
+                Log.e(TAG,"finishTime:"+finishTime);
+                //设置结果显示框的显示数值
+                SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                int trueFinish=spTaskTime.getInt("sportTime",0);
+                trueFinish=trueFinish+finishTime;
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("sportTime",trueFinish);
+                editorTime.commit();
+            }
+        }
+        if (resultCode==1) {
+            if (requestCode == 31) {
+                SharedPreferences spFinishTask;
+                spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("powerSportFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                SharedPreferences spWeekReport;
+                spWeekReport=WeeklyExercise.this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                int sportReal=spWeekReport.getInt("sportReal",0);
+                sportReal=sportReal+1;
+                SharedPreferences.Editor editor1 = spWeekReport.edit();
+                editor1.putInt("sportReal",sportReal);
+                int powerReal=spWeekReport.getInt("powerReal",0);
+                powerReal=powerReal+1;
+                editor1.putInt("powerReal",powerReal);
+                Calendar instance = Calendar.getInstance();
+                int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+                if(weekDay==1){
+                    editor1.putInt("SunReal",1);
+                } else if(weekDay==2) {
+                    editor1.putInt("MonReal",1);
+                } else if(weekDay==3) {
+                    editor1.putInt("TueReal",1);
+                } else if(weekDay==4) {
+                    editor1.putInt("WenReal",1);
+                } else if(weekDay==5) {
+                    editor1.putInt("ThurReal",1);
+                } else if(weekDay==6) {
+                    editor1.putInt("FriReal",1);
+                } else if(weekDay==7) {
+                    editor1.putInt("SatReal",1);
+                }
+                editor1.putString("endDate",simpleDateFormat.format(date));
+                if(spWeekReport.getString("beginDate",null)==null){
+                    editor1.putString("beginDate",simpleDateFormat.format(date));
+                }
+                editor1.commit();
+                Log.d(TAG,"完成力量训练");
+                imgMon=findViewById(R.id.img_Mon);
+                imgMon.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                cvSport1.setOnClickListener(null);
+                SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("powerTime",0);
+                editorTime.commit();
+            }
+            if (requestCode == 42) {
+                SharedPreferences spFinishTask;
+                spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("otherSportFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                SharedPreferences spWeekReport;
+                spWeekReport=WeeklyExercise.this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                int sportReal=spWeekReport.getInt("sportReal",0);
+                sportReal=sportReal+1;
+                SharedPreferences.Editor editor1 = spWeekReport.edit();
+                editor1.putInt("sportReal",sportReal);
+                Calendar instance = Calendar.getInstance();
+                int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+                if(weekDay==1){
+                    editor1.putInt("SunReal",1);
+                } else if(weekDay==2) {
+                    editor1.putInt("MonReal",1);
+                } else if(weekDay==3) {
+                    editor1.putInt("TueReal",1);
+                } else if(weekDay==4) {
+                    editor1.putInt("WenReal",1);
+                } else if(weekDay==5) {
+                    editor1.putInt("ThurReal",1);
+                } else if(weekDay==6) {
+                    editor1.putInt("FriReal",1);
+                } else if(weekDay==7) {
+                    editor1.putInt("SatReal",1);
+                }
+                editor1.putString("endDate",simpleDateFormat.format(date));
+                if(spWeekReport.getString("beginDate",null)==null){
+                    editor1.putString("beginDate",simpleDateFormat.format(date));
+                }
+                editor1.commit();
+                Log.d(TAG,"完成其他运动");
+                imgTue=findViewById(R.id.img_Tue);
+                imgTue.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                cvSport2.setOnClickListener(null);
+                SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("sportTime",0);
+                editorTime.commit();
+            }
+            if(requestCode==43) {
+                SharedPreferences spFinishTask;
+                spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("otherSportFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                SharedPreferences spWeekReport;
+                spWeekReport=WeeklyExercise.this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                int sportReal=spWeekReport.getInt("sportReal",0);
+                sportReal=sportReal+1;
+                SharedPreferences.Editor editor1 = spWeekReport.edit();
+                editor1.putInt("sportReal",sportReal);
+                Calendar instance = Calendar.getInstance();
+                int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+                if(weekDay==1){
+                    editor1.putInt("SunReal",1);
+                } else if(weekDay==2) {
+                    editor1.putInt("MonReal",1);
+                } else if(weekDay==3) {
+                    editor1.putInt("TueReal",1);
+                } else if(weekDay==4) {
+                    editor1.putInt("WenReal",1);
+                } else if(weekDay==5) {
+                    editor1.putInt("ThurReal",1);
+                } else if(weekDay==6) {
+                    editor1.putInt("FriReal",1);
+                } else if(weekDay==7) {
+                    editor1.putInt("SatReal",1);
+                }
+                editor1.putString("endDate",simpleDateFormat.format(date));
+                if(spWeekReport.getString("beginDate",null)==null){
+                    editor1.putString("beginDate",simpleDateFormat.format(date));
+                }
+                editor1.commit();
+                Log.d(TAG,"完成其他运动");
+                imgWen=findViewById(R.id.img_Wen);
+                imgWen.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                cvSport3.setOnClickListener(null);
+                SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("sportTime",0);
+                editorTime.commit();
+            }
+            if (requestCode == 34) {
+                SharedPreferences spFinishTask;
+                spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("powerSportFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                SharedPreferences spWeekReport;
+                spWeekReport=WeeklyExercise.this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                int sportReal=spWeekReport.getInt("sportReal",0);
+                sportReal=sportReal+1;
+                SharedPreferences.Editor editor1 = spWeekReport.edit();
+                editor1.putInt("sportReal",sportReal);
+                int powerReal=spWeekReport.getInt("powerReal",0);
+                powerReal=powerReal+1;
+                editor1.putInt("powerReal",powerReal);
+                Calendar instance = Calendar.getInstance();
+                int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+                if(weekDay==1){
+                    editor1.putInt("SunReal",1);
+                } else if(weekDay==2) {
+                    editor1.putInt("MonReal",1);
+                } else if(weekDay==3) {
+                    editor1.putInt("TueReal",1);
+                } else if(weekDay==4) {
+                    editor1.putInt("WenReal",1);
+                } else if(weekDay==5) {
+                    editor1.putInt("ThurReal",1);
+                } else if(weekDay==6) {
+                    editor1.putInt("FriReal",1);
+                } else if(weekDay==7) {
+                    editor1.putInt("SatReal",1);
+                }
+                editor1.putString("endDate",simpleDateFormat.format(date));
+                if(spWeekReport.getString("beginDate",null)==null){
+                    editor1.putString("beginDate",simpleDateFormat.format(date));
+                }
+                editor1.commit();
+                Log.d(TAG,"完成力量训练");
+                imgThur=findViewById(R.id.img_Thur);
+                imgThur.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                cvSport4.setOnClickListener(null);
+                SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("powerTime",0);
+                editorTime.commit();
+            }
+            if(requestCode==44) {
+                SharedPreferences spFinishTask;
+                spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("otherSportFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                SharedPreferences spWeekReport;
+                spWeekReport=WeeklyExercise.this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                int sportReal=spWeekReport.getInt("sportReal",0);
+                sportReal=sportReal+1;
+                SharedPreferences.Editor editor1 = spWeekReport.edit();
+                editor1.putInt("sportReal",sportReal);
+                Calendar instance = Calendar.getInstance();
+                int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+                if(weekDay==1){
+                    editor1.putInt("SunReal",1);
+                } else if(weekDay==2) {
+                    editor1.putInt("MonReal",1);
+                } else if(weekDay==3) {
+                    editor1.putInt("TueReal",1);
+                } else if(weekDay==4) {
+                    editor1.putInt("WenReal",1);
+                } else if(weekDay==5) {
+                    editor1.putInt("ThurReal",1);
+                } else if(weekDay==6) {
+                    editor1.putInt("FriReal",1);
+                } else if(weekDay==7) {
+                    editor1.putInt("SatReal",1);
+                }
+                editor1.putString("endDate",simpleDateFormat.format(date));
+                if(spWeekReport.getString("beginDate",null)==null){
+                    editor1.putString("beginDate",simpleDateFormat.format(date));
+                }
+                editor1.commit();
+                Log.d(TAG,"完成其他运动");
+                imgThur1=findViewById(R.id.img_Thur1);
+                imgThur1.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                cvSport41.setOnClickListener(null);
+                SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("sportTime",0);
+                editorTime.commit();
+            }
+            if(requestCode==45) {
+                SharedPreferences spFinishTask;
+                spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("otherSportFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                SharedPreferences spWeekReport;
+                spWeekReport=WeeklyExercise.this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                int sportReal=spWeekReport.getInt("sportReal",0);
+                sportReal=sportReal+1;
+                SharedPreferences.Editor editor1 = spWeekReport.edit();
+                editor1.putInt("sportReal",sportReal);
+                Calendar instance = Calendar.getInstance();
+                int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+                if(weekDay==1){
+                    editor1.putInt("SunReal",1);
+                } else if(weekDay==2) {
+                    editor1.putInt("MonReal",1);
+                } else if(weekDay==3) {
+                    editor1.putInt("TueReal",1);
+                } else if(weekDay==4) {
+                    editor1.putInt("WenReal",1);
+                } else if(weekDay==5) {
+                    editor1.putInt("ThurReal",1);
+                } else if(weekDay==6) {
+                    editor1.putInt("FriReal",1);
+                } else if(weekDay==7) {
+                    editor1.putInt("SatReal",1);
+                }
+                editor1.putString("endDate",simpleDateFormat.format(date));
+                if(spWeekReport.getString("beginDate",null)==null){
+                    editor1.putString("beginDate",simpleDateFormat.format(date));
+                }
+                editor1.commit();
+                Log.d(TAG,"完成其他运动");
+                imgFri=findViewById(R.id.img_Fri);
+                imgFri.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                cvSport5.setOnClickListener(null);
+                SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("sportTime",0);
+                editorTime.commit();
+            }
+            if (requestCode == 36) {
+                SharedPreferences spFinishTask;
+                spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("powerSportFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                SharedPreferences spWeekReport;
+                spWeekReport=WeeklyExercise.this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                int sportReal=spWeekReport.getInt("sportReal",0);
+                sportReal=sportReal+1;
+                SharedPreferences.Editor editor1 = spWeekReport.edit();
+                editor1.putInt("sportReal",sportReal);
+                int powerReal=spWeekReport.getInt("powerReal",0);
+                powerReal=powerReal+1;
+                editor1.putInt("powerReal",powerReal);
+                Calendar instance = Calendar.getInstance();
+                int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+                if(weekDay==1){
+                    editor1.putInt("SunReal",1);
+                } else if(weekDay==2) {
+                    editor1.putInt("MonReal",1);
+                } else if(weekDay==3) {
+                    editor1.putInt("TueReal",1);
+                } else if(weekDay==4) {
+                    editor1.putInt("WenReal",1);
+                } else if(weekDay==5) {
+                    editor1.putInt("ThurReal",1);
+                } else if(weekDay==6) {
+                    editor1.putInt("FriReal",1);
+                } else if(weekDay==7) {
+                    editor1.putInt("SatReal",1);
+                }
+                editor1.putString("endDate",simpleDateFormat.format(date));
+                if(spWeekReport.getString("beginDate",null)==null){
+                    editor1.putString("beginDate",simpleDateFormat.format(date));
+                }
+                editor1.commit();
+                Log.d(TAG,"完成力量训练");
+                imgSat=findViewById(R.id.img_Sat);
+                imgSat.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                cvSport6.setOnClickListener(null);
+                SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("powerTime",0);
+                editorTime.commit();
+            }
+            if(requestCode==46) {
+                SharedPreferences spFinishTask;
+                spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("otherSportFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                SharedPreferences spWeekReport;
+                spWeekReport=WeeklyExercise.this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                int sportReal=spWeekReport.getInt("sportReal",0);
+                sportReal=sportReal+1;
+                SharedPreferences.Editor editor1 = spWeekReport.edit();
+                editor1.putInt("sportReal",sportReal);
+                Calendar instance = Calendar.getInstance();
+                int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+                if(weekDay==1){
+                    editor1.putInt("SunReal",1);
+                } else if(weekDay==2) {
+                    editor1.putInt("MonReal",1);
+                } else if(weekDay==3) {
+                    editor1.putInt("TueReal",1);
+                } else if(weekDay==4) {
+                    editor1.putInt("WenReal",1);
+                } else if(weekDay==5) {
+                    editor1.putInt("ThurReal",1);
+                } else if(weekDay==6) {
+                    editor1.putInt("FriReal",1);
+                } else if(weekDay==7) {
+                    editor1.putInt("SatReal",1);
+                }
+                editor1.putString("endDate",simpleDateFormat.format(date));
+                if(spWeekReport.getString("beginDate",null)==null){
+                    editor1.putString("beginDate",simpleDateFormat.format(date));
+                }
+                editor1.commit();
+                Log.d(TAG,"完成其他运动");
+                imgSat1=findViewById(R.id.img_Sat1);
+                imgSat1.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                cvSport61.setOnClickListener(null);
+                SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("sportTime",0);
+                editorTime.commit();
+            }
+            if(requestCode==47) {
+                SharedPreferences spFinishTask;
+                spFinishTask=WeeklyExercise.this.getSharedPreferences("userFinishTask", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = spFinishTask.edit();
+                editor.putInt("otherSportFinish", 0);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //获取当前日期
+                Date date = new Date(System.currentTimeMillis());
+                editor.putString("finishDate",simpleDateFormat.format(date));
+                editor.commit();
+                SharedPreferences spWeekReport;
+                spWeekReport=WeeklyExercise.this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
+                int sportReal=spWeekReport.getInt("sportReal",0);
+                sportReal=sportReal+1;
+                SharedPreferences.Editor editor1 = spWeekReport.edit();
+                editor1.putInt("sportReal",sportReal);
+                Calendar instance = Calendar.getInstance();
+                int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+                if(weekDay==1){
+                    editor1.putInt("SunReal",1);
+                } else if(weekDay==2) {
+                    editor1.putInt("MonReal",1);
+                } else if(weekDay==3) {
+                    editor1.putInt("TueReal",1);
+                } else if(weekDay==4) {
+                    editor1.putInt("WenReal",1);
+                } else if(weekDay==5) {
+                    editor1.putInt("ThurReal",1);
+                } else if(weekDay==6) {
+                    editor1.putInt("FriReal",1);
+                } else if(weekDay==7) {
+                    editor1.putInt("SatReal",1);
+                }
+                editor1.putString("endDate",simpleDateFormat.format(date));
+                if(spWeekReport.getString("beginDate",null)==null){
+                    editor1.putString("beginDate",simpleDateFormat.format(date));
+                }
+                editor1.commit();
+                Log.d(TAG,"完成其他运动");
+                imgSun=findViewById(R.id.img_Sun);
+                imgSun.setImageDrawable(getResources().getDrawable(R.drawable.finished));
+                cvSport7.setOnClickListener(null);
+                SharedPreferences spTaskTime=WeeklyExercise.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorTime=spTaskTime.edit();
+                editorTime.putInt("sportTime",0);
+                editorTime.commit();
+            }
         }
     }
 }
