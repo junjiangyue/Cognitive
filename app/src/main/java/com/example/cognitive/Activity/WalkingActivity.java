@@ -2,8 +2,16 @@ package com.example.cognitive.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,9 +31,13 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.model.PolylineOptions;
 import com.example.cognitive.R;
+import com.example.cognitive.SQLiteDB.DatabaseHelper;
 
 public class WalkingActivity extends AppCompatActivity implements LocationSource,AMapLocationListener {
 
+    private SensorManager mSensorManager;
+    private DatabaseHelper dbHelper;
+    private String TAG="Walking";
     private TextView meter;
     MapView mMapView = null;
     AMap aMap = null;
@@ -43,6 +55,8 @@ public class WalkingActivity extends AppCompatActivity implements LocationSource
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_walking);
+        //开启传感器
+        startSensor();
         meter = findViewById(R.id.meter);
         //获取地图控件引用
         MapsInitializer.updatePrivacyShow(WalkingActivity.this,true,true);
@@ -104,6 +118,7 @@ public class WalkingActivity extends AppCompatActivity implements LocationSource
         super.onDestroy();
         //在activity执行onDestroy时执行mMapView.onDestroy()，销毁地图
         mMapView.onDestroy();
+        mSensorManager.unregisterListener(mSensorEventListener);
     }
     @Override
     protected void onResume() {
@@ -185,5 +200,76 @@ public class WalkingActivity extends AppCompatActivity implements LocationSource
             }
         }
     }
+
+    //开启传感器
+    private void startSensor() {
+        mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+
+        Sensor mStepCounterSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        Sensor mStepDetectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+
+        if (mSensorManager == null || mStepCounterSensor == null || mStepDetectorSensor == null) {
+            throw new UnsupportedOperationException("设备不支持");
+        }
+
+        mSensorManager.registerListener(mSensorEventListener, mStepCounterSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(mSensorEventListener, mStepDetectorSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+    private SensorEventListener mSensorEventListener = new SensorEventListener() {
+        private float step, stepDetector;
+
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+
+            //计步计数传感器传回的历史累积总步数
+
+            if (sensorEvent.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+                step = sensorEvent.values[0];
+                Log.d(TAG, "STEP_COUNTER:" + step);
+                int intStep=(int)step;
+                Log.d(TAG, "传感器的Step:" + intStep);
+                dbHelper=new DatabaseHelper(WalkingActivity.this,"database1",null,2);
+                dbHelper.getWritableDatabase();
+                SQLiteDatabase db=dbHelper.getWritableDatabase();
+                Cursor cursor = db.query("Step",null,"id=?", new String[] {"1"},null,null,null);
+                cursor.moveToFirst();
+                int id=cursor.getInt(cursor.getColumnIndex("id"));
+                int stepNum=cursor.getInt(cursor.getColumnIndex("step_num"));
+                String stepTime=cursor.getString(cursor.getColumnIndex("step_time"));
+                Log.d(TAG,"id:"+id);
+                Log.d(TAG,"step_num:"+stepNum);
+                Log.d(TAG,"step_time:"+stepTime);
+                int yesterdayStep=stepNum;
+                Log.d(TAG,"查询后yesterdayStep:"+yesterdayStep);
+                cursor.close();
+                int todayStep;
+                if(intStep<yesterdayStep) {
+                    todayStep=intStep;
+                } else {
+                    todayStep=intStep-yesterdayStep;
+                }
+                TextView txt_stepNum;
+                txt_stepNum=findViewById(R.id.txt_stepNum);
+                txt_stepNum.setText("步数："+todayStep+"步");
+
+            }
+
+
+            //计步检测传感器检测到的步行动作是否有效？
+
+            if (sensorEvent.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
+                stepDetector = sensorEvent.values[0];
+                Log.d(TAG, "STEP_DETECTOR:" + stepDetector);
+                if (stepDetector == 1.0) {
+                    Log.d(TAG, "一次有效的步行");
+                }
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int i) {
+
+        }
+    };
 
 }

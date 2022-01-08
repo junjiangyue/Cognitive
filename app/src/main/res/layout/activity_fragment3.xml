@@ -641,7 +641,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="15分钟"
+                            android:text="20分钟"
                             android:textColor="#1A1B1C"
                             android:textSize="70px"
                             android:layout_marginLeft="220px"/>

@@ -251,6 +251,9 @@
         <activity
             android:name=".Activity.SetTask"
             android:exported="false" />
+        <activity
+            android:name=".Activity.TimeCounter"
+            android:exported="false" />
     </application>
 
 </manifest>

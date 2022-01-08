@@ -16,6 +16,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cognitive.R;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,11 +43,12 @@ public class HistoryStep extends AppCompatActivity {
     private SharedPreferences sp;
     private HashMap<String, String> stringHashMap;
     private ListView listView;
+    private BarChart stepBarChart;//条形图
+    List<BarEntry>barList=new ArrayList<>();//实例化一个List用来存储数据
+    List<String>barDateList=new ArrayList<>();
     public Handler mhandler;
     private String TAG="HistoryStep";
     private int userID;
-    String[] data = { "11月9号            12345步", "11月8号            11101步", "11月7号            9666步", "11月6号            8574步",
-            "11月5号            12561步", "11月4号            14567步", "11月3号            7333步", "11月2号            8641步", "11月1号            11111步"};
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_everyday_step_num);
@@ -48,6 +57,7 @@ public class HistoryStep extends AppCompatActivity {
         /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_expandable_list_item_1,data
         );*/
+
         listView =findViewById(R.id.step_list);
         //listView.setAdapter(adapter);
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -55,6 +65,69 @@ public class HistoryStep extends AppCompatActivity {
         Log.d(TAG,"userID:"+userID);
         stringHashMap.put("userID", String.valueOf(userID));
         new Thread(postRun).start();
+        //setStepBarChart();
+    }
+    public void setStepBarChart() {
+        stepBarChart=findViewById(R.id.step_BarChart);
+        BarDataSet barDataSet=new BarDataSet(barList,"每日步数");
+        BarData barData=new BarData(barDataSet);
+        stepBarChart.setData(barData);
+        stepBarChart.requestLayout();
+
+        stepBarChart.getDescription().setEnabled(false);//隐藏右下角英文
+        stepBarChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);//X轴的位置 默认为上面
+        stepBarChart.getAxisRight().setEnabled(false);//隐藏右侧Y轴   默认是左右两侧都有Y轴
+        stepBarChart.setScaleXEnabled(false);
+        stepBarChart.setScaleYEnabled(false);
+        //柱子
+//        barDataSet.setColor(Color.BLACK);  //柱子的颜色
+        //图例
+        //Legend legend=stepBarChart.getLegend();
+        //legend.setEnabled(true);    //是否显示图例
+
+        XAxis xAxis=stepBarChart.getXAxis();
+        xAxis.setDrawGridLines(false);  //是否绘制X轴上的网格线（背景里面的竖线）
+        xAxis.setValueFormatter(new IAxisValueFormatter() {   //X轴自定义坐标
+            @Override
+            public String getFormattedValue(float v, AxisBase axisBase) {
+                if (v==1){
+                    String str=barDateList.get(0);
+                    str=str.substring(5);
+                    return str;
+                }
+                if (v==2){
+                    String str=barDateList.get(1);
+                    str=str.substring(5);
+                    return str;
+                }
+                if (v==3){
+                    String str=barDateList.get(2);
+                    str=str.substring(5);
+                    return str;
+                }
+                if (v==4){
+                    String str=barDateList.get(3);
+                    str=str.substring(5);
+                    return str;
+                }
+                if (v==5){
+                    String str=barDateList.get(4);
+                    str=str.substring(5);
+                    return str;
+                }
+                if (v==6){
+                    String str=barDateList.get(5);
+                    str=str.substring(5);
+                    return str;
+                }
+                if (v==7){
+                    String str=barDateList.get(6);
+                    str=str.substring(5);
+                    return str;
+                }
+                return "";//注意这里需要改成 ""
+            }
+        });
     }
     Runnable postRun = new Runnable() {
 
@@ -213,13 +286,19 @@ public class HistoryStep extends AppCompatActivity {
             stepList=msg.getData().getStringArrayList("stepList");
             String[] stepDate=new String[dataListLength];
             for(int i=0;i<dataListLength;i++) {
-                stepDate[i]=dateList.get(i)+"                  "+stepList.get(i);
+                stepDate[i]=dateList.get(i)+"               "+stepList.get(i)+"步";
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                     HistoryStep.this, android.R.layout.simple_expandable_list_item_1,stepDate
             );
             //listView =findViewById(R.id.step_list);
             listView.setAdapter(adapter);
+            for(int i=6;i>=0;i--) {
+                int stepNum=Integer.parseInt(stepList.get(i));
+                barList.add(new BarEntry(7-i,stepNum));
+                barDateList.add(dateList.get(i));
+            }
+            setStepBarChart();
         }
     }
 }
