@@ -34,7 +34,7 @@ public class OneWeekReport extends AppCompatActivity {
         txtTaskDay.setText("这一周健康打卡"+days+"天");
         TextView txtDailyReal;
         txtDailyReal=findViewById(R.id.txt_dailyReal);
-        txtDailyReal.setText("每日打卡完成"+dailyReal+"天");
+        txtDailyReal.setText("共"+dailyReal+"天完成所有每日打卡");
         TextView txtSportReal;
         txtSportReal=findViewById(R.id.txt_sportReal);
         txtSportReal.setText("每周运动打卡完成"+sportReal+"项");
