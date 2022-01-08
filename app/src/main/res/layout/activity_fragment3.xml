@@ -57,6 +57,7 @@
                         android:layout_marginLeft="20dp"
                         android:textColor="#000000"
                         android:textSize="60px" />
+
                 </LinearLayout>
 
                 <TextView
@@ -88,7 +89,11 @@
                     android:textColor="#000000"
                     android:textSize="48px"
                     android:layout_marginBottom="30px"/>
-
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/start"
+                    android:text="开始健步走"/>
             </LinearLayout>
 
 

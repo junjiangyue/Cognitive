@@ -31,6 +31,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -52,6 +53,7 @@ import com.example.cognitive.Activity.HistoryStep;
 import com.example.cognitive.Activity.LoginActivity;
 import com.example.cognitive.Activity.PersonalSetting;
 import com.example.cognitive.Activity.SetHealthyTask;
+import com.example.cognitive.Activity.WalkingActivity;
 import com.example.cognitive.Activity.WeeklyExercise;
 import com.example.cognitive.Activity.WeeklyReport;
 import com.example.cognitive.R;
@@ -130,6 +132,7 @@ public class FragmentActivity3 extends Fragment {
     private CardView cvOtherSport;
     private ImageView imgOtherSport;
     private SensorManager sensorManager;
+    private Button start;
     private Sensor sensor;
     private SensorEventListener stepCounterListener;
     private TextView step_num;
@@ -295,8 +298,15 @@ public class FragmentActivity3 extends Fragment {
             Log.d(TAG,"查询数据库中所有数据");
         }
 
-
-
+        // 走路定位
+        start = view.findViewById(R.id.start);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), WalkingActivity.class);
+                startActivity(intent);
+            }
+        });
         //查今日数据
         cursor = db.query("Step",null,"id=?", new String[] {"2"},null,null,null);
         cursor.moveToFirst();

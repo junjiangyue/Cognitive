@@ -15,6 +15,10 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cognitive.Adapter.HistoryAdapter;
+import com.example.cognitive.Adapter.ReportAdapter;
+import com.example.cognitive.Bean.History;
+import com.example.cognitive.Bean.Report;
 import com.example.cognitive.R;
 
 import org.json.JSONArray;
@@ -29,24 +33,41 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class WeeklyReportHistory extends AppCompatActivity {
     private SharedPreferences sp;
     private HashMap<String, String> stringHashMap;
     private String TAG="WeeklyReportHistory";
+
     private int userID;
+
     private ListView listView;
     public Handler mhandler;
+    private List<Report> data;
+    private ReportAdapter adapter;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_report_history);
         stringHashMap = new HashMap<>();
-        mhandler = new mHandler();
+        data = new ArrayList<Report>();
+        listView =findViewById(R.id.week_report_list);
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         userID=sp.getInt("USER_ID",0);
-        Log.d(TAG,"userID:"+userID);
+
+        Intent getIntent=getIntent();
+        if(getIntent.getStringExtra("USER_ID")!=null)
+        {
+            userID = Integer.parseInt(getIntent.getStringExtra("USER_ID"));
+        }
+
         stringHashMap.put("userID", String.valueOf(userID));
+        mhandler = new mHandler();
         new Thread(postRun).start();
+        adapter = new ReportAdapter(WeeklyReportHistory.this, data);
+
     }
     Runnable postRun = new Runnable() {
 
@@ -131,6 +152,14 @@ public class WeeklyReportHistory extends AppCompatActivity {
                             ArrayList<Integer> stepRealList = new ArrayList<>();
                             for (int i = 0; i < dataList.length(); i++) {
                                 JSONObject object=dataList.getJSONObject(i);
+                                Report datas = new Report();
+                                datas.setBeginDate(object.optString("beginDate"));
+                                datas.setEndDate(object.optString("endDate"));
+                                datas.setDailyCheck(String.valueOf(object.optInt("dailyReal")));
+                                datas.setSportCheck(String.valueOf(object.optInt("sportReal")));
+                                data.add(datas);
+
+                                // 给具体的页面传值用的
                                 beginDateList.add(object.optString("beginDate"));
                                 endDateList.add(object.optString("endDate"));
                                 dailyRealList.add(object.optInt("dailyReal"));
@@ -237,11 +266,9 @@ public class WeeklyReportHistory extends AppCompatActivity {
             for(int i=0;i<dataListLength;i++) {
                 weekReportDate[i]=beginDateList.get(i)+"  ~  "+endDateList.get(i);
             }
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                    WeeklyReportHistory.this, android.R.layout.simple_expandable_list_item_1,weekReportDate
-            );
-            listView =findViewById(R.id.week_report_list);
+
             listView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

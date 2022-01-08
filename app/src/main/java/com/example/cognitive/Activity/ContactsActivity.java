@@ -90,7 +90,10 @@ public class ContactsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // 点击进入他人主页
                 Intent intent = new Intent(ContactsActivity.this,AnotherPersonpage.class);
-                intent.putExtra("userID",data.get(position).getUserId());
+                intent.putExtra("userID",String.valueOf(data.get(position).getUserId()));
+                intent.putExtra("user_name",data.get(position).getUserName());
+                intent.putExtra("user_sex",data.get(position).getUserSex());
+                intent.putExtra("user_birth",data.get(position).getUserBirth());
                 startActivity(intent);
             }
         });
