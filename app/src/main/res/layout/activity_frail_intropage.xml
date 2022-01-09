@@ -4,23 +4,34 @@
     android:background="@color/background"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <Button
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/back"
-        android:background="@null"
-        android:id="@+id/back_button"
-        android:onClick="startActivityForResult"/>
+        android:background="@color/white">
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="返回"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/miku" />
+        android:layout_height="200dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/frailbackg" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="356dp"
-        android:background="@color/navigator_yellow"
-        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_margin="20dp"
+        android:padding="20dp"
         android:text="@string/FRAIL_intro"
         android:textColor="@color/black"
         android:textSize="17sp"
@@ -29,8 +40,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="bottom"
         android:layout_weight="1"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:orientation="vertical">
 
         <Button
@@ -39,7 +51,7 @@
             android:layout_gravity="bottom"
             android:text="@string/start_test"
             android:textColor="@color/black"
-            android:background="@drawable/white_with_stroke"
+            android:background="@drawable/white_button"
             android:onClick="startFrailTest"/>
     </LinearLayout>
 </LinearLayout>

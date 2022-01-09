@@ -136,4 +136,12 @@ public class FrailResultPage extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+        public void backToMain(View view)
+        {
+            //Intent intent=new Intent(FrailResultPage.this, MainActivity.class);
+            //finish();
+            Intent intent=new Intent(FrailResultPage.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }

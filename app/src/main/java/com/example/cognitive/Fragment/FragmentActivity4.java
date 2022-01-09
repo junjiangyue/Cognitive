@@ -109,7 +109,9 @@ public class FragmentActivity4 extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TestHistory.class);
-//                intent.putExtra("data", "mainActivity");
+                sp=getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                int userID = sp.getInt("USER_ID", 0);
+                intent.putExtra("USER_ID",String.valueOf(userID));
                 startActivity(intent);
             }
         });

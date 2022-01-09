@@ -46,9 +46,9 @@ public class HistoryAdapter extends BaseAdapter {
         return convertView;
     }
     private void initViews(History data, HistoryAdapter.ViewHolder holder) {//初始化数据
-        holder.history_name.setText(data.getTestName());
-        holder.history_score.setText(data.getTestScore());
-        holder.history_datetime.setText(data.getTestTime());
+        holder.history_name.setText("量表类型:"+data.getTestName());
+        holder.history_score.setText("衰弱得分:"+data.getTestScore());
+        holder.history_datetime.setText("测试时间:"+data.getTestTime());
 
     }
 

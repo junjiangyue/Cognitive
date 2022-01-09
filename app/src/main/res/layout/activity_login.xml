@@ -13,11 +13,11 @@
         android:id="@+id/loginLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="20dp"
-        android:background="#8fF4F4F4"
+        android:background="#9fF4F4F4"
         android:orientation="vertical">
 
         <EditText
@@ -27,7 +27,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="0dp"
             android:hint="请输入手机号："
             android:textColor="@color/button_blue"
             android:textSize="18dp" />
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             android:paddingLeft="60dp"
             android:paddingTop="10dp"
@@ -99,6 +99,15 @@
             fancy:fb_text="注册"
             fancy:fb_textColor="#FFFFFF"
             fancy:fb_textSize="18dp" />
+
+        <TextView
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/verifyLogin"
+            android:textColor="#10034a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="使用验证码登录" />
 
     </LinearLayout>
 </RelativeLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <android.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             android:text="我的信息"
             android:textSize="30sp"
             android:textStyle="bold" />
-    </android.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 <LinearLayout
 
     android:layout_width="match_parent"

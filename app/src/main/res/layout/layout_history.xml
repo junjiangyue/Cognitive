@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view3"
             android:layout_width="0dp"
-            android:layout_height="130dp"
+            android:layout_height="150dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
+
             card_view:cardCornerRadius="25dp">
             <LinearLayout
+                android:background="@drawable/historyitem"
                 android:id="@+id/history_record1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:padding="20dp"
                 android:orientation="vertical">
                 <TextView
+                    android:paddingStart="20dp"
+                    android:textColor="@color/white"
                     android:id="@+id/history_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="history1"
-                    />
+                    tools:ignore="RtlSymmetry" />
                 <TextView
+                    android:paddingStart="20dp"
+                    android:textColor="@color/white"
                     android:id="@+id/history_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -33,6 +40,8 @@
                     android:layout_marginTop="10dp"
                     />
                 <TextView
+                    android:paddingStart="20dp"
+                    android:textColor="@color/white"
                     android:id="@+id/history_datetime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

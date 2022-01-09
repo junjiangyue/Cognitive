@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,142 +20,164 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape2"
-                android:orientation="vertical">
+                android:background="@color/white"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:id="@+id/h_back"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:src="@drawable/klee_ava" />
-
-                <TextView
-                    android:id="@+id/user_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="hhh"
-                    android:textSize="24dp" />
+                    android:layout_marginBottom="50dp"
+                    android:src="@drawable/klee_haoye" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="50dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="20dp">
 
                     <TextView
-                        android:id="@+id/user_age"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/user_name"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:gravity="center"
-                        android:text="as"
-                        android:textSize="20dp" />
+                        android:layout_marginTop="10dp"
+                        android:text="hhh"
+                        android:textColor="@color/black"
+                        android:textSize="24dp" />
 
-                    <TextView
-                        android:id="@+id/user_sex"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:layout_marginBottom="10dp"
                         android:gravity="center"
-                        android:text="ss"
-                        android:textSize="20dp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/user_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:gravity="center"
+                            android:text="as"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/user_sex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="ss"
+                            android:textSize="20dp" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:background="#e4e4e4" />
+
             <com.lucasurbas.listitemview.ListItemView
                 android:id="@+id/family"
-                android:background="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:paddingLeft="20dp"
                 app:liv_displayMode="icon"
                 app:liv_icon="@drawable/contacts"
                 app:liv_multiline="true"
                 app:liv_subtitle="关联账号"
                 app:liv_title="我的亲人" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:background="#e4e4e4" />
+
             <com.lucasurbas.listitemview.ListItemView
                 android:id="@+id/safe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:paddingLeft="20dp"
-                android:background="#ffffff"
                 app:liv_displayMode="icon"
                 app:liv_icon="@drawable/edit"
-                app:liv_multiline="true"
-                app:liv_subtitle=""
+                app:liv_multiline="false"
                 app:liv_title="账号与安全" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:paddingLeft="20dp"
-                android:background="#e4e4e4" />
+                android:background="#e4e4e4"
+                android:paddingLeft="20dp" />
+
             <com.lucasurbas.listitemview.ListItemView
                 android:id="@+id/personal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:paddingLeft="20dp"
-                android:background="#ffffff"
                 app:liv_displayMode="icon"
                 app:liv_icon="@drawable/edit"
-                app:liv_multiline="true"
+                app:liv_multiline="false"
                 app:liv_title="个人资料设置" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:paddingLeft="20dp"
-                android:background="#e4e4e4" />
+                android:background="#e4e4e4"
+                android:paddingLeft="20dp" />
+
             <com.lucasurbas.listitemview.ListItemView
                 android:id="@+id/history_test"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#fff"
+                android:background="@color/white"
                 android:paddingLeft="20dp"
                 app:liv_displayMode="icon"
                 app:liv_icon="@drawable/history"
                 app:liv_multiline="false"
                 app:liv_title="历史测评报告" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:paddingLeft="20dp"
-                android:background="#e4e4e4" />
+                android:background="#e4e4e4"
+                android:paddingLeft="20dp" />
+
             <com.lucasurbas.listitemview.ListItemView
                 android:id="@+id/longtime_report"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#fff"
+                android:background="@color/white"
                 android:paddingLeft="20dp"
                 app:liv_displayMode="icon"
                 app:liv_icon="@drawable/report"
                 app:liv_multiline="false"
                 app:liv_title="打卡周报" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:background="#e4e4e4" />
+
             <com.lucasurbas.listitemview.ListItemView
                 android:id="@+id/logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#fff"
+                android:background="@color/white"
                 android:paddingLeft="20dp"
                 app:liv_displayMode="icon"
                 app:liv_icon="@drawable/exchange"
                 app:liv_multiline="true"
                 app:liv_title="切换账号" />
+
             <View
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
+                android:layout_height="140dp"
                 android:background="#e4e4e4" />
         </LinearLayout>
     </ScrollView>

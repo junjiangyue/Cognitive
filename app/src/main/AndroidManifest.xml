@@ -8,10 +8,8 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission
         android:name="android.permission.CAPTURE_VIDEO_OUTPUT"
-        tools:ignore="ProtectedPermissions" />
-
-    <!--用于访问GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+        tools:ignore="ProtectedPermissions" /> <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -22,12 +20,10 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 允许获取wifi状态改变，用于网络定位，若无gps但仍需实现定位小蓝点功能则此权限必选 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 允许写入扩展存储，用于数据缓存，若无此权限则写到私有目录 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 允许写设备缓存，用于问题排查 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!--用于申请调用A-GPS模块-->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
-    <!--用于申请获取蓝牙信息进行室内定位-->
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> <!-- 用于申请获取蓝牙信息进行室内定位 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:allowBackup="true"
@@ -37,7 +33,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cognitive"
         android:usesCleartextTraffic="true">
-        <service android:name="com.amap.api.location.APSService"/>
+        <activity
+            android:name=".Activity.VerifyLogin"
+            android:exported="true" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
         <activity
             android:name=".Activity.WalkingActivity"
             android:exported="true" />
@@ -108,9 +109,6 @@
 
         <activity
             android:name=".Activity.Music_Activity"
-            android:exported="true" />
-        <activity
-            android:name=".Activity.SignUpActivity"
             android:exported="true" />
         <activity
             android:name=".Activity.LogoActivity"

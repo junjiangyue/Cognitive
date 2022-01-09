@@ -10,6 +10,7 @@
     tools:context=".Fragment.FillKnowledgeFragment">
 
     <TextView
+        android:layout_margin="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="您在此之前对认知衰弱的了解程度是？"
@@ -19,24 +20,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
         android:orientation="vertical">
         <Button
             android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:text="从未听过"
-            android:background="@drawable/gradient_button"
+            android:background="@drawable/white_button"
             />
         <Button
             android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:textSize="25dp"
-            android:background="@drawable/gradient_button"
+            android:textSize="20dp"
+            android:background="@drawable/white_button"
             android:text="听说过"/>
 
         <Button
@@ -44,18 +46,20 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:textSize="25dp"
-            android:background="@drawable/gradient_button"
+            android:textSize="20dp"
+            android:background="@drawable/white_button"
             android:text="简单了解过"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@drawable/gradient_button"
-            android:textSize="25dp"
+            android:background="@drawable/white_button"
+            android:textSize="20dp"
             android:text="我很清楚"/>
     </LinearLayout>
     <ImageButton
+        android:layout_gravity="right"
+        android:layout_margin="40dp"
         android:id="@+id/start"
         android:layout_width="60dp"
         android:layout_height="60dp"

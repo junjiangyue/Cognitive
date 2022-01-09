@@ -29,23 +29,24 @@
     <string name="back"><![CDATA[<<返回]]></string>
     <string name="frail_title">量表一\t\tFRAIL量表</string>
     <!--FRAIL questions-->
-    <string name="FRAIL_1">1、在过去的四周内您经常感到疲劳吗？</string>
-    <string name="FRAIL_2">2、您上10级楼梯有困难吗？</string>
-    <string name="FRAIL_3">3、您在没有协助的情况下走200米至300米有困难吗？</string>
-    <string name="FRAIL_4">4、医生是否告诉你患有以下疾病？</string>
-    <string name="FRAIL_5">5、您最近1年内体重下降明显吗？</string>
+    <string name="FRAIL_1">在过去的四周内您经常感到疲劳吗？</string>
+    <string name="FRAIL_2">您上10级楼梯有困难吗？</string>
+    <string name="FRAIL_3">您在没有协助的情况下走200米至300米有困难吗？</string>
+    <string name="FRAIL_4">医生是否告诉你患有以下疾病？</string>
+    <string name="FRAIL_5">您最近1年内体重下降明显吗？</string>
     <string name="FRAIL_healthy">您现在处于健康状态，没有认知衰弱的迹象。</string>
     <string name="FRAIL_pre_frailty">您现在处于认知衰弱前期，建议有针对性地进行早期干预。</string>
     <string name="FRAIL_frailty">您现在处于认知衰弱，建议去医院进一步检查并进行治疗。</string>
-    <string name="AD8_intro">AD8量表是美国华盛顿大学与2005年开发的八题探访问卷，AD8量表是临床上使用的医学量表，用以极早期痴呆症的筛查。 它也可以供家属使用评估，作为疾病风险的评估。 就临床而言，痴呆可能是源于阿尔茨海默病、血管性痴呆、路易体痴呆或额颞叶痴呆。</string>
-    <string name="AD8_1">1、是否有判断力上的困难，例如落入圈套或骗局、财务上不好的决定、买了不合适的礼物？</string>
-    <string name="AD8_2">2、之前感兴趣的事情，现在是否失去兴趣？</string>
-    <string name="AD8_3">3、是否重复相同问题、故事和陈述？</string>
-    <string name="AD8_4">4、是否在学习如何使用工具、设备和小器具上有困难？</string>
-    <string name="AD8_5">5、是否忘记正确的年份或日期？</string>
-    <string name="AD8_6">6、是否处理复杂的财物上有困难？</string>
-    <string name="AD8_7">7、是否记住约会的时间有困难？</string>
-    <string name="AD8_8">8、是否有持续的思考和记忆方面的问题？</string>
+    <string name="AD8_intro">AD8量表是美国华盛顿大学与2005年开发的八题探访问卷，AD8量表是临床上使用的医学量表，用以极早期痴呆症的筛查。 它也可以供家属使用评估，作为疾病风险的评估。
+        就临床而言，痴呆可能是源于阿尔茨海默病、血管性痴呆、路易体痴呆或额颞叶痴呆。</string>
+    <string name="AD8_1">是否有判断力上的困难，例如落入圈套或骗局、财务上不好的决定、买了不合适的礼物？</string>
+    <string name="AD8_2">之前感兴趣的事情，现在是否失去兴趣？</string>
+    <string name="AD8_3">是否重复相同问题、故事和陈述？</string>
+    <string name="AD8_4">是否在学习如何使用工具、设备和小器具上有困难？</string>
+    <string name="AD8_5">是否忘记正确的年份或日期？</string>
+    <string name="AD8_6">是否处理复杂的财物上有困难？</string>
+    <string name="AD8_7">是否记住约会的时间有困难？</string>
+    <string name="AD8_8">是否有持续的思考和记忆方面的问题？</string>
 
 
     <!--Fragment2-->

@@ -10,6 +10,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import android.content.SharedPreferences;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.cognitive.Adapter.MyAD8PagerAdapter;
@@ -42,7 +43,6 @@ public class AD8Test extends AppCompatActivity {
     public int memory_point=0;
     public int cognition_point=0;
     private HashMap<String, String> stringHashMap;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

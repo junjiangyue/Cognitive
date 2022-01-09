@@ -23,6 +23,7 @@
 
         <LinearLayout
             android:id="@+id/bottom_bar"
+            android:paddingTop="10dp"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
             android:background="@color/white"
@@ -47,7 +48,7 @@
                     android:gravity="center"
                     android:text="@string/detect"
                     android:textColor="#000000"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/bottom_bar_image_1"
@@ -57,6 +58,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:src="@drawable/test" />
             </RelativeLayout>
 
@@ -75,7 +77,7 @@
                     android:gravity="center"
                     android:text="@string/health"
                     android:textColor="#000000"
-                    android:textSize="14sp"/>
+                    android:textSize="12sp"/>
 
                 <ImageView
                     android:id="@+id/bottom_bar_image_2"
@@ -85,6 +87,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:src="@drawable/detect" />
             </RelativeLayout>
             <RelativeLayout
@@ -102,7 +105,7 @@
                     android:gravity="center"
                     android:text="@string/consult"
                     android:textColor="#000000"
-                    android:textSize="14sp"/>
+                    android:textSize="12sp"/>
 
                 <ImageView
                     android:id="@+id/bottom_bar_image_3"
@@ -112,6 +115,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:src="@drawable/knowledge" />
             </RelativeLayout>
             <RelativeLayout
@@ -129,7 +133,7 @@
                     android:gravity="center"
                     android:text="@string/personal"
                     android:textColor="#000000"
-                    android:textSize="14sp"/>
+                    android:textSize="12sp"/>
 
                 <ImageView
                     android:id="@+id/bottom_bar_image_4"
@@ -139,6 +143,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:src="@drawable/my" />
             </RelativeLayout>
         </LinearLayout>

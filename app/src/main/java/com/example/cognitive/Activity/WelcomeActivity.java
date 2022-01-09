@@ -44,7 +44,7 @@ public class WelcomeActivity extends AppCompatActivity {
         private HashMap<String, String> stringHashMap;
         //引导图片的资源id
         private int[] mImageIds = new int[]{
-                R.drawable.welcome1
+                R.drawable.welcom1
         };
 
         private ArrayList<ImageView> mImageViewList = new ArrayList<ImageView>();

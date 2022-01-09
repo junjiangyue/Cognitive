@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -29,6 +30,10 @@ public class ArticleInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_info);
         initViews();
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//添加默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
     }
     /**
      * 初始化数据
@@ -93,5 +98,13 @@ public class ArticleInfo extends AppCompatActivity {
         ImageRequest imageRequest = new ImageRequest(imgUrl,myResponseListener,0,0, ImageView.ScaleType.FIT_CENTER, Bitmap.Config.RGB_565,myErrorListener);
         mQueue.add(imageRequest);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

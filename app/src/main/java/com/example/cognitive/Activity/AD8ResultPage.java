@@ -128,4 +128,12 @@ public class AD8ResultPage extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    public void backToMain(View view)
+    {
+        //Intent intent=new Intent(FrailResultPage.this, MainActivity.class);
+        //finish();
+        Intent intent=new Intent(AD8ResultPage.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

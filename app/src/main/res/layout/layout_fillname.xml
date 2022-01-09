@@ -9,9 +9,10 @@
     tools:context=".Fragment.FillNameFragment">
 
     <TextView
+        android:layout_margin="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="欢迎使用本软件，在使用之前，我们需要一些您的基本信息"
+        android:text="欢迎使用本软件，在使用之前，我们需要一些您的基本信息，请放心，我们不会传播您的个人信息"
         android:textColor="#1a1b1c"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -35,6 +36,8 @@
         android:textSize="18dp"/>
 
     <ImageButton
+        android:layout_margin="40dp"
+        android:layout_gravity="right"
         android:id="@+id/next"
         android:layout_width="60dp"
         android:layout_height="60dp"

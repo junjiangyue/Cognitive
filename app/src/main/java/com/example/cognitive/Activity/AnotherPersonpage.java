@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -48,7 +49,18 @@ public class AnotherPersonpage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//添加默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -16,6 +16,7 @@ import android.content.ComponentName;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -55,6 +56,11 @@ public class Music_Activity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_music);
+
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//添加默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
 
         aManager = (AudioManager) getSystemService(Service.AUDIO_SERVICE);
 
@@ -217,7 +223,15 @@ public class Music_Activity extends AppCompatActivity
             sendBroadcast(intent);
         }
     };
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }
 

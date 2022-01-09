@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ad8backg"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <androidx.viewpager.widget.ViewPager
@@ -10,17 +12,24 @@
         android:layout_weight="1"
         android:id="@+id/ad8_viewpager"/>
     <LinearLayout
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
     <Button
         android:id="@+id/AD8_submit"
-        android:layout_width="match_parent"
+        android:paddingStart="100dp"
+        android:paddingEnd="100dp"
+        android:layout_marginBottom="2dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/white_with_stroke"
         android:layout_gravity="bottom"
         android:onClick="getAD8Result"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:text="完成"
+        android:background="@drawable/white_button"
         />
     </LinearLayout>
 </LinearLayout>
