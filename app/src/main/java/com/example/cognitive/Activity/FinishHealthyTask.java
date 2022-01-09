@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.example.cognitive.R;
@@ -42,7 +44,9 @@ public class FinishHealthyTask extends AppCompatActivity implements View.OnClick
     private SharedPreferences spStepTask;//步数
     private HashMap<String, String> stringHashMap;
     private HashMap<String, String> stringHashMap1;
+    private Toolbar toolbar;
     private TextView txtSetHealthyTask;
+    private TextView txtTask_history;
     private TextView txtSetTip;
     private CardView cvGetup;
     private TextView txtGetupReal;
@@ -80,7 +84,6 @@ public class FinishHealthyTask extends AppCompatActivity implements View.OnClick
     private ImageView imgPowerSport;
     private CardView cvOtherSport;
     private ImageView imgOtherSport;
-    private Button btnTaskHistory;
     private int userID;
     private String getupTime;
     private String sleepTime;
@@ -98,6 +101,10 @@ public class FinishHealthyTask extends AppCompatActivity implements View.OnClick
         DestroyActivityUtil.addActivity(FinishHealthyTask.this);
         stringHashMap = new HashMap<>();
         stringHashMap1 = new HashMap<>();
+        toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//添加默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         txtSetHealthyTask=(TextView) findViewById(R.id.txt_setHealthyTask);
         txtSetHealthyTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,41 +162,55 @@ public class FinishHealthyTask extends AppCompatActivity implements View.OnClick
         //txtWaterReal.setText("1.5L");
         txtWaterGoal= (TextView) findViewById(R.id.txt_WaterGoal);
         txtWaterGoal.setText(" / 1.5L");
-        /*if(drinkGoal==1) {
+        if(drinkGoal==1) {
             cvWater.setVisibility(View.GONE);
-        }*/
+        }
         cvRead=(CardView) findViewById(R.id.cv_read);
         txtReadReal= (TextView) findViewById(R.id.txt_ReadReal);
-        txtReadReal.setText("0");
+        SharedPreferences spTaskTime=FinishHealthyTask.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+        int readTime=spTaskTime.getInt("readTime",0);
+        if(readTime!=0) {
+            int minuteFinish=readTime/60;
+            txtReadReal.setText(String.valueOf(minuteFinish));
+        } else {
+            txtReadReal.setText("0");
+        }
         txtReadGoal= (TextView) findViewById(R.id.txt_ReadGoal);
         txtReadGoal.setText("分钟 / 30分钟");
-        /*if(readGoal==1) {
+        if(readGoal==1) {
             cvRead.setVisibility(View.GONE);
-        }*/
+        }
         cvHobby=(CardView) findViewById(R.id.cv_hobby);
         txtHobbyReal= (TextView) findViewById(R.id.txt_HobbyReal);
-        txtHobbyReal.setText("0");
+        spTaskTime=FinishHealthyTask.this.getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+        int hobbyTime=spTaskTime.getInt("hobbyTime",0);
+        if(hobbyTime!=0) {
+            int minuteFinish=hobbyTime/60;
+            txtHobbyReal.setText(String.valueOf(minuteFinish));
+        } else {
+            txtHobbyReal.setText("0");
+        }
         txtHobbyGoal= (TextView) findViewById(R.id.txt_HobbyGoal);
         txtHobbyGoal.setText("分钟 / 45分钟");
-        /*if(hobbyGoal==1) {
+        if(hobbyGoal==1) {
             cvHobby.setVisibility(View.GONE);
-        }*/
+        }
         cvSmile=(CardView) findViewById(R.id.cv_smile);
         txtSmileReal= (TextView) findViewById(R.id.txt_SmileReal);
         txtSmileReal.setText("0");
         txtSmileGoal= (TextView) findViewById(R.id.txt_SmileGoal);
         txtSmileGoal.setText(" / 1次");
-        /*if(smileGoal==1) {
+        if(smileGoal==1) {
             cvSmile.setVisibility(View.GONE);
-        }*/
+        }
         cvDiary=(CardView) findViewById(R.id.cv_diary);
         txtDairyReal= (TextView) findViewById(R.id.txt_DairyReal);
         txtDairyReal.setText("0");
         txtDairyGoal= (TextView) findViewById(R.id.txt_DairyGoal);
         txtDairyGoal.setText(" / 1篇");
-        /*if(diaryGoal==1) {
+        if(diaryGoal==1) {
             cvDiary.setVisibility(View.GONE);
-        }*/
+        }
         Calendar instance = Calendar.getInstance();
         int weekDay = instance.get(Calendar.DAY_OF_WEEK);
         int sport=0;
@@ -633,9 +654,8 @@ public class FinishHealthyTask extends AppCompatActivity implements View.OnClick
                 dialogOtherSport.show();
             }
         });
-
-        btnTaskHistory=(Button) findViewById(R.id.btn_task_history);
-        btnTaskHistory.setOnClickListener(new View.OnClickListener() {
+        txtTask_history=(TextView) findViewById(R.id.txt_task_history);
+        txtTask_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FinishHealthyTask.this, TaskHistory.class);
@@ -1302,6 +1322,14 @@ public class FinishHealthyTask extends AppCompatActivity implements View.OnClick
             }
         }
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }

@@ -8,12 +8,15 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.cognitive.Adapter.HistoryAdapter;
 import com.example.cognitive.Adapter.ReportAdapter;
@@ -51,6 +54,10 @@ public class WeeklyReportHistory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_report_history);
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//添加默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         stringHashMap = new HashMap<>();
         data = new ArrayList<Report>();
         listView =findViewById(R.id.week_report_list);
@@ -267,6 +274,10 @@ public class WeeklyReportHistory extends AppCompatActivity {
                 weekReportDate[i]=beginDateList.get(i)+"  ~  "+endDateList.get(i);
             }
 
+            if(dataListLength==0) {
+                TextView txt_week_tip=findViewById(R.id.txt_week_tip);
+                txt_week_tip.setVisibility(View.VISIBLE);
+            }
             listView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -291,5 +302,14 @@ public class WeeklyReportHistory extends AppCompatActivity {
                 }
             });
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

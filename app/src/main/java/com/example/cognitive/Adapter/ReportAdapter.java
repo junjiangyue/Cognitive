@@ -51,7 +51,7 @@ public class ReportAdapter extends BaseAdapter {
     }
     @SuppressLint("SetTextI18n")
     private void initViews(Report data, ReportAdapter.ViewHolder holder) {//初始化数据
-        holder.date.setText(data.getBeginDate()+data.getEndDate());
+        holder.date.setText(data.getBeginDate()+" ~ "+data.getEndDate());
         holder.history_score.setText(data.getDailyCheck());
         holder.history_datetime.setText(data.getSportCheck());
 

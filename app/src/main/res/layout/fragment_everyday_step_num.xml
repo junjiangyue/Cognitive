@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="历史步数"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -12,19 +36,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="60dp">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="40px"
-            android:layout_marginTop="40px"
-            android:text="历史步数"
-            android:textColor="#000000"
-            android:textSize="100px"
-            android:textStyle="bold"/>
         <LinearLayout
             android:layout_width="1000px"
             android:layout_height="wrap_content"
@@ -37,6 +51,16 @@
                 android:layout_weight="1"/>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/txt_step_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您还没有上传过历史步数。千里之行，始于足下，快开始散步吧！"
+            android:textSize="80px"
+            android:visibility="gone"
+            android:layout_marginTop="30px"
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"/>
         <ListView
             android:id="@+id/step_list"
             android:layout_width="match_parent"
@@ -44,10 +68,4 @@
         </ListView>
 
     </LinearLayout>
-
-
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

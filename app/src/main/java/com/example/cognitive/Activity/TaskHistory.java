@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.example.cognitive.R;
@@ -83,6 +85,10 @@ public class TaskHistory extends AppCompatActivity {
         setContentView(R.layout.activity_task_history);
         stringHashMap = new HashMap<>();
         mhandler = new mHandler();
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//添加默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         TextView txtNoTaskTip;
         txtNoTaskTip=findViewById(R.id.txt_noTaskTip);
         txtNoTaskTip.setVisibility(View.GONE);
@@ -429,5 +435,14 @@ public class TaskHistory extends AppCompatActivity {
 
 
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

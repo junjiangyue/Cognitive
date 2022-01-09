@@ -6,11 +6,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.cognitive.R;
 
@@ -34,7 +36,6 @@ public class WeeklyReport extends AppCompatActivity {
     private SharedPreferences sp;
     private SharedPreferences spWeekReport;
     private HashMap<String, String> stringHashMap;
-    private Button btnHistoryTaskReport;
     private TextView txtTaskDay;
     private TextView txtDailyReal;
     private TextView txtSportReal;
@@ -44,6 +45,7 @@ public class WeeklyReport extends AppCompatActivity {
     private TextView txtSportFinish;
     private TextView txtPowerFinish;
     private TextView txtSportTime;
+    private TextView txt_history_task_report;
     private int userID;
     private int dailyReal;
     private int sportReal;
@@ -56,9 +58,12 @@ public class WeeklyReport extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_report);
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//添加默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         spWeekReport=this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
         stringHashMap = new HashMap<>();
-        btnHistoryTaskReport=(Button) findViewById(R.id.btn_history_task_report);
         txtTaskDay=findViewById(R.id.txt_taskDay);
         txtDailyReal=findViewById(R.id.txt_dailyReal);
         txtSportReal=findViewById(R.id.txt_sportReal);
@@ -99,7 +104,8 @@ public class WeeklyReport extends AppCompatActivity {
         txtSportTime.setText("总共运动"+sportTime+"分钟");
 
         //new Thread(postRun).start();
-        btnHistoryTaskReport.setOnClickListener(new View.OnClickListener() {
+        txt_history_task_report=findViewById(R.id.txt_history_task_report);
+        txt_history_task_report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(WeeklyReport.this, WeeklyReportHistory.class);
@@ -253,5 +259,14 @@ public class WeeklyReport extends AppCompatActivity {
             Log.e(TAG, e.toString());
             return null;
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

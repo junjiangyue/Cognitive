@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.example.cognitive.R;
@@ -41,11 +43,16 @@ public class WeeklyExercise extends AppCompatActivity {
     private ImageView imgSat;
     private ImageView imgSat1;
     private ImageView imgSun;
+    private Toolbar toolbar;
     private int everyWeekSport;
     private int weeklyPowerSport;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_exercise);
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//添加默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         sp1= this.getSharedPreferences("userHealthyTask", Context.MODE_PRIVATE);
         spWeekReport=this.getSharedPreferences("userWeekReport", Context.MODE_PRIVATE);
         everyWeekSport = sp1.getInt("everyWeekSport",4);
@@ -1397,5 +1404,14 @@ public class WeeklyExercise extends AppCompatActivity {
                 editorTime.commit();
             }
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
