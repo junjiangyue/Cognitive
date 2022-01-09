@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.cognitive.R;
 import com.github.mikephil.charting.charts.BarChart;
@@ -57,7 +59,10 @@ public class HistoryStep extends AppCompatActivity {
         /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_expandable_list_item_1,data
         );*/
-
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//添加默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         listView =findViewById(R.id.step_list);
         //listView.setAdapter(adapter);
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -293,12 +298,34 @@ public class HistoryStep extends AppCompatActivity {
             );
             //listView =findViewById(R.id.step_list);
             listView.setAdapter(adapter);
-            for(int i=6;i>=0;i--) {
-                int stepNum=Integer.parseInt(stepList.get(i));
-                barList.add(new BarEntry(7-i,stepNum));
-                barDateList.add(dateList.get(i));
+            if(dataListLength==0) {
+                TextView txt_step_tip=findViewById(R.id.txt_step_tip);
+                txt_step_tip.setVisibility(View.VISIBLE);
             }
+            if(dataListLength<7) {
+                for(int i=dataListLength-1;i>=0;i--) {
+                    int stepNum=Integer.parseInt(stepList.get(i));
+                    barList.add(new BarEntry(dataListLength-i,stepNum));
+                    barDateList.add(dateList.get(i));
+                }
+            } else {
+                for(int i=6;i>=0;i--) {
+                    int stepNum=Integer.parseInt(stepList.get(i));
+                    barList.add(new BarEntry(7-i,stepNum));
+                    barDateList.add(dateList.get(i));
+                }
+            }
+
             setStepBarChart();
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

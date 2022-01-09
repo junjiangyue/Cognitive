@@ -6,7 +6,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view3"
         android:layout_width="0dp"
-        android:layout_height="130dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
@@ -24,21 +24,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="history1"
+                android:textSize="65px"
                 />
-            <TextView
-                android:id="@+id/dailyCheck"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="history1"
-                android:layout_marginTop="10dp"
-                />
-            <TextView
-                android:id="@+id/sportCheck"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="完成所有每日打卡天数："
+                    android:textSize="60px"/>
+                <TextView
+                    android:id="@+id/dailyCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="history1"
+                    android:textSize="70px"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 天"
+                    android:textSize="70px"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="history1"
-                android:layout_marginTop="10dp"
-                />
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="完成运动打卡项数："
+                    android:textSize="60px"/>
+                <TextView
+                    android:id="@+id/sportCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="history1"
+                    android:textSize="70px"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 项"
+                    android:textSize="70px"/>
+            </LinearLayout>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

@@ -24,7 +24,9 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.os.SystemClock;
 import android.text.format.Time;
 import android.util.Log;
@@ -53,6 +55,8 @@ import com.example.cognitive.Activity.HistoryStep;
 import com.example.cognitive.Activity.LoginActivity;
 import com.example.cognitive.Activity.PersonalSetting;
 import com.example.cognitive.Activity.SetHealthyTask;
+import com.example.cognitive.Activity.SetTask;
+import com.example.cognitive.Activity.TaskHistory;
 import com.example.cognitive.Activity.TimeCounter;
 import com.example.cognitive.Activity.WalkingActivity;
 import com.example.cognitive.Activity.WeeklyExercise;
@@ -61,6 +65,7 @@ import com.example.cognitive.R;
 import com.example.cognitive.SQLiteDB.DatabaseHelper;
 import com.example.cognitive.Utils.DestroyActivityUtil;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -84,6 +89,8 @@ public class FragmentActivity3 extends Fragment {
     private SharedPreferences spStepTask;
     private HashMap<String, String> stringHashMap;
     private HashMap<String, String> stringHashMap1;
+    private HashMap<String, String> stringHashMap2;//获取打卡设置
+    public Handler mhandler;
     private int userID;
     private LinearLayout title_test;
     private TextView get_date;
@@ -179,7 +186,9 @@ public class FragmentActivity3 extends Fragment {
         DestroyActivityUtil.addActivity(getActivity());
         stringHashMap = new HashMap<>();
         stringHashMap1 = new HashMap<>();
+        stringHashMap2 = new HashMap<>();
         spStepTask=getActivity().getSharedPreferences("userStepTask", Context.MODE_PRIVATE);
+        mhandler = new FragmentActivity3.mHandler();
         //获取日期
         get_date=view.findViewById(R.id.get_date);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM月dd日");
@@ -357,12 +366,12 @@ public class FragmentActivity3 extends Fragment {
                 startActivity(intent);
             }
         });
-
         //距离
         txtDistance=view.findViewById(R.id.txt_distance);
         //卡路里
         txtCalorie=view.findViewById(R.id.txt_calorie);
 
+        //上传昨日步数
         if(result==true){
             yestSQLStep=yestSQLStep2-yestSQLStep1;
             if(yestSQLStep<0) {
@@ -381,6 +390,24 @@ public class FragmentActivity3 extends Fragment {
         //打卡显示
         //获取打卡项目设置
         sp1= getActivity().getSharedPreferences("userHealthyTask", Context.MODE_PRIVATE);
+        //是否设置过打卡
+        txtSetTip=view.findViewById(R.id.txt_set_tip);
+        boolean setOrNot= sp1.getBoolean("setOrNot", false);
+        if (setOrNot==true){
+            txtSetTip.setVisibility(View.GONE);
+        } else {
+            getHealthyTask();
+            /*cvGetup.setVisibility(View.GONE);
+            cvSleep.setVisibility(View.GONE);
+            cvStep.setVisibility(View.GONE);
+            cvWater.setVisibility(View.GONE);
+            cvRead.setVisibility(View.GONE);
+            cvHobby.setVisibility(View.GONE);
+            cvSmile.setVisibility(View.GONE);
+            cvDiary.setVisibility(View.GONE);
+            cvPowerSport.setVisibility(View.GONE);
+            cvOtherSport.setVisibility(View.GONE);*/
+        }
         getupTime= sp1.getString("getupTime","7:00");
         getupTime=getupTime.substring(0,getupTime.length()-3);
         Log.d(TAG,"getupTime:"+getupTime);
@@ -399,7 +426,7 @@ public class FragmentActivity3 extends Fragment {
         Log.d(TAG,"smileGoal:"+smileGoal);
         diaryGoal = sp1.getInt("diaryGoal",0);
         Log.d(TAG,"diaryGoal:"+diaryGoal);
-        boolean setOrNot= sp1.getBoolean("setOrNot", false);
+
 
         //打卡项目显示
         cvGetup=(CardView) view.findViewById(R.id.cv_getup);
@@ -425,9 +452,9 @@ public class FragmentActivity3 extends Fragment {
         //txtWaterReal.setText("1.5L");
         txtWaterGoal= (TextView) view.findViewById(R.id.txt_WaterGoal);
         txtWaterGoal.setText(" / 1.5L");
-        /*if(drinkGoal==1) {
+        if(drinkGoal==1) {
             cvWater.setVisibility(View.GONE);
-        }*/
+        }
         cvRead=(CardView) view.findViewById(R.id.cv_read);
         txtReadReal= (TextView) view.findViewById(R.id.txt_ReadReal);
         SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
@@ -440,9 +467,9 @@ public class FragmentActivity3 extends Fragment {
         }
         txtReadGoal= (TextView) view.findViewById(R.id.txt_ReadGoal);
         txtReadGoal.setText("分钟 / 30分钟");
-        /*if(readGoal==1) {
+        if(readGoal==1) {
             cvRead.setVisibility(View.GONE);
-        }*/
+        }
         cvHobby=(CardView) view.findViewById(R.id.cv_hobby);
         txtHobbyReal= (TextView) view.findViewById(R.id.txt_HobbyReal);
         spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
@@ -455,25 +482,25 @@ public class FragmentActivity3 extends Fragment {
         }
         txtHobbyGoal= (TextView) view.findViewById(R.id.txt_HobbyGoal);
         txtHobbyGoal.setText("分钟 / 45分钟");
-        /*if(hobbyGoal==1) {
+        if(hobbyGoal==1) {
             cvHobby.setVisibility(View.GONE);
-        }*/
+        }
         cvSmile=(CardView) view.findViewById(R.id.cv_smile);
         txtSmileReal= (TextView) view.findViewById(R.id.txt_SmileReal);
         txtSmileReal.setText("0");
         txtSmileGoal= (TextView) view.findViewById(R.id.txt_SmileGoal);
         txtSmileGoal.setText(" / 1次");
-        /*if(smileGoal==1) {
+        if(smileGoal==1) {
             cvSmile.setVisibility(View.GONE);
-        }*/
+        }
         cvDiary=(CardView) view.findViewById(R.id.cv_diary);
         txtDairyReal= (TextView) view.findViewById(R.id.txt_DairyReal);
         txtDairyReal.setText("0");
         txtDairyGoal= (TextView) view.findViewById(R.id.txt_DairyGoal);
         txtDairyGoal.setText(" / 1篇");
-        /*if(diaryGoal==1) {
+        if(diaryGoal==1) {
             cvDiary.setVisibility(View.GONE);
-        }*/
+        }
         Calendar instance = Calendar.getInstance();
         int weekday = instance.get(Calendar.DAY_OF_WEEK);
         int sport=0;
@@ -503,22 +530,7 @@ public class FragmentActivity3 extends Fragment {
             cvPowerSport.setVisibility(View.GONE);
         }
 
-        //是否设置过打卡
-        txtSetTip=view.findViewById(R.id.txt_set_tip);
-        if (setOrNot==true){
-            txtSetTip.setVisibility(View.GONE);
-        } else {
-            cvGetup.setVisibility(View.GONE);
-            cvSleep.setVisibility(View.GONE);
-            cvStep.setVisibility(View.GONE);
-            cvWater.setVisibility(View.GONE);
-            cvRead.setVisibility(View.GONE);
-            cvHobby.setVisibility(View.GONE);
-            cvSmile.setVisibility(View.GONE);
-            cvDiary.setVisibility(View.GONE);
-            cvPowerSport.setVisibility(View.GONE);
-            cvOtherSport.setVisibility(View.GONE);
-        }
+
 
         //打卡项目对话框
         cvGetup.setOnClickListener(new View.OnClickListener() {
@@ -1021,19 +1033,10 @@ public class FragmentActivity3 extends Fragment {
                 editor.putInt("stepFinish", step);
                 editor.commit();
             } else {
+                reSetTaskTime();
                 uploadTaskHistory();
                 SharedPreferences.Editor editor = spFinishTask.edit();
                 editor.clear();
-                /*editor.putString("getupTime",null);
-                editor.putString("sleepTime",null);
-                editor.putInt("stepFinish", 0);
-                editor.putInt("waterFinish", 1);
-                editor.putInt("readFinish", 1);
-                editor.putInt("hobbyFinish", 1);
-                editor.putInt("smileFinish", 1);
-                editor.putInt("diaryFinish", 1);
-                editor.putInt("powerSportFinish", 1);
-                editor.putInt("otherSportFinish", 1);*/
                 editor.commit();
             }
         }
@@ -1726,4 +1729,304 @@ public class FragmentActivity3 extends Fragment {
         }
     }
 
+    //重置任务时间记录
+    public void reSetTaskTime() {
+        SharedPreferences spTaskTime=getActivity().getSharedPreferences("userTaskTime", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorTime=spTaskTime.edit();
+        editorTime.putInt("readTime",0);
+        editorTime.putInt("hobbyTime",0);
+        editorTime.putInt("powerTime",0);
+        editorTime.putInt("sportTime",0);
+        editorTime.commit();
+    }
+
+    //获取打卡任务设置
+    Runnable postRunTask = new Runnable() {
+
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            requestPostTask(stringHashMap2);
+        }
+    };
+    private void requestPostTask(HashMap<String, String> paramsMap){
+        int code = 20;
+        try {
+            String baseUrl = "http://101.132.97.43:8080/ServiceTest/servlet/GetCheckServlet";
+            //合成参数
+            StringBuilder tempParams = new StringBuilder();
+            int pos = 0;
+            for (String key : paramsMap.keySet()) {
+                if (pos >0) {
+                    tempParams.append("&");
+                }
+                tempParams.append(String.format("%s=%s", key, URLEncoder.encode(paramsMap.get(key), "utf-8")));
+                pos++;
+            }
+            String params = tempParams.toString();
+            Log.e(TAG,"params--post-->>"+params);
+            // 请求的参数转换为byte数组
+//            byte[] postData = params.getBytes();
+            // 新建一个URL对象
+            URL url = new URL(baseUrl);
+            // 打开一个HttpURLConnection连接
+            HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
+            // 设置连接超时时间
+            urlConn.setConnectTimeout(5 * 1000);
+            //设置从主机读取数据超时
+            urlConn.setReadTimeout(5 * 1000);
+            // Post请求必须设置允许输出 默认false
+            urlConn.setDoOutput(true);
+            //设置请求允许输入 默认是true
+            urlConn.setDoInput(true);
+            // Post请求不能使用缓存
+            urlConn.setUseCaches(false);
+            // 设置为Post请求
+            urlConn.setRequestMethod("POST");
+            //设置本次连接是否自动处理重定向
+            urlConn.setInstanceFollowRedirects(true);
+            //配置请求Content-Type
+//            urlConn.setRequestProperty("Content-Type", "application/json");//post请求不能设置这个
+            // 开始连接
+            urlConn.connect();
+
+            // 发送请求参数
+            PrintWriter dos = new PrintWriter(urlConn.getOutputStream());
+            dos.write(params);
+            dos.flush();
+            dos.close();
+            // 判断请求是否成功
+            if (urlConn.getResponseCode() == 200) {
+                // 获取返回的数据
+                String result = streamToString(urlConn.getInputStream());
+                Log.e(TAG, "Post方式请求成功，result--->" + result);
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    if (jsonObject != null) {
+                        code = jsonObject.optInt("code");
+                        JSONArray dataList=jsonObject.getJSONArray("data");
+                        if(dataList.length()==0) {
+                            Message msg = Message.obtain();
+                            msg.what = 1;
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("dataList",0); //往Bundle中存放数据
+                            msg.setData(bundle);//mes利用Bundle传递数据
+                            mhandler.sendMessage(msg);
+                        } else {
+                            int stepGoal;
+                            int diaryGoal;
+                            int drinkGoal;
+                            int smileGoal;
+                            int readGoal;
+                            int hobbyGoal;
+                            int everyWeekSport;
+                            int weeklyPowerSport;
+                            String getupTimeGoal;
+                            String sleepTimeGoal;
+                            int temp=dataList.length()-1;
+                            JSONObject object=dataList.getJSONObject(temp);
+                            stepGoal=object.getInt("stepGoal");
+                            diaryGoal=object.getInt("diaryGoal");
+                            drinkGoal=object.getInt("drinkGoal");
+                            smileGoal=object.getInt("smileGoal");
+                            readGoal=object.getInt("readGoal");
+                            hobbyGoal=object.getInt("hobbyGoal");
+                            everyWeekSport=object.getInt("everyWeekSport");
+                            weeklyPowerSport=object.getInt("weeklyPowerSport");
+                            getupTimeGoal=object.getString("getupTime");
+                            sleepTimeGoal=object.getString("sleepTime");
+                            Message msg = Message.obtain();
+                            msg.what = 1;
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("dataList",1); //往Bundle中存放数据
+                            bundle.putInt("stepGoal",stepGoal); //往Bundle中存放数据
+                            bundle.putInt("diaryGoal",diaryGoal); //往Bundle中存放数据
+                            bundle.putInt("drinkGoal",drinkGoal); //往Bundle中存放数据
+                            bundle.putInt("smileGoal",smileGoal); //往Bundle中存放数据
+                            bundle.putInt("readGoal",readGoal); //往Bundle中存放数据
+                            bundle.putInt("hobbyGoal",hobbyGoal); //往Bundle中存放数据
+                            bundle.putInt("everyWeekSport",everyWeekSport); //往Bundle中存放数据
+                            bundle.putInt("weeklyPowerSport",weeklyPowerSport); //往Bundle中存放数据
+                            bundle.putString("getupTimeGoal",getupTimeGoal); //往Bundle中存放数据
+                            bundle.putString("sleepTimeGoal",sleepTimeGoal); //往Bundle中存放数据
+                            msg.setData(bundle);//mes利用Bundle传递数据
+                            mhandler.sendMessage(msg);
+                        }
+                            Log.d(TAG,"返回结果："+code);
+                    }
+                    switch (code){
+                        case 0 : // 上传失败
+                            Looper.prepare();
+                            Log.d(TAG,"获取打卡设置成功");
+                            //Toast.makeText(this.getContext(),"信息修改失败！", Toast.LENGTH_LONG).show();
+                            Looper.loop();
+                            break;
+                        case 1: // 上传成功
+                            Looper.prepare();
+                            Log.d(TAG,"获取打卡设置失败");
+                            //Toast.makeText(this.getContext(),"信息修改成功！", Toast.LENGTH_LONG).show();
+                            Looper.loop();
+                            break;
+                        default:
+                            //Toast.makeText(RegisterActivity.this,"用户名或密码错误，请重新登录", Toast.LENGTH_LONG).show();
+                            break;
+                    }
+                }catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            } else {
+                Looper.prepare();
+                Log.e(TAG, "Post方式请求失败");
+                //Toast.makeText(this.getContext(),"手机号或密码错误，请重新登录", Toast.LENGTH_LONG).show();
+                Looper.loop();
+            }
+            // 关闭连接
+            urlConn.disconnect();
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+    }
+    public void getHealthyTask() {
+        sp = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        userID=sp.getInt("USER_ID",0);
+        Log.d(TAG,"userID:"+userID);
+        stringHashMap2.put("userID", String.valueOf(userID));
+        new Thread(postRunTask).start();//获取打卡设置
+    }
+    class mHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            int dataList = msg.getData().getInt("dataList");
+            if(dataList==1) {
+                int stepGoal = msg.getData().getInt("stepGoal");
+                int diaryGoal = msg.getData().getInt("diaryGoal");
+                int drinkGoal = msg.getData().getInt("drinkGoal");
+                int smileGoal = msg.getData().getInt("smileGoal");
+                int readGoal = msg.getData().getInt("readGoal");
+                int hobbyGoal = msg.getData().getInt("hobbyGoal");
+                int everyWeekSport = msg.getData().getInt("everyWeekSport");
+                int weeklyPowerSport = msg.getData().getInt("weeklyPowerSport");
+                String getupTimeGoal = msg.getData().getString("getupTimeGoal");
+                String sleepTimeGoal = msg.getData().getString("sleepTimeGoal");
+                sp1= getActivity().getSharedPreferences("userHealthyTask", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp1.edit();
+                editor.putString("getupTime", getupTimeGoal);
+                editor.putString("sleepTime", sleepTimeGoal);
+                editor.putInt("stepGoal", stepGoal);
+                editor.putInt("everyWeekSport", everyWeekSport);
+                editor.putInt("weeklyPowerSport", weeklyPowerSport);
+                editor.putInt("drinkGoal", drinkGoal);
+                editor.putInt("readGoal", readGoal);
+                editor.putInt("hobbyGoal", hobbyGoal);
+                editor.putInt("smileGoal", smileGoal);
+                editor.putInt("diaryGoal", diaryGoal);
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = new Date(System.currentTimeMillis());
+                String setDate=formatter.format(date);
+                editor.putString("setDate", setDate);
+                editor.putBoolean("setOrNot", true);
+                //0不运动，1力量训练，2其他运动
+                if(weeklyPowerSport==1) {
+                    editor.putInt("MonSport", 1);
+                    if(everyWeekSport==3) {
+                        editor.putInt("TueSport", 0);
+                        editor.putInt("WenSport", 2);
+                        editor.putInt("ThurSport", 0);
+                        editor.putInt("FriSport", 2);
+                        editor.putInt("SatSport", 0);
+                        editor.putInt("SunSport", 0);
+                    } else if(everyWeekSport==4) {
+                        editor.putInt("TueSport", 0);
+                        editor.putInt("WenSport", 2);
+                        editor.putInt("ThurSport", 0);
+                        editor.putInt("FriSport", 2);
+                        editor.putInt("SatSport", 0);
+                        editor.putInt("SunSport", 2);
+                    } else if(everyWeekSport==5) {
+                        editor.putInt("TueSport", 0);
+                        editor.putInt("WenSport", 2);
+                        editor.putInt("ThurSport", 2);
+                        editor.putInt("FriSport", 2);
+                        editor.putInt("SatSport", 0);
+                        editor.putInt("SunSport", 2);
+                    } else if(everyWeekSport==6) {
+                        editor.putInt("TueSport", 0);
+                        editor.putInt("WenSport", 2);
+                        editor.putInt("ThurSport", 2);
+                        editor.putInt("FriSport", 2);
+                        editor.putInt("SatSport", 2);
+                        editor.putInt("SunSport", 2);
+                    }
+                }
+                else if(weeklyPowerSport==2) {
+                    editor.putInt("MonSport", 1);
+                    editor.putInt("ThurSport", 1);
+                    if(everyWeekSport==3) {
+                        editor.putInt("TueSport", 0);
+                        editor.putInt("WenSport", 0);
+                        editor.putInt("FriSport", 0);
+                        editor.putInt("SatSport", 2);
+                        editor.putInt("SunSport", 0);
+                    } else if(everyWeekSport==4) {
+                        editor.putInt("TueSport", 0);
+                        editor.putInt("WenSport", 2);
+                        editor.putInt("FriSport", 0);
+                        editor.putInt("SatSport", 2);
+                        editor.putInt("SunSport", 0);
+                    } else if(everyWeekSport==5) {
+                        editor.putInt("TueSport", 2);
+                        editor.putInt("WenSport", 0);
+                        editor.putInt("FriSport", 2);
+                        editor.putInt("SatSport", 0);
+                        editor.putInt("SunSport", 2);
+                    } else if(everyWeekSport==6) {
+                        editor.putInt("TueSport", 0);
+                        editor.putInt("WenSport", 2);
+                        editor.putInt("FriSport", 2);
+                        editor.putInt("SatSport", 2);
+                        editor.putInt("SunSport", 2);
+                    }
+                }
+                else if(weeklyPowerSport==3) {
+                    editor.putInt("MonSport", 1);
+                    editor.putInt("ThurSport", 1);
+                    editor.putInt("SatSport", 1);
+                    if(everyWeekSport==3) {
+                        editor.putInt("TueSport", 0);
+                        editor.putInt("WenSport", 0);
+                        editor.putInt("FriSport", 0);
+                        editor.putInt("SunSport", 0);
+                    } else if(everyWeekSport==4) {
+                        editor.putInt("TueSport", 2);
+                        editor.putInt("WenSport", 0);
+                        editor.putInt("FriSport", 0);
+                        editor.putInt("SunSport", 0);
+                    } else if(everyWeekSport==5) {
+                        editor.putInt("TueSport", 2);
+                        editor.putInt("WenSport", 0);
+                        editor.putInt("FriSport", 2);
+                        editor.putInt("SunSport", 0);
+                    } else if(everyWeekSport==6) {
+                        editor.putInt("TueSport", 2);
+                        editor.putInt("WenSport", 2);
+                        editor.putInt("FriSport", 0);
+                        editor.putInt("SunSport", 2);
+                    }
+                }
+                editor.commit();
+            } else {
+                cvGetup.setVisibility(View.GONE);
+                cvSleep.setVisibility(View.GONE);
+                cvStep.setVisibility(View.GONE);
+                cvWater.setVisibility(View.GONE);
+                cvRead.setVisibility(View.GONE);
+                cvHobby.setVisibility(View.GONE);
+                cvSmile.setVisibility(View.GONE);
+                cvDiary.setVisibility(View.GONE);
+                cvPowerSport.setVisibility(View.GONE);
+                cvOtherSport.setVisibility(View.GONE);
+            }
+        }
+    }
 }
