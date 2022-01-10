@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fancy="http://schemas.android.com/apk/res-auto">
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -44,39 +45,42 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="选择要查看的那一天："
-                    android:textSize="60px"
+                    android:text="请选择查看日期："
+                    android:textSize="70px"
                     android:layout_marginLeft="40px"/>
                 <TextView
                     android:id="@+id/txt_chooseHistoryDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textSize="60px"/>
-                <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/btn_chooseHistoryDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="5dp"
-                    fancy:fb_defaultColor="#3F51B5"
-                    fancy:fb_focusColor="#28378A"
-                    fancy:fb_radius="30dp"
-                    fancy:fb_text="选择"
-                    fancy:fb_textColor="#fff"
-                    fancy:fb_textSize = "50px"/>
+                    android:textSize="70px"/>
+
 
             </LinearLayout>
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btn_chooseHistoryDate"
+                android:layout_width="500px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                fancy:fb_defaultColor="#3F51B5"
+                fancy:fb_focusColor="#28378A"
+                fancy:fb_radius="30dp"
+                fancy:fb_text="选择"
+                fancy:fb_textColor="#fff"
+                fancy:fb_textSize = "60px"
+                android:layout_marginTop="20px"/>
             <TextView
                 android:id="@+id/txt_noTaskTip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="这天没有进行过健康打卡哦！"
-                android:textSize="60px"
-                android:layout_marginLeft="40px"/>
+                android:textSize="80px"
+                android:layout_marginLeft="40px"
+                android:layout_marginTop="40px"/>
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_getup"
                 android:layout_width="950px"

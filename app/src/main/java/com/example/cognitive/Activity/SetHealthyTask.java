@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -24,6 +25,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.cognitive.R;
 import com.example.cognitive.Utils.AppManager;
@@ -92,6 +94,10 @@ public class SetHealthyTask extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_healthy_task);
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//添加默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         stringHashMap = new HashMap<>();
         spTestScore= this.getSharedPreferences("userTestScore", Context.MODE_PRIVATE);
         int strengthScore=spTestScore.getInt("strengthScore", 3);
@@ -619,5 +625,14 @@ public class SetHealthyTask extends AppCompatActivity implements View.OnClickLis
             Log.e(TAG, e.toString());
             return null;
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
