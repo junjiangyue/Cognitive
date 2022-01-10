@@ -49,8 +49,6 @@ public class FragmentActivity1 extends Fragment {
     public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState)
     {
 
-
-
         super.onViewCreated(view,savedInstanceState);
         title_test=view.findViewById(R.id.title_test);
         button_test1=view.findViewById(R.id.test1);
@@ -66,6 +64,8 @@ public class FragmentActivity1 extends Fragment {
                         //.addHighLight(new RectF(0, 800, 200, 1200))
                         .setLayoutRes(R.layout.view_guide_simple))
                 .show();
+
+
         button_test1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

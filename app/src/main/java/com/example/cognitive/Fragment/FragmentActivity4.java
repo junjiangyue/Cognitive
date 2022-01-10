@@ -28,8 +28,10 @@ import com.example.cognitive.Activity.PersonalSetting;
 import com.example.cognitive.Activity.Sleep;
 import com.example.cognitive.Activity.TestHistory;
 import com.example.cognitive.Activity.WeeklyReportHistory;
+import com.example.cognitive.NewbieGuide;
 import com.example.cognitive.R;
 import com.example.cognitive.Utils.DestroyActivityUtil;
+import com.example.cognitive.model.GuidePage;
 import com.lucasurbas.listitemview.ListItemView;
 
 import org.json.JSONException;
@@ -83,6 +85,15 @@ public class FragmentActivity4 extends Fragment {
         user_birth = sp.getString("USER_BIRTH", "");
         stringHashMap = new HashMap<>();
         stringHashMap.put("userphone", user_phone);
+
+        NewbieGuide.with(getActivity())
+                .setLabel("guide1")
+                .alwaysShow(true)//总是显示，调试时可以打开
+                .addGuidePage(GuidePage.newInstance()
+                        .addHighLight(family)
+                        //.addHighLight(new RectF(0, 800, 200, 1200))
+                        .setLayoutRes(R.layout.layout_hint2))
+                .show();
 
         mhandler = new mHandler();
 

@@ -69,38 +69,43 @@ public class AD8Test extends AppCompatActivity {
 
     public void getAD8Result(View v)
     {
+        int  state = 0;
         for(int i=0;i<8;i++)
         {
             score+=mAdapter.result[i];
+            state+=mAdapter.state[i];
         }
+        if(state == 8) {
+            judgement_point = mAdapter.result[0];
+            memory_point = mAdapter.result[2] + mAdapter.result[4] + mAdapter.result[6] + mAdapter.result[7];
+            cognition_point = mAdapter.result[1] + mAdapter.result[3] + mAdapter.result[5];
 
-        judgement_point=mAdapter.result[0];
-        memory_point=mAdapter.result[2]+mAdapter.result[4]+mAdapter.result[6]+mAdapter.result[7];
-        cognition_point=mAdapter.result[1]+mAdapter.result[3]+mAdapter.result[5];
+            sp = this.getSharedPreferences("userInfo", MODE_PRIVATE);
+            int userID = sp.getInt("USER_ID", 0);
+            Log.i("sptest", "userID:" + userID);
+            Log.i("sptest", "score:" + String.valueOf(score));
 
-        sp=this.getSharedPreferences("userInfo",MODE_PRIVATE);
-        int userID=sp.getInt("USER_ID",0);
-        Log.i("sptest","userID:"+userID);
-        Log.i("sptest","score:"+String.valueOf(score));
+            stringHashMap = new HashMap<>();
+            stringHashMap.put("user_id", Integer.toString(userID));
+            stringHashMap.put("score", String.valueOf(score));
+            stringHashMap.put("judgement_score", String.valueOf(judgement_point));
+            stringHashMap.put("memory_score", String.valueOf(memory_point));
+            stringHashMap.put("cognition_score", String.valueOf(cognition_point));
 
-        stringHashMap=new HashMap<>();
-        stringHashMap.put("user_id",Integer.toString(userID));
-        stringHashMap.put("score",String.valueOf(score));
-        stringHashMap.put("judgement_score",String.valueOf(judgement_point));
-        stringHashMap.put("memory_score",String.valueOf(memory_point));
-        stringHashMap.put("cognition_score",String.valueOf(cognition_point));
+            Log.i("backend-test", userID + " " + String.valueOf(score));
 
-        Log.i("backend-test",userID+" "+String.valueOf(score));
+            //上传后端
+            new Thread(postRun).start();
 
-        //上传后端
-        new Thread(postRun).start();
-
-        Intent intent=new Intent(AD8Test.this,AD8ResultPage.class);
-        intent.putExtra("ad8_score",String.valueOf(score));
-        intent.putExtra("ad8_judgement",String.valueOf(judgement_point));
-        intent.putExtra("ad8_memory",String.valueOf(memory_point));
-        intent.putExtra("ad8_cognition",String.valueOf(cognition_point));
-        startActivity(intent);
+            Intent intent = new Intent(AD8Test.this, AD8ResultPage.class);
+            intent.putExtra("ad8_score", String.valueOf(score));
+            intent.putExtra("ad8_judgement", String.valueOf(judgement_point));
+            intent.putExtra("ad8_memory", String.valueOf(memory_point));
+            intent.putExtra("ad8_cognition", String.valueOf(cognition_point));
+            startActivity(intent);
+        }else{
+            Toast.makeText(AD8Test.this,"还有题目未完成哦", Toast.LENGTH_LONG).show();
+        }
 
 
     }

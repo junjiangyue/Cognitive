@@ -67,7 +67,7 @@ public class FragmentActivity2 extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ArticleInfo.class);
-                intent.putExtra("newsUrl","https://mp.weixin.qq.com/s/6xx808UhGhCT7WOJEkxysQ");
+                intent.putExtra("newsUrl","https://mp.weixin.qq.com/s/whyQsSXhwQQc0IV93t7Z3w");
                 startActivity(intent);
             }
         });

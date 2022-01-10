@@ -18,6 +18,7 @@ public class MyAD8PagerAdapter extends PagerAdapter {
 
     //存储结果的数组
     public int [] result=new int[8];
+    public int [] state = new int[8];
 
     public MyAD8PagerAdapter() {
     }
@@ -49,6 +50,7 @@ public class MyAD8PagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 result[position]=1;
+                state[position]=1;
                 Log.i("click", "onClick: yes"+position);
                 Log.i("result", "onClick: result:"+result[position]);
             }
@@ -58,6 +60,7 @@ public class MyAD8PagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 result[position]=0;
+                state[position]=1;
             }
         });
         return viewLists.get(position);

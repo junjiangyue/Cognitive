@@ -46,13 +46,14 @@
     </LinearLayout>
 
     <LinearLayout
+        android:paddingStart="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="联系人申请"
+            android:text="新联系人"
             />
         <ListView
             android:id="@+id/newApply"

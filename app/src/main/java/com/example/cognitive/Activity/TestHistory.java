@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -62,7 +63,10 @@ public class TestHistory extends AppCompatActivity {
 
         Intent getIntent=getIntent();
         String userID=getIntent.getStringExtra("USER_ID");
-
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//添加默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         stringHashMap=new HashMap<>();
         stringHashMap.put("userid",userID);
 
@@ -240,5 +244,14 @@ public class TestHistory extends AppCompatActivity {
             adapter.notifyDataSetChanged();
 
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

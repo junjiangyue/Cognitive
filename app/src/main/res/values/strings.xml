@@ -32,7 +32,7 @@
     <string name="FRAIL_1">在过去的四周内您经常感到疲劳吗？</string>
     <string name="FRAIL_2">您上10级楼梯有困难吗？</string>
     <string name="FRAIL_3">您在没有协助的情况下走200米至300米有困难吗？</string>
-    <string name="FRAIL_4">医生是否告诉你患有以下疾病？</string>
+    <string name="FRAIL_4">医生是否告诉你患有以下疾病？(若无下列疾病，可直接进入下一题)</string>
     <string name="FRAIL_5">您最近1年内体重下降明显吗？</string>
     <string name="FRAIL_healthy">您现在处于健康状态，没有认知衰弱的迹象。</string>
     <string name="FRAIL_pre_frailty">您现在处于认知衰弱前期，建议有针对性地进行早期干预。</string>

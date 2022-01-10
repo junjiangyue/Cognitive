@@ -20,7 +20,7 @@ import com.example.cognitive.R;
 public class MusicListFragment extends Fragment {
 
     private View view;
-    public String[] name={"邓紫棋——光年之外","蔡健雅——红色高跟鞋","Taylor Swift——Love Story"};
+    public String[] name={"自然雨声","静谧钢琴","溪流"};
     public static int[] icons={R.drawable.music0,R.drawable.music1,R.drawable.music2};
 
     @Override

@@ -6,21 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activity.SearchUserActivity">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
 
-        <TextView
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="返回"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-    </androidx.appcompat.widget.Toolbar>
     <!-- 这里是搜索框-->
     <LinearLayout
         android:layout_width="match_parent"

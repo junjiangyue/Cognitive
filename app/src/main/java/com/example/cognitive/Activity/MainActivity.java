@@ -16,11 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cognitive.Fragment.FillAgeFragment;
+import com.example.cognitive.NewbieGuide;
 import com.example.cognitive.R;
 import com.example.cognitive.Fragment.FragmentActivity1;
 import com.example.cognitive.Fragment.FragmentActivity2;
 import com.example.cognitive.Fragment.FragmentActivity3;
 import com.example.cognitive.Fragment.FragmentActivity4;
+import com.example.cognitive.model.GuidePage;
 
 public class MainActivity extends AppCompatActivity {
     private RelativeLayout main_body;
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         fragment2=new FragmentActivity2();
         fragment3=new FragmentActivity3();
         fragment4=new FragmentActivity4();
+
 
     }
 

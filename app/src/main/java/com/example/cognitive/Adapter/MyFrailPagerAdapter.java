@@ -23,7 +23,7 @@ public class MyFrailPagerAdapter extends PagerAdapter {
     private final CheckBox [] checkBoxes=new CheckBox[11];
     public int [] result=new int[5];
     public int [] checked_status=new int[11];
-
+    public int [] state = new int[5];
     public int weight_pre;
     public int weight_cur;
 
@@ -62,6 +62,7 @@ public class MyFrailPagerAdapter extends PagerAdapter {
                     @Override
                     public void onClick(View v) {
                         result[position]=1;
+                        state[position] = 1;
                         Log.i("click", "onClick: yes"+position);
                         Log.i("result", "onClick: result:"+result[position]);
                     }
@@ -72,6 +73,7 @@ public class MyFrailPagerAdapter extends PagerAdapter {
                     @Override
                     public void onClick(View v) {
                         result[position]=0;
+                        state[position] = 1;
                         Log.i("click", "onClick: no"+position);
                         Log.i("result", "onClick: result:"+result[position]);
                     }
@@ -89,11 +91,13 @@ public class MyFrailPagerAdapter extends PagerAdapter {
                             if(checked_status[finalI]==0)
                             {
                                 checked_status[finalI]=1;
+                                state[position] = 1;
                                 result[3]++;
                             }
                             else
                             {
                                 checked_status[finalI]=0;
+                                state[position] = 0;
                                 result[3]--;
                             }
                             Log.i("click", "onClick: checkbox"+finalI);
@@ -107,6 +111,7 @@ public class MyFrailPagerAdapter extends PagerAdapter {
                 EditText editText_cur = (EditText) viewLists.get(4).findViewById(R.id.current_weight);
                 editText_pre.addTextChangedListener(textWatcher_pre);
                 editText_cur.addTextChangedListener(textWatcher_cur);
+
                 //result[4]=((float)(weight_pre-weight_cur)/(float)weight_cur>0.05)? 1:0;
                 //Log.i("weight", "afterTextChanged: "+result[4]);
                 //Log.i("weight", "afterTextChanged: "+(float)(weight_pre-weight_cur)/(float)weight_cur);
@@ -136,10 +141,12 @@ public class MyFrailPagerAdapter extends PagerAdapter {
         public void afterTextChanged(Editable s) {
             if(s.length()>0&&s.length()<5) {
                 weight_pre = Integer.parseInt(s.toString());
+                state[4] =1;
             }
             else
             {
                 weight_pre=0;
+                state[4] = 0;
             }
             //Log.i("weight", "afterTextChanged: "+weight_pre);
         }
@@ -159,10 +166,12 @@ public class MyFrailPagerAdapter extends PagerAdapter {
         public void afterTextChanged(Editable s) {
             if(s.length()>0&&s.length()<5) {
                 weight_cur = Integer.parseInt(s.toString());
+                state[4] = 1;
             }
             else
             {
                 weight_cur=0;
+                state[4] = 0;
             }
             //Log.i("weight", "afterTextChanged: "+weight_cur);
         }

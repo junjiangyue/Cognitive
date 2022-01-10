@@ -47,8 +47,8 @@ public class Music_Activity extends AppCompatActivity
     public static final String UPDATE_ACTION = "org.crazyit.action.UPDATE_ACTION";
     // 定义音乐的播放状态，0x11代表没有播放；0x12代表正在播放；0x13代表暂停
     int status = 0x12;
-    String[] titleStrs = new String[] { "music0", "music1", "music2", "music3", "music4" };
-    String[] authorStrs = new String[] { "JayChou", "JayChou", "JayChou", "JayChou", "JayChou" };
+    String[] titleStrs = new String[] { "自然雨声", "静谧琴声", "溪流"};
+    String[] authorStrs = new String[] { "请欣赏", "请欣赏", "请欣赏"};
 
     @Override
     public void onCreate(Bundle savedInstanceState)

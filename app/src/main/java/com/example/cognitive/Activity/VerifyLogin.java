@@ -279,7 +279,7 @@ public class VerifyLogin extends AppCompatActivity {
                         editor.commit();
                     }
                     switch (code){
-                        case -1 :
+                        case 200 :
                             Intent intent = new Intent();
                             intent.setClassName(this,"com.example.cognitive.Activity.LogoActivity");
                             this.startActivity(intent);

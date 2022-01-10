@@ -63,41 +63,48 @@ public class FrailTest extends AppCompatActivity {
 
     public void getFrailResult(View view)
     {
-        mAdapter.result[4]=((float)(mAdapter.weight_pre-mAdapter.weight_cur)/(float)mAdapter.weight_cur>0.05)? 1:0;
+        int state = 0;
         for(int i=0;i<5;i++)
         {
-            if(i!=3)
-            {
-                score+=mAdapter.result[i];
-            }
-            else
-            {
-                score+=(mAdapter.result[i]>5)?1:0;
-            }
+            state+=mAdapter.state[i];
+            Log.e("shuruqingkuang",String.valueOf(mAdapter.state[i]));
         }
-        strength_point=mAdapter.result[0]+mAdapter.result[1]+mAdapter.result[2];
-        health_point=((mAdapter.result[3]>5)?1:0)+mAdapter.result[4];
+        Log.e("state",String.valueOf(state));
+        if(state==5 || (state==4 && mAdapter.state[3]==0)) {
+            mAdapter.result[4] = ((float) (mAdapter.weight_pre - mAdapter.weight_cur) / (float) mAdapter.weight_cur > 0.05) ? 1 : 0;
+            for (int i = 0; i < 5; i++) {
+                if (i != 3) {
+                    score += mAdapter.result[i];
+                } else {
+                    score += (mAdapter.result[i] > 5) ? 1 : 0;
+                }
+            }
+            strength_point = mAdapter.result[0] + mAdapter.result[1] + mAdapter.result[2];
+            health_point = ((mAdapter.result[3] > 5) ? 1 : 0) + mAdapter.result[4];
 
-        sp=this.getSharedPreferences("userInfo",MODE_PRIVATE);
-        int userID=sp.getInt("USER_ID",0);
+            sp = this.getSharedPreferences("userInfo", MODE_PRIVATE);
+            int userID = sp.getInt("USER_ID", 0);
 
-        stringHashMap=new HashMap<>();
-        stringHashMap.put("user_id",Integer.toString(userID));
-        stringHashMap.put("score",String.valueOf(score));
-        stringHashMap.put("strength_score",String.valueOf(strength_point));
-        stringHashMap.put("health_score",String.valueOf(health_point));
+            stringHashMap = new HashMap<>();
+            stringHashMap.put("user_id", Integer.toString(userID));
+            stringHashMap.put("score", String.valueOf(score));
+            stringHashMap.put("strength_score", String.valueOf(strength_point));
+            stringHashMap.put("health_score", String.valueOf(health_point));
 
-        //上传后端
-        Log.i("postRun","uploading...");
-        new Thread(postRun).start();
+            //上传后端
+            Log.i("postRun", "uploading...");
+            new Thread(postRun).start();
 
-        //Log.i("weight", "afterTextChanged: "+mAdapter.weight_cur);
-        Intent intent=new Intent(FrailTest.this,FrailResultPage.class);
-        intent.putExtra("score",String.valueOf(score));
-        intent.putExtra("strength_point",String.valueOf(strength_point));
-        intent.putExtra("health_point",String.valueOf(health_point));
-        //finish();
-        startActivity(intent);
+            //Log.i("weight", "afterTextChanged: "+mAdapter.weight_cur);
+            Intent intent = new Intent(FrailTest.this, FrailResultPage.class);
+            intent.putExtra("score", String.valueOf(score));
+            intent.putExtra("strength_point", String.valueOf(strength_point));
+            intent.putExtra("health_point", String.valueOf(health_point));
+            //finish();
+            startActivity(intent);
+        }else{
+            Toast.makeText(FrailTest.this,"还有题目未完成哦", Toast.LENGTH_LONG).show();
+        }
     }
 
     Runnable postRun=new Runnable() {

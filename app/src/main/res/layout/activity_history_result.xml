@@ -4,10 +4,19 @@
     android:background="@color/page_background"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:padding="30dp"
@@ -54,7 +63,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
         android:padding="30dp"
         android:background="@color/content_background"
         android:orientation="vertical">
@@ -74,14 +83,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp">
         <Button
+            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/white_button"
-            android:text="点击返回主页"
+            android:text="点击重新测试"
             android:layout_gravity="center"
-            android:onClick="backToMainPage"/>
+            android:id="@+id/back"/>
 
     </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
