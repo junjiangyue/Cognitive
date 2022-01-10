@@ -146,8 +146,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:text="健康打卡"
-                android:textColor="#000000"
-                android:textSize="25dp" />
+                android:textSize="24sp"
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -177,8 +177,7 @@
                         android:layout_height="wrap_content"
                         android:text="每日打卡"
                         android:layout_gravity="center"
-                        android:textSize="52px"
-                        android:textColor="#000000"/>
+                        android:textSize="52px"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -200,7 +199,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="运动打卡"
-                        android:textColor="#000000"
                         android:textSize="52px" />
 
                 </LinearLayout>
@@ -224,8 +222,7 @@
                         android:layout_height="wrap_content"
                         android:text="打卡周报"
                         android:layout_gravity="center"
-                        android:textSize="52px"
-                        android:textColor="#000000"/>
+                        android:textSize="52px"/>
 
                 </LinearLayout>
 
@@ -238,8 +235,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:text="今日打卡"
-                android:textColor="#000000"
-                android:textSize="25dp" />
+                android:textSize="24sp"
+                android:textStyle="bold"/>
             <TextView
                 android:id="@+id/txt_set_tip"
                 android:layout_width="wrap_content"
