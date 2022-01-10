@@ -78,10 +78,10 @@ public class WeeklyReport extends AppCompatActivity {
         Log.d(TAG,"userID:"+userID);
         stringHashMap.put("userID", String.valueOf(userID));
         dailyReal=spWeekReport.getInt("dailyReal",0);
-        txtDailyReal.setText("共"+dailyReal+"天完成了所有每日打卡");
+        txtDailyReal.setText("完成了每项每日打卡共"+dailyReal+"天");
         stringHashMap.put("dailyReal", String.valueOf(dailyReal));
         sportReal=spWeekReport.getInt("sportReal",0);
-        txtSportReal.setText("每周运动打卡完成"+sportReal+"项");
+        txtSportReal.setText("完成了"+sportReal+"项运动打卡");
         txtSportFinish.setText("运动"+sportReal+"次");
         stringHashMap.put("sportReal", String.valueOf(sportReal));
         powerReal=spWeekReport.getInt("powerReal",0);
@@ -116,12 +116,43 @@ public class WeeklyReport extends AppCompatActivity {
             txtTaskDay.setText("本周还未开始健康打卡");
         } else {
             long days=getDay(beginDate,endDate)+1;
-            txtTaskDay.setText("本周健康打卡"+days+"天");
+            txtTaskDay.setText("本周已打卡"+days+"天");
         }
         Calendar instance = Calendar.getInstance();
         int weekDay = instance.get(Calendar.DAY_OF_WEEK);
+        Log.d(TAG,"weekDay:"+weekDay);
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(System.currentTimeMillis());
+        String today=formatter.format(date);
+
         if(weekDay==2){
-            new Thread(postRun).start();
+            int postFlag=spWeekReport.getInt("postFlag",0);
+            if(postFlag==0) {
+                new Thread(postRun).start();
+                SharedPreferences.Editor editor1 = spWeekReport.edit();
+                editor1.putInt("dailyReal",0);
+                editor1.putInt("sportReal",0);
+                editor1.putInt("powerReal",0);
+                editor1.putInt("stepReal",0);
+                editor1.putInt("getupReal",0);
+                editor1.putInt("sleepReal",0);
+                editor1.putString("beginDate",today);
+                editor1.putString("endDate",today);
+                editor1.putInt("postFlag",1);
+                editor1.putInt("SunReal",0);
+                editor1.putInt("MonReal",0);
+                editor1.putInt("TueReal",0);
+                editor1.putInt("WenReal",0);
+                editor1.putInt("ThurReal",0);
+                editor1.putInt("FriReal",0);
+                editor1.putInt("SatReal",0);
+                editor1.commit();
+            }
+        }
+        if(weekDay==3){
+            SharedPreferences.Editor editor1 = spWeekReport.edit();
+            editor1.putInt("postFlag",0);
+            editor1.commit();
         }
     }
     public long getDay(String str1,String str2) {

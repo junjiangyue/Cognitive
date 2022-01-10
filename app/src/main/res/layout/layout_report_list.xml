@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="history1"
-                android:textSize="65px"
+                android:textSize="62px"
                 />
             <LinearLayout
                 android:layout_width="wrap_content"

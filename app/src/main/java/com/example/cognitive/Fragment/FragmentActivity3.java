@@ -81,6 +81,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+import mehdi.sakout.fancybuttons.FancyButton;
+
 
 public class FragmentActivity3 extends Fragment {
     private SharedPreferences sp;
@@ -140,7 +142,7 @@ public class FragmentActivity3 extends Fragment {
     private CardView cvOtherSport;
     private ImageView imgOtherSport;
     private SensorManager sensorManager;
-    private Button start;
+    private FancyButton start;
     private Sensor sensor;
     private SensorEventListener stepCounterListener;
     private TextView step_num;
@@ -1899,6 +1901,7 @@ public class FragmentActivity3 extends Fragment {
         public void handleMessage(Message msg) {
             int dataList = msg.getData().getInt("dataList");
             if(dataList==1) {
+                txtSetTip.setVisibility(View.GONE);
                 int stepGoal = msg.getData().getInt("stepGoal");
                 int diaryGoal = msg.getData().getInt("diaryGoal");
                 int drinkGoal = msg.getData().getInt("drinkGoal");

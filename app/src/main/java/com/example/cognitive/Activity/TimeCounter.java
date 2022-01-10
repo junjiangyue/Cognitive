@@ -2,6 +2,7 @@ package com.example.cognitive.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -9,11 +10,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.cognitive.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import mehdi.sakout.fancybuttons.FancyButton;
 
 public class TimeCounter extends AppCompatActivity implements View.OnClickListener, Chronometer.OnChronometerTickListener{
     private int Durtime = 3;
@@ -21,7 +25,7 @@ public class TimeCounter extends AppCompatActivity implements View.OnClickListen
     private int leftTime = Durtime;
 
     private Chronometer chronometer;
-    private Button btn_start,btn_stop,btn_finish,btn_spotTask;
+    private FancyButton btn_start,btn_stop,btn_finish,btn_spotTask;
     private TextView txt_timeFinish,txt_taskName,txt_taskTime;
     String taskName;
     int taskTime,finishTime;
@@ -38,11 +42,15 @@ public class TimeCounter extends AppCompatActivity implements View.OnClickListen
         initView();
     }
     private void initView() {
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//添加默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         chronometer = (Chronometer) findViewById(R.id.chronometer);
-        btn_start = (Button) findViewById(R.id.btnStart);
-        btn_stop = (Button) findViewById(R.id.btnStop);
-        btn_finish = (Button) findViewById(R.id.btnFinish);
-        btn_spotTask = (Button) findViewById(R.id.btnStopTask);
+        btn_start =findViewById(R.id.btnStart);
+        btn_stop = findViewById(R.id.btnStop);
+        btn_finish = findViewById(R.id.btnFinish);
+        btn_spotTask = findViewById(R.id.btnStopTask);
         txt_timeFinish = (TextView) findViewById(R.id.txt_timeFinish);
         txt_taskName = (TextView) findViewById(R.id.txt_taskName);
         txt_taskName.setText(taskName);
@@ -115,5 +123,14 @@ public class TimeCounter extends AppCompatActivity implements View.OnClickListen
             chronometer.stop();
             return;
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

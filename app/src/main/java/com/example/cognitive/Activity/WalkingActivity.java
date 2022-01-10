@@ -1,9 +1,11 @@
 package com.example.cognitive.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,7 +17,10 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -33,12 +38,15 @@ import com.amap.api.maps.model.PolylineOptions;
 import com.example.cognitive.R;
 import com.example.cognitive.SQLiteDB.DatabaseHelper;
 
+import mehdi.sakout.fancybuttons.FancyButton;
+
 public class WalkingActivity extends AppCompatActivity implements LocationSource,AMapLocationListener {
 
     private SensorManager mSensorManager;
     private DatabaseHelper dbHelper;
     private String TAG="Walking";
     private TextView meter;
+    private FancyButton btn_finish_walk;
     MapView mMapView = null;
     AMap aMap = null;
     //定位需要的数据
@@ -55,6 +63,10 @@ public class WalkingActivity extends AppCompatActivity implements LocationSource
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_walking);
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//添加默认的返回图标
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         //开启传感器
         startSensor();
         meter = findViewById(R.id.meter);
@@ -95,7 +107,14 @@ public class WalkingActivity extends AppCompatActivity implements LocationSource
                 privLocation = (AMapLocation) location;
             }
         });
-
+        btn_finish_walk=findViewById(R.id.btn_finish_walk);
+        btn_finish_walk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(WalkingActivity.this,"健步走成功！",Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
     /**
      * 显示运动距离
@@ -271,5 +290,13 @@ public class WalkingActivity extends AppCompatActivity implements LocationSource
 
         }
     };
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

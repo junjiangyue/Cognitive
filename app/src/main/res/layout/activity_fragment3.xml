@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="wrap_content"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_body">
+    android:id="@+id/main_body"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto">
 
     <android.widget.Toolbar
         android:id="@+id/toolbar"
@@ -21,10 +23,7 @@
             android:textSize="30sp"
             android:textStyle="bold" />
     </android.widget.Toolbar>
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Fragment.FragmentActivity3"
@@ -37,22 +36,28 @@
             android:layout_height="fill_parent"
             android:orientation="vertical"
             android:paddingBottom="20px"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            fancy:layout_constraintBottom_toBottomOf="parent"
+            fancy:layout_constraintEnd_toEndOf="parent"
+            fancy:layout_constraintStart_toStartOf="parent"
+            fancy:layout_constraintTop_toTopOf="parent">
 
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/back_card"
                 android:layout_width="940px"
-                android:layout_height="wrap_content"
+                android:layout_height="750px"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                card_view:cardBackgroundColor="@color/white"
-                card_view:cardCornerRadius="20dp">
+                fancy:layout_constraintStart_toStartOf="parent"
+                fancy:layout_constraintTop_toTopOf="parent"
+                fancy:cardBackgroundColor="@color/white"
+                fancy:cardCornerRadius="20dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="750px"
+                    android:src="@drawable/chechback"
+                    android:layout_gravity="center"/>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -112,13 +117,23 @@
                         android:textColor="#000000"
                         android:textSize="48px"
                         android:layout_marginBottom="30px"/>
-                    <Button
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/start"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginBottom="20px"
-                        android:id="@+id/start"
-                        android:text="开始健步走"/>
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="40px"
+                        android:paddingLeft="50dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="50dp"
+                        android:paddingBottom="10dp"
+                        fancy:fb_defaultColor="#3F51B5"
+                        fancy:fb_focusColor="#2C67AF"
+                        fancy:fb_radius="30dp"
+                        fancy:fb_text="开始健步走"
+                        fancy:fb_textColor="#fff"
+                        fancy:fb_textSize = "55px"/>
                 </LinearLayout>
 
 
@@ -150,19 +165,12 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:layout_marginHorizontal="15dp">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        card_view:cardBackgroundColor="@color/white"
-                        card_view:cardCornerRadius="20dp"
-                        android:layout_gravity="center">
-                        <ImageView
-                            android:layout_width="200px"
-                            android:layout_height="200px"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/daily_check_task"
-                            android:layout_gravity="center"/>
-                    </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="250px"
+                        android:layout_height="250px"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/check_task"
+                        android:layout_gravity="center"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -181,25 +189,17 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:layout_marginHorizontal="15dp">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:layout_width="230px"
+                        android:layout_height="240px"
                         android:layout_gravity="center"
-                        card_view:cardBackgroundColor="@color/white"
-                        card_view:cardCornerRadius="20dp">
-
-                        <ImageView
-                            android:layout_width="200px"
-                            android:layout_height="200px"
-                            android:src="@drawable/exercise" />
-                    </androidx.cardview.widget.CardView>
+                        android:src="@drawable/sport_check" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="每周运动打卡"
+                        android:text="运动打卡"
                         android:textColor="#000000"
                         android:textSize="52px" />
 
@@ -212,19 +212,12 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:layout_marginHorizontal="15dp">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="200px"
-                        android:layout_height="200px"
-                        card_view:cardBackgroundColor="@color/white"
-                        card_view:cardCornerRadius="20dp"
-                        android:layout_gravity="center">
-                        <ImageView
-                            android:layout_width="190px"
-                            android:layout_height="180px"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/task_week_report"
-                            android:layout_gravity="center"/>
-                    </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="250px"
+                        android:layout_height="250px"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/week_report"
+                        android:layout_gravity="center"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -263,8 +256,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50px"
-                card_view:cardCornerRadius="30dp"
-                app:cardElevation="0dp">
+                fancy:cardCornerRadius="30dp"
+                fancy:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -311,8 +304,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50px"
-                card_view:cardCornerRadius="30dp"
-                app:cardElevation="0dp">
+                fancy:cardCornerRadius="30dp"
+                fancy:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -357,8 +350,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50px"
-                card_view:cardCornerRadius="30dp"
-                app:cardElevation="0dp">
+                fancy:cardCornerRadius="30dp"
+                fancy:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -403,8 +396,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50px"
-                card_view:cardCornerRadius="30dp"
-                app:cardElevation="0dp">
+                fancy:cardCornerRadius="30dp"
+                fancy:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -449,8 +442,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50px"
-                card_view:cardCornerRadius="30dp"
-                app:cardElevation="0dp">
+                fancy:cardCornerRadius="30dp"
+                fancy:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -495,8 +488,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50px"
-                card_view:cardCornerRadius="30dp"
-                app:cardElevation="0dp">
+                fancy:cardCornerRadius="30dp"
+                fancy:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -541,8 +534,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50px"
-                card_view:cardCornerRadius="30dp"
-                app:cardElevation="0dp">
+                fancy:cardCornerRadius="30dp"
+                fancy:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -587,8 +580,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50px"
-                card_view:cardCornerRadius="30dp"
-                app:cardElevation="0dp">
+                fancy:cardCornerRadius="30dp"
+                fancy:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -632,8 +625,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50px"
-                card_view:cardCornerRadius="30dp"
-                app:cardElevation="0dp">
+                fancy:cardCornerRadius="30dp"
+                fancy:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -684,8 +677,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50px"
-                card_view:cardCornerRadius="30dp"
-                app:cardElevation="0dp">
+                fancy:cardCornerRadius="30dp"
+                fancy:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
