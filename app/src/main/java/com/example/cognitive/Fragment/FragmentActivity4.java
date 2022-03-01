@@ -88,7 +88,7 @@ public class FragmentActivity4 extends Fragment {
 
         NewbieGuide.with(getActivity())
                 .setLabel("guide1")
-                .alwaysShow(true)//总是显示，调试时可以打开
+                //.alwaysShow(true)//总是显示，调试时可以打开
                 .addGuidePage(GuidePage.newInstance()
                         .addHighLight(family)
                         //.addHighLight(new RectF(0, 800, 200, 1200))

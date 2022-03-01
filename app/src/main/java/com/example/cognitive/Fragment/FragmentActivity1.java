@@ -58,7 +58,7 @@ public class FragmentActivity1 extends Fragment {
         //go_test=view.findViewById(R.id.go_test_button);
         NewbieGuide.with(getActivity())
                 .setLabel("guide1")
-                .alwaysShow(true)//总是显示，调试时可以打开
+                //.alwaysShow(true)//总是显示，调试时可以打开
                 .addGuidePage(GuidePage.newInstance()
                         .addHighLight(button_test1)
                         //.addHighLight(new RectF(0, 800, 200, 1200))
