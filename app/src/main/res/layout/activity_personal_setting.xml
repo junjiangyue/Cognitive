@@ -79,9 +79,11 @@
         android:background="#e4e4e4" />
 
     <Button
+        android:layout_margin="20dp"
         android:id="@+id/save_change"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/white_button"
         android:text="保存编辑"/>
 </LinearLayout>
 </LinearLayout>

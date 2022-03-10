@@ -54,7 +54,6 @@ public class ReportAdapter extends BaseAdapter {
         holder.date.setText(data.getBeginDate()+" ~ "+data.getEndDate());
         holder.history_score.setText(data.getDailyCheck());
         holder.history_datetime.setText(data.getSportCheck());
-
     }
 
     protected class ViewHolder {
@@ -65,6 +64,7 @@ public class ReportAdapter extends BaseAdapter {
             date = view.findViewById(R.id.date);
             history_score = view.findViewById(R.id.dailyCheck);
             history_datetime = view.findViewById(R.id.sportCheck);
+
         }
     }
 }

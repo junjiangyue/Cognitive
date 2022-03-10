@@ -3,13 +3,16 @@ package com.example.cognitive.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cognitive.R;
+import com.example.cognitive.model.MyMarkerView;
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
@@ -50,6 +53,10 @@ public class FrailResultPage extends AppCompatActivity {
 
             TextView showScore = findViewById(R.id.frail_score);
             TextView frailAdvice = findViewById(R.id.frail_advice);
+            TextView adviceAspects = findViewById(R.id.frail_aspects);
+            TextView detailedSport =findViewById(R.id.frail_sport_advice);
+            TextView detailedHealth =findViewById(R.id.frail_health_advice);
+            TextView detailedMemory=findViewById(R.id.frail_memory_advice);
 
             Intent getIntent=getIntent();
             String scoreString=getIntent.getStringExtra("score");
@@ -58,6 +65,7 @@ public class FrailResultPage extends AppCompatActivity {
             int score=Integer.parseInt(scoreString);
             int strength_point=Integer.parseInt(strengthString);
             int health_point=Integer.parseInt(healthString);
+            boolean flag=false;
             SharedPreferences.Editor editor = spTestScore.edit();
             editor.putInt("strengthScore", strength_point);
             editor.putInt("healthScore", health_point);
@@ -78,6 +86,34 @@ public class FrailResultPage extends AppCompatActivity {
                 frailAdvice.setText(R.string.FRAIL_pre_frailty);
             }
 
+            String aspects = "\t\t\t\t您可能存在的认知衰弱问题为";
+            String detailed_health ="";
+            String detailed_sport ="";
+            String detailed_memory="";
+
+            detailed_health+="<font color='#0000CD'>健康膳食建议：</font>";
+            detailed_health+=this.getResources().getString(R.string.health_advice);
+
+            detailed_sport +="<font color='#0000CD'>运动建议：</font>";
+            detailed_sport +=this.getResources().getString(R.string.sport_advice);
+
+            detailed_memory+="<font color='#0000CD'>提高记忆建议：</font>";
+            detailed_memory+=this.getResources().getString(R.string.memory_advice);
+
+            //对分数进行辨别，选出出现问题的一些健康方面
+            if (health_point > 0) {
+                aspects += "<font color='#FF0000'>健康状况</font>，";
+                flag = true;
+            }
+            if (strength_point > 0) {
+                aspects += "<font color='#FF0000'>体力</font>，";
+                flag = true;
+            }
+            aspects += "需要对这些方面进行检查、治疗。";
+            if (flag) {
+                adviceAspects.setText(Html.fromHtml(aspects));
+            }
+
             //雷达图的绘制
             radar = (RadarChart) findViewById(R.id.frail_radar);
             list=new ArrayList<>();
@@ -91,6 +127,12 @@ public class FrailResultPage extends AppCompatActivity {
             RadarDataSet radarDataSet=new RadarDataSet(list,"frail测试结果");
             RadarData radarData=new RadarData(radarDataSet);
             radar.setData(radarData);
+
+            radarDataSet.setDrawFilled(true); // 绘制填充，默认为false
+            radarDataSet.setColor(Color.parseColor("#00F5FF"));
+            radarDataSet.setFillColor(Color.parseColor("#00F5FF"));
+            radarDataSet.setFillAlpha(51); // 填充内容透明度
+            radarDataSet.setDrawValues(false);
 
             //Y轴最小值不设置会导致数据中最小值默认成为Y轴最小值
             radar.getYAxis().setAxisMinimum(0);
@@ -125,9 +167,21 @@ public class FrailResultPage extends AppCompatActivity {
                     }
                 }
             });
+            //设置雷达图选项，marker、是否转动等
+            MyMarkerView myMarkerView = new MyMarkerView(this);
+            myMarkerView.setChartView(radar);
+            radar.setMarker(myMarkerView);
             radar.getDescription().setEnabled(false);
             radar.setRotationEnabled(false);
+
+            detailedSport.setText(Html.fromHtml(detailed_sport));
+            detailedHealth.setText(Html.fromHtml(detailed_health));
+            detailedMemory.setText(Html.fromHtml(detailed_memory));
+
+
         }
+
+
 
         public void backToMainPage(View view)
         {

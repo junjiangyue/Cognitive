@@ -13,6 +13,11 @@
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
         card_view:cardCornerRadius="25dp">
+        <ImageView
+            android:layout_width="970px"
+            android:layout_height="500px"
+            android:background="@drawable/weekly_report_card_1"
+            />
         <LinearLayout
             android:id="@+id/history_record1"
             android:layout_width="match_parent"
@@ -25,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:text="history1"
                 android:textSize="62px"
+                android:textColor="@color/black"
                 />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -35,17 +41,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="完成所有每日打卡天数："
+                    android:textColor="@color/black"
                     android:textSize="60px"/>
                 <TextView
                     android:id="@+id/dailyCheck"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="history1"
+                    android:textColor="@color/black"
                     android:textSize="70px"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" 天"
+                    android:textColor="@color/black"
                     android:textSize="70px"/>
             </LinearLayout>
             <LinearLayout
@@ -57,19 +66,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="完成运动打卡项数："
+                    android:textColor="@color/black"
                     android:textSize="60px"/>
+
                 <TextView
                     android:id="@+id/sportCheck"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="history1"
+                    android:textColor="@color/black"
                     android:textSize="70px"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" 项"
+                    android:textColor="@color/black"
                     android:textSize="70px"/>
             </LinearLayout>
+
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

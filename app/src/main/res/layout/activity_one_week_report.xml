@@ -98,6 +98,7 @@
                         android:text="睡眠"
                         android:textColor="#fff"
                         android:textSize="80px" />
+
                     <TextView
                         android:id="@+id/txt_sleepFinish"
                         android:layout_width="wrap_content"
@@ -105,6 +106,7 @@
                         android:text="5天完成早睡"
                         android:textColor="#fff"
                         android:textSize="70px" />
+
                     <TextView
                         android:id="@+id/txt_getupFinish"
                         android:layout_width="wrap_content"
@@ -116,10 +118,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
                         android:text="养成良好的睡眠习惯需要持之以恒，继续加油哦！"
                         android:textColor="#fff"
-                        android:textSize="45px"
-                        android:layout_marginTop="20px"/>
+                        android:textSize="45px" />
 
                 </LinearLayout>
 
@@ -155,6 +157,7 @@
                         android:text="运动"
                         android:textColor="#654333"
                         android:textSize="80px" />
+
                     <TextView
                         android:id="@+id/txt_stepFinish"
                         android:layout_width="wrap_content"
@@ -162,6 +165,7 @@
                         android:text="5天达到目标步数"
                         android:textColor="#654333"
                         android:textSize="70px" />
+
                     <TextView
                         android:id="@+id/txt_sportFinish"
                         android:layout_width="wrap_content"
@@ -169,6 +173,7 @@
                         android:text="运动2次"
                         android:textColor="#654333"
                         android:textSize="70px" />
+
                     <TextView
                         android:id="@+id/txt_powerFinish"
                         android:layout_width="wrap_content"
@@ -176,6 +181,7 @@
                         android:text="完成力量训练1次"
                         android:textColor="#654333"
                         android:textSize="70px" />
+
                     <TextView
                         android:id="@+id/txt_sportTime"
                         android:layout_width="wrap_content"
@@ -187,10 +193,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
                         android:text="良好的运动习惯是身体健康的基石，保持运动有益身心！"
                         android:textColor="#654333"
-                        android:textSize="45px"
-                        android:layout_marginTop="20px"/>
+                        android:textSize="45px" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

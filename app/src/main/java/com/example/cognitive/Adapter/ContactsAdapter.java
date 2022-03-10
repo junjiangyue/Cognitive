@@ -62,7 +62,7 @@ public class ContactsAdapter extends BaseAdapter {
 
     private void initViews(Contacts data, ContactsAdapter.ViewHolder holder) {//初始化数据
         holder.myFamily.setTitle(data.getUserName());
-        holder.myFamily.setSubtitle(data.getUserPhone()+data.getUserSex()+data.getUserBirth());
+        holder.myFamily.setSubtitle(data.getUserPhone()+"  "+data.getUserSex()+"  "+data.getUserBirth());
     }
 
     protected class ViewHolder {
