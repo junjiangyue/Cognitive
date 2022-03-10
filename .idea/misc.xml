@@ -4,17 +4,63 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android/COG-Frailty/Cognitive/app/src/main/res/layout/activity_fragment3.xml" value="0.16893115942028986" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/drawable/button_pressed.xml" value="0.17604166666666668" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/drawable/shape_gradient.xml" value="0.17604166666666668" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/drawable/shape_markerview.xml" value="0.17291666666666666" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/drawable/shape_navigator.xml" value="0.20364583333333333" />
-        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_ad8_result_page.xml" value="0.14673913043478262" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/drawable/sv_style.xml" value="0.17604166666666668" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/drawable/white_button.xml" value="0.17604166666666668" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/drawable/white_button_chosen.xml" value="0.17291666666666666" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/drawable/white_with_stroke.xml" value="0.17604166666666668" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_ad8_result_page.xml" value="0.1" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_adintro.xml" value="0.12545289855072464" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_change_name_dialog.xml" value="0.15989583333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_change_password.xml" value="0.15989583333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_contacts.xml" value="0.21041666666666667" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_fragment1.xml" value="0.264" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_fragment4.xml" value="0.1" />
-        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_history_result.xml" value="0.27395833333333336" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_frail_result_page.xml" value="0.1" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_history_result.xml" value="0.1" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_logo.xml" value="0.27395833333333336" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_main.xml" value="0.1875" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_one_week_report.xml" value="0.2717391304347826" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_personal_setting.xml" value="0.203125" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_search_user.xml" value="0.15989583333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_set_password.xml" value="0.15989583333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_task_history.xml" value="0.203125" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_test_history.xml" value="0.2006340579710145" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_verify_login.xml" value="0.15989583333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_weekly_report.xml" value="0.2717391304347826" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_weekly_report_history.xml" value="0.2717391304347826" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_welcome.xml" value="0.2006340579710145" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/dialog_diary.xml" value="0.21041666666666667" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/dialog_getup.xml" value="0.15989583333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/dialog_hobby.xml" value="0.15989583333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/dialog_other_sport.xml" value="0.15989583333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/dialog_power_sport.xml" value="0.15989583333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/dialog_read.xml" value="0.15989583333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/dialog_sleep.xml" value="0.15989583333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/dialog_smile.xml" value="0.15989583333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/dialog_walk.xml" value="0.15989583333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/dialog_water.xml" value="0.15989583333333332" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/expandlist_item.xml" value="0.2006340579710145" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/fragment_health_recipe.xml" value="0.21041666666666667" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/fragment_music_player.xml" value="0.21041666666666667" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/fragment_sleep_help.xml" value="0.21041666666666667" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/fragment_solar_term.xml" value="0.21041666666666667" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/frail_1.xml" value="0.18333333333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/layout_contacts.xml" value="0.21041666666666667" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/layout_fillage.xml" value="0.2717391304347826" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/layout_fillname.xml" value="0.2717391304347826" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/layout_hint2.xml" value="0.2717391304347826" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/layout_hint3.xml" value="0.2717391304347826" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/layout_hint4.xml" value="0.2717391304347826" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/layout_history.xml" value="0.203125" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/layout_markerview.xml" value="0.1" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/layout_report_list.xml" value="0.1" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/new_item_layout.xml" value="0.203125" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/shape_markerview.xml" value="0.15677083333333333" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/view_guide_simple.xml" value="0.203125" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable-v24/button_history10.xml" value="0.2074074074074074" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable-v24/button_history3.xml" value="0.2074074074074074" />
         <entry key="..\:/study/guidebar/Cognitive/app/src/main/res/drawable-v24/button_history6.xml" value="0.2074074074074074" />

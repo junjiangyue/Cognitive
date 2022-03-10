@@ -4,6 +4,15 @@
     android:background="@color/background"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,20 +47,57 @@
         android:padding="30dp"
         android:background="@color/content_background"
         android:orientation="vertical">
+
+        <com.github.mikephil.charting.charts.RadarChart
+            android:id="@+id/ad8_radar"
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+        </com.github.mikephil.charting.charts.RadarChart>
+        <TextView
+            android:id="@+id/frail_aspects"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
         <TextView
             android:id="@+id/ad8_advice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             />
-        <com.github.mikephil.charting.charts.RadarChart
-            android:id="@+id/ad8_radar"
-            android:layout_width="match_parent"
-            android:layout_height="300dp">
-        </com.github.mikephil.charting.charts.RadarChart>
     </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/content_background"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:padding="30dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/ad8_health_advice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/ad8_sport_advice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/ad8_memory_advice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="10dp"
+                    />
+            </LinearLayout>
 
-    <LinearLayout
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -81,4 +127,6 @@
             android:onClick="backToMainPage"/>
 
     </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
