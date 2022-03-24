@@ -30,7 +30,7 @@ public class Exercise extends AppCompatActivity {
     /**
      * 新闻列表请求接口
      */
-    public static final String URL = "https://route.showapi.com/1797-1?page=0&showapi_appid=866862.0&showapi_timestamp=20211219152933&url=Mzk0NTI1MTAxNg==&showapi_sign=dbcd7da95d8a46108890b0da428fddb9";
+    public static final String URL = "https://route.showapi.com/1797-1?page=0&showapi_appid=866862.0&showapi_timestamp=20211219152933&url=MjM5NzAyNDk4NA==&showapi_sign=dbcd7da95d8a46108890b0da428fddb9";
 
     /**
      * ListView对象
