@@ -36,6 +36,14 @@
             android:textSize="40sp"
             android:layout_gravity="center"
             />
+        <Button
+            android:id="@+id/ad8_analyze"
+            android:background="@drawable/white_button"
+            android:layout_gravity="center"
+            android:text="点击查看各维度具体分析"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="goToAD8Analyze"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

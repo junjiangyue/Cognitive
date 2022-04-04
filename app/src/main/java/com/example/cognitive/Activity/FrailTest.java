@@ -96,7 +96,7 @@ public class FrailTest extends AppCompatActivity {
             new Thread(postRun).start();
 
             //Log.i("weight", "afterTextChanged: "+mAdapter.weight_cur);
-            Intent intent = new Intent(FrailTest.this, FrailResultPage.class);
+            Intent intent = new Intent(FrailTest.this, FrailDefeatActivity.class);
             intent.putExtra("score", String.valueOf(score));
             intent.putExtra("strength_point", String.valueOf(strength_point));
             intent.putExtra("health_point", String.valueOf(health_point));

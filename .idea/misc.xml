@@ -12,15 +12,23 @@
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/drawable/white_button.xml" value="0.17604166666666668" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/drawable/white_button_chosen.xml" value="0.17291666666666666" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/drawable/white_with_stroke.xml" value="0.17604166666666668" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_ad8_analyze.xml" value="0.16077898550724637" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_ad8_defeat.xml" value="0.16757246376811594" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_ad8_result_page.xml" value="0.1" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_adintro.xml" value="0.12545289855072464" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_change_name_dialog.xml" value="0.15989583333333332" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_change_password.xml" value="0.15989583333333332" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_contacts.xml" value="0.21041666666666667" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_defeat.xml" value="0.16757246376811594" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_fragment1.xml" value="0.264" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_fragment2.xml" value="0.17391304347826086" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_fragment3.xml" value="0.17391304347826086" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_fragment4.xml" value="0.1" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_frail_analyze.xml" value="0.1" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_frail_result_page.xml" value="0.1" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_frail_test.xml" value="0.13323201621073963" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_history_result.xml" value="0.1" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_login.xml" value="0.24954710144927536" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_logo.xml" value="0.27395833333333336" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_main.xml" value="0.1875" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_one_week_report.xml" value="0.2717391304347826" />
@@ -33,6 +41,7 @@
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_weekly_report.xml" value="0.2717391304347826" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_weekly_report_history.xml" value="0.2717391304347826" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/activity_welcome.xml" value="0.2006340579710145" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/cell_title_layout.xml" value="0.16757246376811594" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/dialog_diary.xml" value="0.21041666666666667" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/dialog_getup.xml" value="0.15989583333333332" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/dialog_hobby.xml" value="0.15989583333333332" />
@@ -49,6 +58,7 @@
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/fragment_sleep_help.xml" value="0.21041666666666667" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/fragment_solar_term.xml" value="0.21041666666666667" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/frail_1.xml" value="0.18333333333333332" />
+        <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/frail_5.xml" value="0.24954710144927536" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/layout_contacts.xml" value="0.21041666666666667" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/layout_fillage.xml" value="0.2717391304347826" />
         <entry key="..\:/AndroidPractice/cog/app/src/main/res/layout/layout_fillname.xml" value="0.2717391304347826" />
