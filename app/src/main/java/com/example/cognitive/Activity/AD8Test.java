@@ -97,7 +97,7 @@ public class AD8Test extends AppCompatActivity {
             //上传后端
             new Thread(postRun).start();
 
-            Intent intent = new Intent(AD8Test.this, AD8ResultPage.class);
+            Intent intent = new Intent(AD8Test.this, AD8DefeatActivity.class);
             intent.putExtra("ad8_score", String.valueOf(score));
             intent.putExtra("ad8_judgement", String.valueOf(judgement_point));
             intent.putExtra("ad8_memory", String.valueOf(memory_point));

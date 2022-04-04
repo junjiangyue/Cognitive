@@ -34,6 +34,18 @@
         android:theme="@style/Theme.Cognitive"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.AD8AnalyzeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.FrailAnalyzeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AD8DefeatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.FrailDefeatActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.VerifyLogin"
             android:exported="true" />
 

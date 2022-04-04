@@ -23,6 +23,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class HistoryResult extends AppCompatActivity {
 
@@ -75,14 +76,26 @@ public class HistoryResult extends AppCompatActivity {
         String detailed_sport ="";
         String detailed_memory="";
 
+        //用字符串数组存储各维度建议，然后随机出现
+        Random r=new Random();
+        String [] sportArray={ this.getResources().getString(R.string.sport_advice_1),
+                this.getResources().getString(R.string.sport_advice_2),
+                this.getResources().getString(R.string.sport_advice_3),
+                this.getResources().getString(R.string.sport_advice_4)};
+        String [] healthArray={ this.getResources().getString(R.string.diet_advice_1),
+                this.getResources().getString(R.string.diet_advice_2),
+                this.getResources().getString(R.string.diet_advice_3)};
+        String [] memoryArray={ this.getResources().getString(R.string.memory_advice_1),
+                this.getResources().getString(R.string.memory_advice_2)};
+
         detailed_health+="<font color='#0000CD'>健康膳食建议：</font>";
-        detailed_health+=this.getResources().getString(R.string.health_advice);
+        detailed_health+=healthArray[r.nextInt(2)];
 
         detailed_sport +="<font color='#0000CD'>运动建议：</font>";
-        detailed_sport +=this.getResources().getString(R.string.sport_advice);
+        detailed_sport +=sportArray[r.nextInt(3)];
 
         detailed_memory+="<font color='#0000CD'>提高记忆建议：</font>";
-        detailed_memory+=this.getResources().getString(R.string.memory_advice);
+        detailed_memory+=memoryArray[r.nextInt(1)];
 
         //对分数进行辨别，选出出现问题的一些健康方面
         if (health_point > 0) {

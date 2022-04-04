@@ -7,10 +7,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cognitive.Adapter.FoldingCellListAdapter;
+import com.example.cognitive.Bean.AdviceItem;
 import com.example.cognitive.R;
 import com.example.cognitive.model.MyMarkerView;
 import com.github.mikephil.charting.charts.RadarChart;
@@ -20,15 +24,20 @@ import com.github.mikephil.charting.data.RadarData;
 import com.github.mikephil.charting.data.RadarDataSet;
 import com.github.mikephil.charting.data.RadarEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class FrailResultPage extends AppCompatActivity {
     public TextView showScore;
     public TextView frailAdvice;
     public static FrailResultPage ResultPage;
+    int score;
+    int strength_point;
+    int health_point;
     //雷达图
     private RadarChart radar;
     //项目表
@@ -62,9 +71,9 @@ public class FrailResultPage extends AppCompatActivity {
             String scoreString=getIntent.getStringExtra("score");
             String strengthString=getIntent.getStringExtra("strength_point");
             String healthString=getIntent.getStringExtra("health_point");
-            int score=Integer.parseInt(scoreString);
-            int strength_point=Integer.parseInt(strengthString);
-            int health_point=Integer.parseInt(healthString);
+            score=Integer.parseInt(scoreString);
+            strength_point=Integer.parseInt(strengthString);
+            health_point=Integer.parseInt(healthString);
             boolean flag=false;
             SharedPreferences.Editor editor = spTestScore.edit();
             editor.putInt("strengthScore", strength_point);
@@ -91,14 +100,26 @@ public class FrailResultPage extends AppCompatActivity {
             String detailed_sport ="";
             String detailed_memory="";
 
+            //用字符串数组存储各维度建议，然后随机出现
+            Random r=new Random();
+            String [] sportArray={ this.getResources().getString(R.string.sport_advice_1),
+                    this.getResources().getString(R.string.sport_advice_2),
+                    this.getResources().getString(R.string.sport_advice_3),
+                    this.getResources().getString(R.string.sport_advice_4)};
+            String [] healthArray={ this.getResources().getString(R.string.diet_advice_1),
+                    this.getResources().getString(R.string.diet_advice_2),
+                    this.getResources().getString(R.string.diet_advice_3)};
+            String [] memoryArray={ this.getResources().getString(R.string.memory_advice_1),
+                    this.getResources().getString(R.string.memory_advice_2)};
+
             detailed_health+="<font color='#0000CD'>健康膳食建议：</font>";
-            detailed_health+=this.getResources().getString(R.string.health_advice);
+            detailed_health+=healthArray[r.nextInt(2)];
 
             detailed_sport +="<font color='#0000CD'>运动建议：</font>";
-            detailed_sport +=this.getResources().getString(R.string.sport_advice);
+            detailed_sport +=sportArray[r.nextInt(3)];
 
             detailed_memory+="<font color='#0000CD'>提高记忆建议：</font>";
-            detailed_memory+=this.getResources().getString(R.string.memory_advice);
+            detailed_memory+=memoryArray[r.nextInt(1)];
 
             //对分数进行辨别，选出出现问题的一些健康方面
             if (health_point > 0) {
@@ -179,6 +200,7 @@ public class FrailResultPage extends AppCompatActivity {
             detailedMemory.setText(Html.fromHtml(detailed_memory));
 
 
+
         }
 
 
@@ -197,5 +219,14 @@ public class FrailResultPage extends AppCompatActivity {
             Intent intent=new Intent(FrailResultPage.this, MainActivity.class);
             startActivity(intent);
             finish();
+        }
+        public void goToFrailAnalyze(View view)
+        {
+            Intent intent=new Intent(FrailResultPage.this, FrailAnalyzeActivity.class);
+            intent.putExtra("strength_point", strength_point);
+            intent.putExtra("health_point", health_point);
+            //finish();
+            startActivity(intent);
+
         }
     }

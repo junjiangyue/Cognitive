@@ -23,6 +23,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class AD8ResultPage extends AppCompatActivity {
     //雷达图
@@ -31,6 +32,10 @@ public class AD8ResultPage extends AppCompatActivity {
     List<RadarEntry> list;
     //存分数
     private SharedPreferences spTestScore;
+    int score;
+    int judgement_point;
+    int memory_point;
+    int cognition_point;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +61,10 @@ public class AD8ResultPage extends AppCompatActivity {
         String judgementString=getIntent.getStringExtra("ad8_judgement");
         String memoryString=getIntent.getStringExtra("ad8_memory");
         String cognitionString=getIntent.getStringExtra("ad8_cognition");
-        int score=Integer.parseInt(scoreString);
-        int judgement_point=Integer.parseInt(judgementString);
-        int memory_point=Integer.parseInt(memoryString);
-        int cognition_point=Integer.parseInt(cognitionString);
+        score=Integer.parseInt(scoreString);
+        judgement_point=Integer.parseInt(judgementString);
+        memory_point=Integer.parseInt(memoryString);
+        cognition_point=Integer.parseInt(cognitionString);
         boolean flag=false;
         SharedPreferences.Editor editor = spTestScore.edit();
         editor.putInt("judgementScore", judgement_point);
@@ -82,14 +87,26 @@ public class AD8ResultPage extends AppCompatActivity {
         String detailed_sport ="";
         String detailed_memory="";
 
+        //用字符串数组存储各维度建议，然后随机出现
+        Random r=new Random();
+        String [] sportArray={ this.getResources().getString(R.string.sport_advice_1),
+                this.getResources().getString(R.string.sport_advice_2),
+                this.getResources().getString(R.string.sport_advice_3),
+                this.getResources().getString(R.string.sport_advice_4)};
+        String [] healthArray={ this.getResources().getString(R.string.diet_advice_1),
+                this.getResources().getString(R.string.diet_advice_2),
+                this.getResources().getString(R.string.diet_advice_3)};
+        String [] memoryArray={ this.getResources().getString(R.string.memory_advice_1),
+                this.getResources().getString(R.string.memory_advice_2)};
+
         detailed_health+="<font color='#0000CD'>健康膳食建议：</font>";
-        detailed_health+=this.getResources().getString(R.string.health_advice);
+        detailed_health+=healthArray[r.nextInt(2)];
 
         detailed_sport +="<font color='#0000CD'>运动建议：</font>";
-        detailed_sport +=this.getResources().getString(R.string.sport_advice);
+        detailed_sport +=sportArray[r.nextInt(3)];
 
         detailed_memory+="<font color='#0000CD'>提高记忆建议：</font>";
-        detailed_memory+=this.getResources().getString(R.string.memory_advice);
+        detailed_memory+=memoryArray[r.nextInt(1)];
 
         if (judgement_point > 0) {
             aspects += "<font color='#FF0000'>判断力</font>，";
@@ -190,5 +207,15 @@ public class AD8ResultPage extends AppCompatActivity {
         Intent intent=new Intent(AD8ResultPage.this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+    public void goToAD8Analyze(View view)
+    {
+        Intent intent=new Intent(AD8ResultPage.this, AD8AnalyzeActivity.class);
+        intent.putExtra("judgement_point", judgement_point);
+        intent.putExtra("memory_point", memory_point);
+        intent.putExtra("cognition_point", cognition_point);
+
+        //finish();
+        startActivity(intent);
     }
 }
